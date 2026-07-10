@@ -19,6 +19,8 @@
         </a>
 
         @include('sections.header')
+        @include('partials.services-dialog')
+
 
         <main id="main" class="main">
             @yield('content')

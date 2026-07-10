@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@source "../views";
+@source "../js";
+
 
 a {
 	text-decoration: none !important;
@@ -39,5 +42,197 @@ a {
     body {
         background: white;
         color: var(--color-ink);
+    }
+}
+
+
+
+@layer components {
+    .contact-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.75rem;
+    }
+
+    @media (min-width: 48rem) {
+        .contact-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            column-gap: 1.75rem;
+            row-gap: 1.75rem;
+        }
+    }
+
+    .contact-field {
+        min-width: 0;
+    }
+
+    .contact-field--full {
+        grid-column: 1 / -1;
+    }
+
+    .contact-field label {
+        display: block;
+        margin-bottom: 0.75rem;
+        color: var(--color-stone);
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    .contact-field input:not([type="checkbox"]),
+    .contact-field textarea {
+        display: block;
+        width: 100%;
+        border: 1px solid rgb(0 0 0 / 0.06);
+        background-color: #fff;
+        color: var(--color-ink);
+        box-shadow: 0 2px 12px rgb(0 0 0 / 0.06);
+        outline: none;
+        transition:
+            border-color 200ms ease,
+            box-shadow 200ms ease;
+    }
+
+    .contact-field input:not([type="checkbox"]) {
+        min-height: 3.5rem;
+        padding-inline: 1rem;
+    }
+
+    .contact-field textarea {
+        min-height: 9.5rem;
+        resize: vertical;
+        padding: 1rem;
+    }
+
+    .contact-field input:not([type="checkbox"]):focus,
+    .contact-field textarea:focus {
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 3px rgb(255 188 0 / 0.18);
+    }
+
+    .contact-consent .wpcf7-list-item {
+        margin: 0;
+    }
+
+    .contact-consent label {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        margin: 0;
+        color: var(--color-stone);
+        font-size: 0.875rem;
+        line-height: 1.6;
+        cursor: pointer;
+    }
+
+    .contact-consent input[type="checkbox"] {
+        width: 1.75rem;
+        height: 1.75rem;
+        margin-top: 0.125rem;
+        flex: 0 0 auto;
+        border: 1px solid rgb(0 0 0 / 0.1);
+        border-radius: 0;
+        accent-color: var(--color-primary);
+    }
+
+    .contact-submit {
+        display: inline-flex;
+        min-width: 10.5rem;
+        min-height: 3.25rem;
+        align-items: center;
+        justify-content: center;
+        border: 0;
+        background-image: linear-gradient(
+            to right,
+            var(--color-primary),
+            var(--color-accent)
+        );
+        padding-inline: 2rem;
+        color: #fff;
+        font-size: 0.75rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition:
+            transform 200ms ease,
+            box-shadow 200ms ease;
+    }
+
+    .contact-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgb(228 74 0 / 0.2);
+    }
+
+    .contact-submit:focus-visible {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 4px;
+    }
+
+    .contact-form-wrap .wpcf7-spinner {
+        margin: 0 0 0 1rem;
+    }
+
+    .contact-form-wrap .wpcf7-not-valid-tip {
+        margin-top: 0.5rem;
+        color: var(--color-accent);
+        font-size: 0.75rem;
+    }
+
+    .contact-form-wrap .wpcf7-response-output {
+        margin: 1.5rem 0 0;
+        border-width: 1px;
+        padding: 1rem;
+        font-size: 0.875rem;
+    }
+
+    .contact-form-wrap form.invalid .wpcf7-response-output,
+    .contact-form-wrap form.unaccepted .wpcf7-response-output {
+        border-color: var(--color-accent);
+    }
+
+    .contact-form-wrap form.sent .wpcf7-response-output {
+        border-color: var(--color-primary);
+    }
+}
+
+
+@layer components {
+    .primary-menu-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding-block: 0.75rem;
+        color: var(--color-ink);
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        text-transform: uppercase;
+        transition:
+            color 200ms ease,
+            opacity 200ms ease;
+    }
+
+    .primary-menu-link:hover {
+        color: var(--color-accent);
+    }
+
+    .primary-menu-link:focus-visible {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 4px;
+    }
+
+    .primary-menu .current-menu-item > .primary-menu-link,
+    .primary-menu .current_page_item > .primary-menu-link {
+        color: var(--color-accent);
+    }
+
+    .mobile-menu .menu-item > a {
+        display: flex;
+        min-height: 3rem;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        border-bottom: 1px solid rgb(0 0 0 / 0.06);
+        color: var(--color-ink);
+        font-size: 0.875rem;
+        text-transform: uppercase;
     }
 }

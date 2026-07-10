@@ -14,7 +14,7 @@
             get_field('hero_text') ?:
             'For over 20 years, we have been building, extending and improving homes across London. Every project is approached with the same focus on quality workmanship, reliability and attention to detail from start to finish.';
 
-        $heroImage = get_field('hero_image');
+        $heroImage = get_field('hero_image') ?: get_theme_file_uri('/resources/images/first-bg.png');
 
         /*
         |--------------------------------------------------------------------------
@@ -136,11 +136,11 @@
 
         $galleryImages = get_field('gallery_images') ?: [
             [
-                'image' => get_field('gallery_image_1'),
+                'image' => get_field('gallery_image_1') ?: get_theme_file_uri('/resources/images/service1.png'),
                 'title' => 'Masonry and bricklaying',
             ],
             [
-                'image' => get_field('gallery_image_2'),
+                'image' => get_field('gallery_image_2') ?: get_theme_file_uri('/resources/images/service2.png'),
                 'title' => 'Kitchen refurbishment',
             ],
             [
@@ -211,7 +211,6 @@
         class="
             relative
             min-h-155
-            overflow-hidden
             bg-charcoal
 
             lg:min-h-170

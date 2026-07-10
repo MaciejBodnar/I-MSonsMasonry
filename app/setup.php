@@ -84,7 +84,7 @@ add_action('after_setup_theme', function () {
      * @link https://developer.wordpress.org/reference/functions/register_nav_menus/
      */
     register_nav_menus([
-        'primary_navigation' => __('Primary Navigation', 'sage'),
+        'primary_navigation' => __('Primary Navigation', 'im-sons'),
     ]);
 
     /**
@@ -161,3 +161,85 @@ add_action('widgets_init', function () {
         'id' => 'sidebar-footer',
     ] + $config);
 });
+
+
+
+add_filter(
+    'nav_menu_link_attributes',
+    function ($attributes, $menuItem, $args) {
+        $classes = is_array($menuItem->classes)
+            ? $menuItem->classes
+            : [];
+
+        if (in_array('opens-services-dialog', $classes, true)) {
+            $attributes['href'] = '#services-dialog';
+            $attributes['data-services-dialog-open'] = '';
+            $attributes['aria-haspopup'] = 'dialog';
+            $attributes['aria-controls'] = 'services-dialog';
+        }
+
+        return $attributes;
+    },
+    10,
+    3
+);
+
+function im_sons_default_primary_menu(array $args = []): string
+{
+    $menuClass = $args['menu_class']
+        ?? 'primary-menu flex items-center gap-10';
+
+    $items = [
+        [
+            'label' => 'Home',
+            'url' => home_url('/'),
+        ],
+        [
+            'label' => 'About',
+            'url' => home_url('/about/'),
+        ],
+        [
+            'label' => 'Services',
+            'url' => '#services-dialog',
+            'dialog' => true,
+        ],
+        [
+            'label' => 'Gallery',
+            'url' => home_url('/gallery/'),
+        ],
+        [
+            'label' => 'Contact',
+            'url' => home_url('/contact/'),
+        ],
+    ];
+
+    $html = '<ul class="' . esc_attr($menuClass) . '">';
+
+    foreach ($items as $item) {
+        $isDialogTrigger = $item['dialog'] ?? false;
+
+        $html .= '<li class="menu-item'
+            . ($isDialogTrigger ? ' opens-services-dialog' : '')
+            . '">';
+
+        $html .= '<a'
+            . ' href="' . esc_url($item['url']) . '"'
+            . ' class="primary-menu-link"';
+
+        if ($isDialogTrigger) {
+            $html .= ' data-services-dialog-open'
+                . ' aria-haspopup="dialog"'
+                . ' aria-controls="services-dialog"';
+        }
+
+        $html .= '>';
+
+        $html .= esc_html($item['label']);
+        $html .= '</a>';
+        $html .= '</li>';
+    }
+
+    $html .= '</ul>';
+
+    return $html;
+}
