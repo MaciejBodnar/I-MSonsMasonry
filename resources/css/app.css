@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+a {
+	text-decoration: none !important;
+}
+
+/*
+|--------------------------------------------------------------------------
+| I&M Sons Masonry — Design Tokens
+|--------------------------------------------------------------------------
+*/
+
+@theme {
+    /* Brand */
+    --color-primary: #FFBC00;
+    --color-accent: #E44A00;
+
+    /* Neutrals */
+    --color-ink: #171717;
+    --color-charcoal: #211F1D;
+    --color-stone: #424242;
+    --color-off-white: #F7F7F5;
+
+    /* Layout */
+    --container-site: 96rem;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Base
+|--------------------------------------------------------------------------
+*/
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        background: white;
+        color: var(--color-ink);
+    }
+}
