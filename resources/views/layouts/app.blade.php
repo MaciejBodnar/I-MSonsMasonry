@@ -8,6 +8,7 @@
     @php(wp_head())
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="https://use.typekit.net/gjr0nrz.css">
 </head>
 
 <body @php(body_class())>

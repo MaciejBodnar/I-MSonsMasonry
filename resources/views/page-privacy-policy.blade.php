@@ -135,101 +135,31 @@
         }
     @endphp
 
-    <section
-        class="
-            relative
-            overflow-hidden
-            bg-white
-            py-20
-
-            sm:py-24
-            lg:py-28
-        ">
+    <section class="relative overflow-hidden bg-white py-20 sm:py-24 lg:py-28">
         {{-- Yellow line from the viewport edge --}}
-        <div class="
-                pointer-events-none
-                absolute
-                top-42
-                left-0
-                z-10
-                hidden
-                w-[calc(50%-24rem)]
-                items-center
-
-                lg:flex
-            "
+        <div class="top-42 pointer-events-none absolute left-0 z-10 hidden w-[calc(50%-24rem)] items-center lg:flex"
             aria-hidden="true">
-            <span class="h-0.5 flex-1 bg-primary"></span>
+            <span class="bg-primary h-0.5 flex-1"></span>
 
-            <span
-                class="
-                    size-2.5
-                    shrink-0
-                    rounded-full
-                    bg-primary
-                "></span>
+            <span class="bg-primary size-2.5 shrink-0 rounded-full"></span>
         </div>
 
         <div
-            class="
-                mx-auto
-                grid
-                max-w-250
-                gap-12
-                px-6
-
-                sm:px-8
-
-                lg:grid-cols-[220px_minmax(0,1fr)]
-                lg:gap-18
-                lg:px-12
-
-                xl:px-0
-            ">
+            class="max-w-250 lg:gap-18 mx-auto grid gap-12 px-6 sm:px-8 lg:grid-cols-[220px_minmax(0,1fr)] lg:px-12 xl:px-0">
             {{-- Page heading --}}
             <header>
-                <h1
-                    class="
-                        text-4xl
-                        leading-[1.05]
-                        font-light
-                        tracking-[-0.045em]
-                        text-ink
-                        uppercase
-
-                        sm:text-5xl
-                    ">
+                <h1 class="text-ink text-4xl font-light uppercase leading-[1.05] tracking-[-0.045em] sm:text-5xl">
                     {{ $privacyTitle }}
                 </h1>
 
-                <div class="
-                        mt-8
-                        flex
-                        items-center
+                <div class="mt-8 flex items-center lg:hidden" aria-hidden="true">
+                    <span class="bg-primary h-0.5 flex-1"></span>
 
-                        lg:hidden
-                    "
-                    aria-hidden="true">
-                    <span class="h-0.5 flex-1 bg-primary"></span>
-
-                    <span
-                        class="
-                            size-2.5
-                            shrink-0
-                            rounded-full
-                            bg-primary
-                        "></span>
+                    <span class="bg-primary size-2.5 shrink-0 rounded-full"></span>
                 </div>
 
                 @if ($lastUpdated)
-                    <p
-                        class="
-                            mt-6
-                            text-xs
-                            tracking-[0.04em]
-                            text-accent
-                            uppercase
-                        ">
+                    <p class="text-accent mt-6 text-xs uppercase tracking-[0.04em]">
                         Last updated: {{ $lastUpdated }}
                     </p>
                 @endif
@@ -237,48 +167,7 @@
 
             {{-- Privacy content --}}
             <article
-                class="
-                    max-w-170
-                    text-sm/7
-                    text-stone
-
-                    [&_a]:text-accent
-                    [&_a]:underline
-                    [&_a]:underline-offset-4
-                    [&_a]:transition-colors
-                    hover:[&_a]:text-primary
-
-                    [&_h2]:mt-12
-                    [&_h2]:mb-4
-                    [&_h2]:text-2xl
-                    [&_h2]:leading-tight
-                    [&_h2]:font-light
-                    [&_h2]:tracking-[-0.03em]
-                    [&_h2]:text-ink
-                    [&_h2]:uppercase
-
-                    [&_h2:first-child]:mt-0
-
-                    [&_h3]:mt-8
-                    [&_h3]:mb-3
-                    [&_h3]:text-lg
-                    [&_h3]:font-medium
-                    [&_h3]:text-ink
-
-                    [&_p]:mb-5
-
-                    [&_ul]:mb-6
-                    [&_ul]:list-disc
-                    [&_ul]:space-y-2
-                    [&_ul]:pl-5
-
-                    [&_ol]:mb-6
-                    [&_ol]:list-decimal
-                    [&_ol]:space-y-2
-                    [&_ol]:pl-5
-
-                    sm:text-base/7
-                ">
+                class="max-w-170 text-stone [&_a]:text-accent hover:[&_a]:text-primary [&_h2]:text-ink [&_h3]:text-ink text-sm/7 sm:text-base/7 [&_a]:underline [&_a]:underline-offset-4 [&_a]:transition-colors [&_h2:first-child]:mt-0 [&_h2]:mb-4 [&_h2]:mt-12 [&_h2]:text-2xl [&_h2]:font-light [&_h2]:uppercase [&_h2]:leading-tight [&_h2]:tracking-[-0.03em] [&_h3]:mb-3 [&_h3]:mt-8 [&_h3]:text-lg [&_h3]:font-medium [&_ol]:mb-6 [&_ol]:list-decimal [&_ol]:space-y-2 [&_ol]:pl-5 [&_p]:mb-5 [&_ul]:mb-6 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5">
                 {!! wp_kses_post($privacyContent) !!}
             </article>
         </div>

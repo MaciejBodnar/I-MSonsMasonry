@@ -94,18 +94,9 @@
 
 
     <section class="min-h-screen bg-white py-20 sm:py-24 lg:py-28" data-gallery-page>
-        <div class="mx-auto w-full max-w-250 px-6 sm:px-8 lg:px-12 xl:px-0">
+        <div class="max-w-250 mx-auto w-full px-6 sm:px-8 lg:px-12 xl:px-0">
             <header class="text-center">
-                <h1
-                    class="
-                    text-4xl
-                    leading-none
-                    font-light
-                    tracking-[-0.04em]
-                    text-ink
-                    uppercase
-                    sm:text-5xl
-                ">
+                <h1 class="text-ink text-4xl font-light uppercase leading-none tracking-[-0.04em] sm:text-5xl">
                     Gallery
                 </h1>
             </header>
@@ -117,85 +108,24 @@
         --}}
 
             <div class="mt-14 hidden lg:mt-16" data-gallery-viewer>
-                <div
-                    class="
-            mb-7
-            flex
-            flex-wrap
-            items-center
-            justify-between
-            gap-5
-        ">
-                    <h2 class="
-                text-2xl
-                font-light
-                tracking-[-0.03em]
-                text-ink
-                uppercase
-
-                sm:text-3xl
-            "
-                        data-gallery-title></h2>
+                <div class="mb-7 flex flex-wrap items-center justify-between gap-5">
+                    <h2 class="text-ink text-2xl font-light uppercase tracking-[-0.03em] sm:text-3xl" data-gallery-title>
+                    </h2>
 
                     <button type="button"
-                        class="
-                text-sm
-                text-ink
-                uppercase
-                transition-colors
-
-                hover:text-accent
-
-                focus-visible:outline-2
-                focus-visible:outline-offset-4
-                focus-visible:outline-primary
-            "
+                        class="text-ink hover:text-accent focus-visible:outline-primary text-sm uppercase transition-colors focus-visible:outline-2 focus-visible:outline-offset-4"
                         data-gallery-close>
                         Close gallery
                     </button>
                 </div>
 
-                <div
-                    class="
-            relative
-            aspect-16/10
-            overflow-hidden
-            bg-off-white
-
-            lg:aspect-video
-        ">
+                <div class="aspect-16/10 bg-off-white relative overflow-hidden lg:aspect-video">
                     <img src="" alt=""
-                        class="
-                absolute
-                inset-0
-                size-full
-                object-cover
-                transition-opacity
-                duration-300
-            "
+                        class="absolute inset-0 size-full object-cover transition-opacity duration-300"
                         data-gallery-main-image>
 
                     <button type="button"
-                        class="
-                absolute
-                bottom-0
-                left-0
-                z-10
-                flex
-                size-12
-                items-center
-                justify-center
-                bg-primary
-                text-ink
-                transition-colors
-
-                hover:bg-accent
-                hover:text-white
-
-                focus-visible:outline-2
-                focus-visible:outline-offset-4
-                focus-visible:outline-white
-            "
+                        class="bg-primary text-ink hover:bg-accent absolute bottom-0 left-0 z-10 flex size-12 items-center justify-center transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                         aria-label="Previous image" data-gallery-prev>
                         <svg viewBox="0 0 24 24" class="size-6" fill="none" aria-hidden="true">
                             <path d="M15 4L7 12L15 20" stroke="currentColor" stroke-width="2" />
@@ -203,43 +133,14 @@
                     </button>
 
                     <button type="button"
-                        class="
-                absolute
-                right-0
-                bottom-0
-                z-10
-                flex
-                size-12
-                items-center
-                justify-center
-                bg-primary
-                text-ink
-                transition-colors
-
-                hover:bg-accent
-                hover:text-white
-
-                focus-visible:outline-2
-                focus-visible:outline-offset-4
-                focus-visible:outline-white
-            "
+                        class="bg-primary text-ink hover:bg-accent absolute bottom-0 right-0 z-10 flex size-12 items-center justify-center transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                         aria-label="Next image" data-gallery-next>
                         <svg viewBox="0 0 24 24" class="size-6" fill="none" aria-hidden="true">
                             <path d="M9 4L17 12L9 20" stroke="currentColor" stroke-width="2" />
                         </svg>
                     </button>
 
-                    <span
-                        class="
-                absolute
-                top-4
-                right-4
-                bg-black/65
-                px-3
-                py-2
-                text-xs
-                text-white
-            "
+                    <span class="absolute right-4 top-4 bg-black/65 px-3 py-2 text-xs text-white"
                         data-gallery-counter></span>
                 </div>
             </div>
@@ -250,79 +151,21 @@
         |--------------------------------------------------------------------------
         --}}
 
-            <div class="
-                mt-14
-                grid
-                gap-5
-
-                sm:grid-cols-2
-                lg:mt-16
-                lg:grid-cols-3
-            "
-                data-gallery-categories>
+            <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3" data-gallery-categories>
                 @foreach ($galleryCategories as $index => $category)
-                    <button type="button"
-                        class="
-                        group
-                        relative
-                        min-h-105
-                        overflow-hidden
-                        bg-charcoal
-                        text-left
-                    "
+                    <button type="button" class="min-h-105 bg-charcoal group relative overflow-hidden text-left"
                         data-gallery-category="{{ $index }}" data-gallery-slug="{{ $category['slug'] }}">
                         <img src="{{ $category['cover_image'] }}" alt="{{ $category['title'] }}"
-                            class="
-                            absolute
-                            inset-0
-                            size-full
-                            object-cover
-                            grayscale
-                            transition
-                            duration-700
+                            class="absolute inset-0 size-full object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0">
 
-                            group-hover:scale-105
-                            group-hover:grayscale-0
-                        ">
+                        <span class="bg-linear-to-b absolute inset-0 from-black/20 via-black/20 to-black/80"></span>
 
-                        <span
-                            class="
-                            absolute
-                            inset-0
-                            bg-linear-to-b
-                            from-black/20
-                            via-black/20
-                            to-black/80
-                        "></span>
-
-                        <span
-                            class="
-                            relative
-                            z-10
-                            flex
-                            min-h-105
-                            flex-col
-                            justify-between
-                            p-7
-                        ">
-                            <span
-                                class="
-                                max-w-52
-                                text-xl/[1.15]
-                                font-normal
-                                text-white
-                                uppercase
-                            ">
+                        <span class="min-h-105 relative z-10 flex flex-col justify-between p-7">
+                            <span class="max-w-52 text-xl/[1.15] font-normal uppercase text-white">
                                 {{ $category['title'] }}
                             </span>
 
-                            <span
-                                class="
-                                text-xs
-                                tracking-[0.04em]
-                                text-white/70
-                                uppercase
-                            ">
+                            <span class="text-xs uppercase tracking-[0.04em] text-white/70">
                                 {{ count($category['images']) }} Images
                             </span>
                         </span>

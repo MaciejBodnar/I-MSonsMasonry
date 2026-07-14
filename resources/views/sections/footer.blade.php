@@ -61,43 +61,21 @@
 
 <footer class="bg-black text-white">
     <div
-        class="
-            mx-auto
-            grid
-            max-w-288
-            gap-14
-            px-6
-            py-18
-
-            sm:px-8
-            sm:py-20
-
-            lg:grid-cols-[280px_80px_minmax(0,1fr)]
-            lg:items-center
-            lg:gap-16
-            lg:px-12
-
-            xl:px-0
-        ">
+        class="max-w-288 py-18 mx-auto grid gap-14 px-6 sm:px-8 sm:py-20 lg:grid-cols-[280px_80px_minmax(0,1fr)] lg:items-center lg:gap-16 lg:px-12 xl:px-0">
         {{-- Logo --}}
         <div class="flex justify-center lg:justify-start">
             <a href="{{ home_url('/') }}" class="block" aria-label="{{ get_bloginfo('name') }} home">
                 @if (has_custom_logo())
-                    <div
-                        class="
-                            [&_img]:h-auto
-                            [&_img]:w-64
-                            [&_img]:max-w-full
-                        ">
+                    <div class="[&_img]:h-auto [&_img]:w-64 [&_img]:max-w-full">
                         {!! get_custom_logo() !!}
                     </div>
                 @else
                     <div class="text-center">
-                        <div class="text-4xl font-semibold text-primary uppercase">
+                        <div class="text-primary text-4xl font-semibold uppercase">
                             I&amp;M Sons
                         </div>
 
-                        <div class="mt-1 text-xl text-accent uppercase">
+                        <div class="text-accent mt-1 text-xl uppercase">
                             Masonry
                         </div>
                     </div>
@@ -108,99 +86,42 @@
         {{-- Social line --}}
         <div class="flex justify-center">
             <div class="flex flex-col items-center">
-                <span class="size-3 rounded-full bg-primary"></span>
+                <span class="bg-primary size-3 rounded-full"></span>
 
-                <span class="h-8 w-0.75 bg-primary"></span>
+                <span class="w-0.75 bg-primary h-8"></span>
 
                 <a href="{{ $facebookUrl }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
-                    class="
-                        flex
-                        size-11
-                        items-center
-                        justify-center
-                        rounded-full
-                        bg-primary
-                        font-semibold
-                        text-black
-                        transition
-
-                        hover:bg-accent
-                        hover:text-white
-                    ">
+                    class="bg-primary hover:bg-accent flex size-11 items-center justify-center rounded-full font-semibold text-black transition hover:text-white">
                     f
                 </a>
 
-                <span class="h-3 w-0.75 bg-primary"></span>
+                <span class="w-0.75 bg-primary h-3"></span>
 
                 <a href="{{ $tiktokUrl }}" target="_blank" rel="noopener noreferrer" aria-label="TikTok"
-                    class="
-                        flex
-                        size-11
-                        items-center
-                        justify-center
-                        rounded-full
-                        bg-primary
-                        font-semibold
-                        text-black
-                        transition
-
-                        hover:bg-accent
-                        hover:text-white
-                    ">
+                    class="bg-primary hover:bg-accent flex size-11 items-center justify-center rounded-full font-semibold text-black transition hover:text-white">
                     ♪
                 </a>
 
-                <span class="h-3 w-0.75 bg-primary"></span>
+                <span class="w-0.75 bg-primary h-3"></span>
 
                 <a href="{{ $googleUrl }}" target="_blank" rel="noopener noreferrer" aria-label="Google"
-                    class="
-                        flex
-                        size-11
-                        items-center
-                        justify-center
-                        rounded-full
-                        bg-primary
-                        font-semibold
-                        text-black
-                        transition
-
-                        hover:bg-accent
-                        hover:text-white
-                    ">
+                    class="bg-primary hover:bg-accent flex size-11 items-center justify-center rounded-full font-semibold text-black transition hover:text-white">
                     G
                 </a>
 
-                <span class="h-8 w-0.75 bg-primary"></span>
+                <span class="w-0.75 bg-primary h-8"></span>
 
-                <span class="size-3 rounded-full bg-primary"></span>
+                <span class="bg-primary size-3 rounded-full"></span>
             </div>
         </div>
 
         {{-- Service links --}}
         <nav aria-label="{{ __('Footer services', 'im-sons') }}">
-            <ul
-                class="
-                    grid
-                    gap-x-8
-
-                    sm:grid-cols-2
-                ">
+            <ul class="grid gap-x-8 sm:grid-cols-2">
                 @foreach ($footerServices as $service)
                     <li class="border-b border-white/20">
                         <a href="{{ $service['url'] }}"
-                            class="
-                                block
-                                py-3
-                                text-sm
-                                text-white/65
-                                transition-colors
-
-                                hover:text-primary
-
-                                focus-visible:outline-2
-                                focus-visible:outline-offset-3
-                                focus-visible:outline-primary
-                            ">
+                            class="hover:text-primary focus-visible:outline-offset-3 focus-visible:outline-primary block py-3 text-sm text-white/65 transition-colors focus-visible:outline-2">
                             {{ $service['title'] }}
                         </a>
                     </li>
@@ -212,36 +133,17 @@
     {{-- Bottom bar --}}
     <div class="bg-linear-to-r from-primary to-accent">
         <div
-            class="
-                mx-auto
-                flex
-                max-w-288
-                flex-col
-                gap-4
-                px-6
-                py-6
-                text-sm
-                text-white
-
-                sm:px-8
-
-                lg:flex-row
-                lg:items-center
-                lg:justify-between
-                lg:px-12
-
-                xl:px-0
-            ">
+            class="max-w-288 mx-auto flex flex-col gap-4 px-6 py-6 text-sm text-white sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-12 xl:px-0">
             <p>
                 Contact us:
 
-                <a href="tel:{{ preg_replace('/\s+/', '', $phone) }}" class="font-semibold text-primary">
+                <a href="tel:{{ preg_replace('/\s+/', '', $phone) }}" class="text-primary font-semibold">
                     {{ $phone }}
                 </a>
 
                 <span>or</span>
 
-                <a href="mailto:{{ $email }}" class="font-semibold text-primary">
+                <a href="mailto:{{ $email }}" class="text-primary font-semibold">
                     {{ $email }}
                 </a>
             </p>
@@ -262,16 +164,7 @@
 
                 <a href="#" class="inline-flex items-center gap-1 transition-colors hover:text-black">
                     <span
-                        class="
-                            inline-flex
-                            size-4
-                            items-center
-                            justify-center
-                            border
-                            border-primary
-                            text-[10px]
-                            text-primary
-                        ">
+                        class="border-primary text-primary inline-flex size-4 items-center justify-center border text-[10px]">
                         ?
                     </span>
 

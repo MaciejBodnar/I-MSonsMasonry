@@ -74,127 +74,39 @@
 
     <section class="relative overflow-hidden bg-white">
         {{-- Yellow line from viewport edge --}}
-        <div class="
-                pointer-events-none
-                absolute
-                top-42
-                left-0
-                z-20
-                hidden
-                w-[calc(50%-22rem)]
-                items-center
-
-                lg:flex
-                xl:w-[calc(50%-24rem)]
-            "
+        <div class="top-42 pointer-events-none absolute left-0 z-20 hidden w-[calc(50%-22rem)] items-center lg:flex xl:w-[calc(50%-24rem)]"
             aria-hidden="true">
-            <span class="h-0.5 flex-1 bg-primary"></span>
+            <span class="bg-primary h-0.5 flex-1"></span>
 
-            <span
-                class="
-                    size-2.5
-                    shrink-0
-                    rounded-full
-                    bg-primary
-                "></span>
+            <span class="bg-primary size-2.5 shrink-0 rounded-full"></span>
         </div>
 
 
-        <div
-            class="
-                grid
-                min-h-172
-                w-full
-
-                lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]
-            ">
+        <div class="min-h-172 grid w-full lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
             {{--
             |--------------------------------------------------------------------------
             | Service copy
             |--------------------------------------------------------------------------
             --}}
 
-            <div
-                class="
-                    relative
-                    flex
-                    items-center
-                    px-6
-                    py-20
-
-                    sm:px-10
-                    sm:py-24
-
-                    lg:justify-end
-                    lg:px-16
-                    lg:py-28
-
-                    xl:pr-24
-                ">
-                <div
-                    class="
-                        w-full
-                        max-w-96
-
-                        lg:mr-10
-                        xl:mr-16
-                    ">
+            <div class="relative flex items-center px-6 py-20 sm:px-10 sm:py-24 lg:justify-end lg:px-16 lg:py-28 xl:pr-24">
+                <div class="w-full max-w-96 lg:mr-10 xl:mr-16">
                     <h1
-                        class="
-                            max-w-76
-                            text-4xl
-                            leading-[1.05]
-                            font-light
-                            tracking-[-0.045em]
-                            text-ink
-                            uppercase
-
-                            sm:text-5xl
-                            lg:text-[3.25rem]
-                        ">
+                        class="max-w-76 text-ink text-4xl font-light uppercase leading-[1.05] tracking-[-0.045em] sm:text-5xl lg:text-[3.25rem]">
                         {{ $serviceTitle }}
                     </h1>
 
 
                     {{-- Mobile line --}}
-                    <div class="
-                            mt-8
-                            flex
-                            items-center
+                    <div class="mt-8 flex items-center lg:hidden" aria-hidden="true">
+                        <span class="bg-primary h-0.5 flex-1"></span>
 
-                            lg:hidden
-                        "
-                        aria-hidden="true">
-                        <span class="h-0.5 flex-1 bg-primary"></span>
-
-                        <span
-                            class="
-                                size-2.5
-                                shrink-0
-                                rounded-full
-                                bg-primary
-                            "></span>
+                        <span class="bg-primary size-2.5 shrink-0 rounded-full"></span>
                     </div>
 
 
                     <div
-                        class="
-                            prose
-                            prose-sm
-                            mt-10
-                            max-w-none
-                            text-stone
-
-                            prose-headings:text-ink
-                            prose-p:my-0
-                            prose-p:mb-7
-                            prose-p:text-sm
-                            prose-p:leading-6
-                            prose-p:text-stone
-
-                            sm:prose-p:text-base
-                            sm:prose-p:leading-7
-                        ">
+                        class="prose prose-sm text-stone prose-headings:text-ink prose-p:my-0 prose-p:mb-7 prose-p:text-sm prose-p:leading-6 prose-p:text-stone sm:prose-p:text-base sm:prose-p:leading-7 mt-10 max-w-none">
                         {!! wp_kses_post($serviceContent) !!}
                     </div>
                 </div>
@@ -207,67 +119,21 @@
             |--------------------------------------------------------------------------
             --}}
 
-            <div
-                class="
-                    relative
-                    min-h-105
-                    overflow-hidden
-                    bg-off-white
-
-                    lg:min-h-172
-                ">
+            <div class="min-h-105 bg-off-white lg:min-h-172 relative overflow-hidden">
                 @if ($serviceImage)
                     <img src="{{ is_array($serviceImage) ? $serviceImage['url'] : $serviceImage }}"
                         alt="{{ is_array($serviceImage) ? $serviceImage['alt'] ?? $serviceTitle : $serviceTitle }}"
-                        class="
-                            absolute
-                            inset-0
-                            size-full
-                            object-cover
-                        ">
+                        class="absolute inset-0 size-full object-cover">
                 @endif
 
 
                 {{-- Optional soft image overlay --}}
-                <div class="
-                        absolute
-                        inset-0
-                        bg-black/5
-                    "
-                    aria-hidden="true"></div>
+                <div class="absolute inset-0 bg-black/5" aria-hidden="true"></div>
 
 
                 {{-- Gallery button --}}
                 <a href="{{ $galleryUrl }}"
-                    class="
-                        absolute
-                        top-1/2
-                        left-1/2
-                        z-10
-                        inline-flex
-                        h-14
-                        min-w-36
-                        -translate-x-1/2
-                        -translate-y-1/2
-                        items-center
-                        justify-center
-                        bg-white
-                        px-8
-                        text-xs
-                        font-medium
-                        tracking-[0.02em]
-                        text-ink
-                        uppercase
-                        transition
-                        duration-300
-
-                        hover:bg-primary
-                        hover:text-ink
-
-                        focus-visible:outline-2
-                        focus-visible:outline-offset-4
-                        focus-visible:outline-primary
-                    ">
+                    class="text-ink hover:bg-primary hover:text-ink focus-visible:outline-primary absolute left-1/2 top-1/2 z-10 inline-flex h-14 min-w-36 -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-white px-8 text-xs font-medium uppercase tracking-[0.02em] transition duration-300 focus-visible:outline-2 focus-visible:outline-offset-4">
                     {{ $galleryText }}
                 </a>
             </div>
@@ -283,43 +149,14 @@
     --}}
 
     <section class="bg-white py-20 sm:py-24 lg:py-28">
-        <div
-            class="
-                mx-auto
-                grid
-                max-w-196
-                gap-10
-                px-6
-
-                sm:px-8
-
-                lg:grid-cols-[150px_minmax(0,1fr)]
-                lg:gap-14
-                lg:px-0
-            ">
+        <div class="max-w-196 mx-auto grid gap-10 px-6 sm:px-8 lg:grid-cols-[150px_minmax(0,1fr)] lg:gap-14 lg:px-0">
             {{-- FAQ introduction --}}
             <div>
-                <h2
-                    class="
-                        text-4xl
-                        leading-none
-                        font-light
-                        tracking-[-0.04em]
-                        text-ink
-                        uppercase
-
-                        sm:text-5xl
-                    ">
+                <h2 class="text-ink text-4xl font-light uppercase leading-none tracking-[-0.04em] sm:text-5xl">
                     {{ $faqTitle }}
                 </h2>
 
-                <p
-                    class="
-                        mt-5
-                        max-w-34
-                        text-sm/6
-                        text-accent
-                    ">
+                <p class="max-w-34 text-accent mt-5 text-sm/6">
                     {{ $faqIntro }}
                 </p>
             </div>
@@ -334,74 +171,21 @@
                         $isOpen = $index === 0;
                     @endphp
 
-                    <article
-                        class="
-                            bg-white
-                            shadow-[0_2px_12px_rgba(0,0,0,0.08)]
-                        "
-                        data-faq-item>
+                    <article class="bg-white shadow-[0_2px_12px_rgba(0,0,0,0.08)]" data-faq-item>
                         <h3>
                             <button id="{{ $buttonId }}" type="button"
-                                class="
-                                    flex
-                                    min-h-12
-                                    w-full
-                                    items-center
-                                    justify-between
-                                    gap-6
-                                    px-7
-                                    py-4
-                                    text-left
-                                    text-sm
-                                    font-normal
-                                    text-ink
-                                    transition-colors
-                                    duration-300
-
-                                    hover:text-accent
-
-                                    focus-visible:outline-2
-                                    focus-visible:outline-offset-2
-                                    focus-visible:outline-primary
-                                "
+                                class="text-ink hover:text-accent focus-visible:outline-primary flex min-h-12 w-full items-center justify-between gap-6 px-7 py-4 text-left text-sm font-normal transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2"
                                 aria-expanded="{{ $isOpen ? 'true' : 'false' }}" aria-controls="{{ $panelId }}"
                                 data-faq-trigger>
                                 <span>
                                     {{ $faq['question'] ?? '' }}
                                 </span>
 
-                                <span
-                                    class="
-                                        relative
-                                        size-4
-                                        shrink-0
-                                    "
-                                    aria-hidden="true">
-                                    <span
-                                        class="
-                                            absolute
-                                            top-1/2
-                                            left-0
-                                            h-0.5
-                                            w-full
-                                            -translate-y-1/2
-                                            bg-primary
-                                        "></span>
+                                <span class="relative size-4 shrink-0" aria-hidden="true">
+                                    <span class="bg-primary absolute left-0 top-1/2 h-0.5 w-full -translate-y-1/2"></span>
 
                                     <span
-                                        class="
-                                            absolute
-                                            top-0
-                                            left-1/2
-                                            h-full
-                                            w-0.5
-                                            -translate-x-1/2
-                                            bg-primary
-                                            transition-transform
-                                            duration-300
-
-                                            {{ $isOpen ? 'scale-y-0' : 'scale-y-100' }}
-                                        "
+                                        class="bg-primary {{ $isOpen ? 'scale-y-0' : 'scale-y-100' }} absolute left-1/2 top-0 h-full w-0.5 -translate-x-1/2 transition-transform duration-300"
                                         data-faq-plus></span>
                                 </span>
                             </button>
@@ -409,15 +193,7 @@
 
                         <div id="{{ $panelId }}" role="region" aria-labelledby="{{ $buttonId }}"
                             class="{{ $isOpen ? '' : 'hidden' }}" data-faq-panel>
-                            <div
-                                class="
-                                    border-t
-                                    border-black/5
-                                    px-7
-                                    py-5
-                                    text-sm/6
-                                    text-stone
-                                ">
+                            <div class="text-stone border-t border-black/5 px-7 py-5 text-sm/6">
                                 {!! wp_kses_post(wpautop($faq['answer'] ?? '')) !!}
                             </div>
                         </div>

@@ -236,3 +236,21 @@ a {
         text-transform: uppercase;
     }
 }
+
+
+
+.dots {
+  width:10px;
+  height:10px;
+  position: relative;
+}
+
+.dots::before {
+  content: "";
+  width:10px;
+  height:10px;
+  background-color: #FFBC00;
+  position: absolute;
+  bottom: 25px;
+}
+

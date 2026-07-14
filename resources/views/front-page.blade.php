@@ -207,178 +207,67 @@
     |--------------------------------------------------------------------------
     --}}
 
-    <section
-        class="
-            relative
-            min-h-155
-            bg-charcoal
-
-            lg:min-h-170
-            xl:min-h-180
-        ">
+    <section class="min-h-155 bg-charcoal lg:min-h-170 xl:min-h-180 relative">
         {{-- Background image --}}
         @if ($heroImage)
             <img src="{{ is_array($heroImage) ? $heroImage['url'] : $heroImage }}"
                 alt="{{ is_array($heroImage) ? $heroImage['alt'] ?? '' : '' }}"
-                class="
-                    absolute
-                    inset-0
-                    size-full
-                    object-cover
-                ">
+                class="absolute inset-0 size-full object-cover">
         @endif
 
 
         {{-- Main dark overlay --}}
-        <div class="
-                absolute
-                inset-0
-                bg-linear-to-r
-                from-black/80
-                via-black/55
-                to-black/35
-            "
-            aria-hidden="true"></div>
+        <div class="bg-linear-to-r absolute inset-0 from-black/80 via-black/55 to-black/35" aria-hidden="true"></div>
 
 
         {{-- Secondary depth overlay --}}
-        <div class="
-                absolute
-                inset-0
-                bg-linear-to-b
-                from-[#182035]/25
-                via-transparent
-                to-black/40
-            "
-            aria-hidden="true"></div>
+        <div class="bg-linear-to-b absolute inset-0 from-[#182035]/25 via-transparent to-black/40" aria-hidden="true"></div>
 
 
         {{-- Hero content --}}
         <div
-            class="
-                relative
-                z-10
-                mx-auto
-                flex
-                min-h-155
-                max-w-site
-                items-center
-                px-6
-                py-24
-
-                sm:px-8
-
-                lg:min-h-170
-                lg:px-12
-
-                xl:min-h-180
-                xl:px-16
-            ">
-            <div
-                class="
-                    grid
-                    w-full
-                    items-end
-                    gap-12
-
-                    lg:grid-cols-[minmax(0,1.15fr)_minmax(340px,0.85fr)]
-                    lg:gap-16
-                ">
-
-                {{-- Hero left --}}
-                <div class="max-w-190">
-                    <p
-                        class="
-                            mb-6
-                            text-xs
-                            font-medium
-                            uppercase
-                            tracking-[0.03em]
-                            text-primary
-
-                            sm:text-sm
-                        ">
+            class="min-h-155 max-w-site lg:min-h-170 xl:min-h-180 relative z-10 mx-auto flex items-center px-6 py-24 sm:px-8 lg:px-12 xl:px-16">
+            <div class="w-full lg:flex lg:items-end lg:justify-between lg:gap-8 xl:gap-10">
+                {{-- Hero title block --}}
+                <div class="max-w-185 shrink-0">
+                    <p class="text-primary relative mb-6 text-xs font-medium uppercase tracking-[0.03em] sm:text-sm">
                         {{ $heroEyebrow }}
                     </p>
 
-
                     <h1
-                        class="
-                            max-w-185
-                            text-[clamp(3.5rem,7vw,7.25rem)]
-                            leading-[0.9]
-                            font-light
-                            tracking-[-0.055em]
-                            text-white
-                            uppercase
-                        ">
+                        class="max-w-185 relative text-[clamp(3.5rem,7vw,7.25rem)] font-light uppercase leading-[0.9] tracking-[-0.055em] text-white">
                         Your Home,<br>
-                        Your Way<span class="text-primary">.</span>
+                        Your Way<span class="dots text-primary"></span>
                     </h1>
                 </div>
 
 
-                {{-- Hero right --}}
-                <div
-                    class="
-                        pb-2
+                {{-- Connector + intro --}}
+                <div class="mt-8 lg:mt-0 lg:flex lg:min-w-0 lg:flex-1 lg:items-center lg:justify-end lg:gap-5 xl:gap-7">
+                    {{-- Mobile line --}}
+                    <div class="mb-6 flex items-center gap-3 lg:hidden" aria-hidden="true">
+                        <span class="bg-primary size-2.5 shrink-0 rounded-full"></span>
 
-                        lg:flex
-                        lg:items-start
-                        lg:gap-5
+                        <span class="bg-primary h-0.5 flex-1"></span>
+                    </div>
 
-                        xl:gap-7
-                    ">
-                    {{-- Yellow line --}}
-                    <div class="
-                            mt-2.5
-                            hidden
-                            h-0.75
-                            flex-1
-                            bg-primary
+                    {{-- Desktop line --}}
+                    <span class="h-0.75 w-90 bg-primary xl:w-105 hidden shrink-0 lg:absolute lg:block"
+                        aria-hidden="true"></span>
 
-                            lg:block
-                        "
-                        aria-hidden="true"></div>
-
-
-                    {{-- Intro --}}
-                    <p
-                        class="
-                            max-w-90
-                            text-sm/7
-                            text-white/80
-
-                            lg:text-[15px]/7
-                        ">
+                    {{-- Intro text --}}
+                    <p class="max-w-95 text-sm/7 text-white/80 lg:text-[15px]/7">
                         {{ $heroText }}
                     </p>
                 </div>
-
             </div>
         </div>
 
 
         {{-- Bottom centre masonry mark --}}
-        <div class="
-                absolute
-                bottom-0
-                left-1/2
-                z-20
-                -translate-x-1/2
-                translate-y-1/2
-            "
-            aria-hidden="true">
+        <div class="absolute bottom-0 left-1/2 z-20 -translate-x-1/2 translate-y-1/2" aria-hidden="true">
             <div
-                class="
-                    flex
-                    size-14.5
-                    items-center
-                    justify-center
-                    rounded-full
-                    bg-primary
-                    shadow-[0_8px_24px_rgba(0,0,0,0.2)]
-                ">
+                class="size-14.5 bg-primary flex items-center justify-center rounded-full shadow-[0_8px_24px_rgba(0,0,0,0.2)]">
                 <svg viewBox="0 0 40 40" class="size-8" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M15 8H25L29 30H11L15 8Z" fill="currentColor" class="text-charcoal" />
 
@@ -398,24 +287,8 @@
     |--------------------------------------------------------------------------
     --}}
 
-    <section
-        class="
-            relative
-            overflow-hidden
-            bg-white
-            py-20
-            sm:py-24
-            lg:py-28
-        ">
-        <div
-            class="
-                mx-auto
-                max-w-site
-                px-6
-                sm:px-8
-                lg:px-12
-                xl:px-16
-            ">
+    <section class="relative overflow-hidden bg-white py-20 sm:py-24 lg:py-28">
+        <div class="max-w-site mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
 
             {{--
             |--------------------------------------------------------------------------
@@ -423,34 +296,13 @@
             |--------------------------------------------------------------------------
             --}}
 
-            <div
-                class="
-                    mb-16
-                    text-center
-
-                    lg:mb-20
-                ">
+            <div class="mb-16 text-center lg:mb-20">
                 <div
-                    class="
-                        text-[clamp(2rem,3.2vw,3.7rem)]
-                        leading-none
-                        font-light
-                        tracking-[-0.045em]
-                        text-primary
-                        uppercase
-                    ">
+                    class="text-primary text-[clamp(2rem,3.2vw,3.7rem)] font-light uppercase leading-none tracking-[-0.045em]">
                     I&amp;M Sons
                 </div>
 
-                <div
-                    class="
-                        mt-1
-                        text-[clamp(1rem,1.65vw,1.7rem)]
-                        leading-none
-                        font-normal
-                        text-accent
-                        uppercase
-                    ">
+                <div class="text-accent mt-1 text-[clamp(1rem,1.65vw,1.7rem)] font-normal uppercase leading-none">
                     Masonry
                 </div>
             </div>
@@ -465,49 +317,18 @@
 
             <div class="mb-10 lg:hidden">
                 <div class="flex items-center gap-4">
-                    <span
-                        class="
-                            size-2.5
-                            shrink-0
-                            rounded-full
-                            bg-primary
-                        "></span>
+                    <span class="bg-primary size-2.5 shrink-0 rounded-full"></span>
 
-                    <span
-                        class="
-                            h-0.5
-                            flex-1
-                            bg-primary
-                        "></span>
+                    <span class="bg-primary h-0.5 flex-1"></span>
                 </div>
 
 
-                <div
-                    class="
-                        mt-5
-                        flex
-                        items-end
-                        justify-between
-                        gap-5
-                    ">
-                    <h2
-                        class="
-                            text-4xl
-                            font-light
-                            tracking-[-0.045em]
-                            text-ink
-                            uppercase
-                        ">
+                <div class="mt-5 flex items-end justify-between gap-5">
+                    <h2 class="text-ink text-4xl font-light uppercase tracking-[-0.045em]">
                         Services
                     </h2>
 
-                    <p
-                        class="
-                            max-w-36.25
-                            text-right
-                            text-xs/5
-                            text-stone
-                        ">
+                    <p class="max-w-36.25 text-stone text-right text-xs/5">
                         Over 20 Years of Building Experience
                     </p>
                 </div>
@@ -522,15 +343,7 @@
             --}}
 
             <div
-                class="
-                    grid
-                    gap-10
-
-                    lg:grid-cols-[130px_minmax(0,1fr)_190px]
-
-                    xl:grid-cols-[170px_minmax(0,1fr)_230px]
-                    xl:gap-12
-                ">
+                class="grid gap-10 lg:grid-cols-[130px_minmax(0,1fr)_190px] xl:grid-cols-[170px_minmax(0,1fr)_230px] xl:gap-12">
 
                 {{--
                 |--------------------------------------------------------------------------
@@ -538,59 +351,20 @@
                 |--------------------------------------------------------------------------
                 --}}
 
-                <aside
-                    class="
-                        relative
-                        hidden
-
-                        lg:flex
-                        lg:min-h-full
-                        lg:items-start
-                        lg:justify-center
-                    ">
+                <aside class="relative hidden lg:flex lg:min-h-full lg:items-start lg:justify-center">
                     <div class="sticky top-28 pt-20">
 
                         {{-- Dot + line --}}
-                        <div
-                            class="
-                                absolute
-                                top-10
-                                left-1/2
-                                flex
-                                -translate-x-1/2
-                                items-center
-                            ">
-                            <span
-                                class="
-                                    size-3
-                                    shrink-0
-                                    rounded-full
-                                    bg-primary
-                                "></span>
+                        <div class="absolute left-1/2 top-10 flex -translate-x-1/2 items-center">
+                            <span class="bg-primary size-3 shrink-0 rounded-full"></span>
 
-                            <span
-                                class="
-                                    h-0.75
-                                    w-31.25
-                                    bg-primary
-
-                                    xl:w-41.25
-                                "></span>
+                            <span class="h-0.75 w-31.25 bg-primary xl:w-41.25"></span>
                         </div>
 
 
                         {{-- Vertical text --}}
                         <div
-                            class="
-                                rotate-180
-                                text-[42px]
-                                leading-none
-                                font-light
-                                tracking-[-0.04em]
-                                text-ink
-                                uppercase
-                                [writing-mode:vertical-rl]
-                            ">
+                            class="text-ink rotate-180 text-[42px] font-light uppercase leading-none tracking-[-0.04em] [writing-mode:vertical-rl]">
                             Services
                         </div>
 
@@ -610,98 +384,29 @@
                 |--------------------------------------------------------------------------
                 --}}
 
-                <div
-                    class="
-                        grid
-                        gap-5
-
-                        sm:grid-cols-2
-                        xl:grid-cols-3
-                    ">
+                <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
                     @foreach ($services as $service)
                         <a href="{{ $service['url'] }}"
-                            class="
-                                group
-                                relative
-                                isolate
-                                min-h-100
-                                overflow-hidden
-                                bg-charcoal
-
-                                sm:min-h-110
-                                xl:min-h-117.5
-
-                                focus-visible:outline-2
-                                focus-visible:outline-offset-4
-                                focus-visible:outline-primary
-                            ">
+                            class="min-h-100 bg-charcoal sm:min-h-110 xl:min-h-117.5 focus-visible:outline-primary group relative isolate overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-4">
 
                             {{-- Image --}}
                             @if ($service['image'])
                                 <img src="{{ is_array($service['image']) ? $service['image']['url'] : $service['image'] }}"
                                     alt="{{ is_array($service['image']) ? $service['image']['alt'] ?? $service['title'] : $service['title'] }}"
-                                    class="
-                                        absolute
-                                        inset-0
-                                        size-full
-                                        object-cover
-                                        transition-transform
-                                        duration-700
-                                        ease-out
-
-                                        group-hover:scale-105
-                                        group-focus-visible:scale-105
-                                    ">
+                                    class="absolute inset-0 size-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 group-focus-visible:scale-105">
                             @endif
 
 
                             {{-- Default overlay --}}
-                            <div class="
-                                    absolute
-                                    inset-0
-                                    bg-linear-to-b
-                                    from-black/40
-                                    via-black/20
-                                    to-black/70
-                                    transition-all
-                                    duration-500
-
-                                    group-hover:from-black/50
-                                    group-hover:via-black/30
-                                    group-hover:to-black/85
-
-                                    group-focus-visible:from-black/50
-                                    group-focus-visible:via-black/30
-                                    group-focus-visible:to-black/85
-                                "
+                            <div class="bg-linear-to-b absolute inset-0 from-black/40 via-black/20 to-black/70 transition-all duration-500 group-hover:from-black/50 group-hover:via-black/30 group-hover:to-black/85 group-focus-visible:from-black/50 group-focus-visible:via-black/30 group-focus-visible:to-black/85"
                                 aria-hidden="true"></div>
 
 
                             {{-- Content --}}
                             <div
-                                class="
-                                    relative
-                                    z-10
-                                    flex
-                                    min-h-100
-                                    flex-col
-                                    justify-between
-                                    p-7
-
-                                    sm:min-h-110
-
-                                    xl:min-h-117.5
-                                    xl:p-8
-                                ">
+                                class="min-h-100 sm:min-h-110 xl:min-h-117.5 relative z-10 flex flex-col justify-between p-7 xl:p-8">
                                 {{-- Title --}}
-                                <h3
-                                    class="
-                                        max-w-45
-                                        text-lg/[1.15]
-                                        font-normal
-                                        text-white
-                                        uppercase
-                                    ">
+                                <h3 class="max-w-45 text-lg/[1.15] font-normal uppercase text-white">
                                     {{ $service['title'] }}
                                 </h3>
 
@@ -709,49 +414,14 @@
                                 {{-- Bottom area --}}
                                 <div>
                                     <p
-                                        class="
-                                            max-w-55
-                                            text-sm/6
-                                            text-white/80
-                                            transition-transform
-                                            duration-500
-
-                                            group-hover:-translate-y-3
-                                            group-focus-visible:-translate-y-3
-                                        ">
+                                        class="max-w-55 text-sm/6 text-white/80 transition-transform duration-500 group-hover:-translate-y-3 group-focus-visible:-translate-y-3">
                                         {{ $service['description'] }}
                                     </p>
 
 
                                     {{-- Hover state CTA --}}
                                     <span
-                                        class="
-                                            pointer-events-none
-                                            mt-0
-                                            flex
-                                            h-11
-                                            max-w-45
-                                            translate-y-3
-                                            items-center
-                                            justify-center
-                                            border
-                                            border-white
-                                            text-[11px]
-                                            tracking-[0.06em]
-                                            text-white
-                                            uppercase
-                                            opacity-0
-                                            transition-all
-                                            duration-500
-
-                                            group-hover:mt-5
-                                            group-hover:translate-y-0
-                                            group-hover:opacity-100
-
-                                            group-focus-visible:mt-5
-                                            group-focus-visible:translate-y-0
-                                            group-focus-visible:opacity-100
-                                        ">
+                                        class="max-w-45 pointer-events-none mt-0 flex h-11 translate-y-3 items-center justify-center border border-white text-[11px] uppercase tracking-[0.06em] text-white opacity-0 transition-all duration-500 group-hover:mt-5 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:mt-5 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
                                         Read More
                                     </span>
                                 </div>
@@ -769,46 +439,18 @@
                 |--------------------------------------------------------------------------
                 --}}
 
-                <aside
-                    class="
-                        hidden
-
-                        lg:flex
-                        lg:items-center
-                    ">
+                <aside class="hidden lg:flex lg:items-center">
                     <div class="w-full">
 
                         {{-- Arrow line --}}
-                        <div
-                            class="
-                                relative
-                                h-0.75
-                                bg-primary
-                            ">
+                        <div class="h-0.75 bg-primary relative">
                             <span
-                                class="
-                                    absolute
-                                    top-1/2
-                                    left-0
-                                    size-4
-                                    -translate-x-0.5
-                                    -translate-y-1/2
-                                    rotate-45
-                                    border-b-3
-                                    border-l-3
-                                    border-primary
-                                "></span>
+                                class="border-b-3 border-l-3 border-primary absolute left-0 top-1/2 size-4 -translate-x-0.5 -translate-y-1/2 rotate-45"></span>
                         </div>
 
 
                         {{-- Experience text --}}
-                        <p
-                            class="
-                                mt-12
-                                max-w-37.5
-                                text-sm/6
-                                text-stone
-                            ">
+                        <p class="max-w-37.5 text-stone mt-12 text-sm/6">
                             Over 20 Years of<br>
                             Building Experience
                         </p>
@@ -819,164 +461,40 @@
             </div>
         </div>
     </section>
-    <section
-        class="
-        relative
-        overflow-hidden
-        bg-linear-to-r
-        from-primary
-        to-accent
-        py-20
-        sm:py-24
-        lg:py-28
-        xl:py-32
-    ">
+    <section class="bg-linear-to-r from-primary to-accent relative overflow-hidden py-20 sm:py-24 lg:py-28 xl:py-32">
         <div
-            class="
-            relative
-            mx-auto
-            grid
-            max-w-site
-            items-center
-            gap-12
-            px-6
-
-            sm:px-8
-
-            lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.8fr)]
-            lg:gap-16
-            lg:px-12
-
-            xl:grid-cols-[minmax(0,1.05fr)_minmax(420px,0.75fr)]
-            xl:gap-24
-            xl:px-16
-        ">
+            class="max-w-site relative mx-auto grid items-center gap-12 px-6 sm:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.8fr)] lg:gap-16 lg:px-12 xl:grid-cols-[minmax(0,1.05fr)_minmax(420px,0.75fr)] xl:gap-24 xl:px-16">
             {{-- White line that overlaps the image --}}
-            <div class="
-                pointer-events-none
-                absolute
-                top-20
-                left-[30%]
-                z-20
-                hidden
-                items-center
-
-                lg:flex
-                lg:w-[58%]
-
-                xl:left-[29%]
-                xl:w-[60%]
-            "
+            <div class="pointer-events-none absolute left-[30%] top-20 z-20 hidden items-center lg:flex lg:w-[58%] xl:left-[29%] xl:w-[60%]"
                 aria-hidden="true">
-                <span
-                    class="
-                    size-3
-                    shrink-0
-                    rounded-full
-                    bg-white
-                "></span>
+                <span class="size-3 shrink-0 rounded-full bg-white"></span>
 
-                <span
-                    class="
-                    h-0.5
-                    flex-1
-                    bg-white
-                "></span>
+                <span class="h-0.5 flex-1 bg-white"></span>
             </div>
 
 
             {{-- About content --}}
             <div
-                class="
-                relative
-                z-10
-                grid
-                gap-8
-
-                lg:grid-cols-[220px_minmax(0,1fr)]
-                lg:gap-12
-
-                xl:grid-cols-[240px_minmax(0,1fr)]
-                xl:gap-16
-            ">
+                class="relative z-10 grid gap-8 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-12 xl:grid-cols-[240px_minmax(0,1fr)] xl:gap-16">
                 <h2
-                    class="
-                    text-4xl
-                    leading-none
-                    font-light
-                    tracking-[-0.04em]
-                    text-white
-                    uppercase
-
-                    sm:text-5xl
-                    lg:text-[44px]
-                    xl:text-5xl
-                ">
+                    class="text-4xl font-light uppercase leading-none tracking-[-0.04em] text-white sm:text-5xl lg:text-[44px] xl:text-5xl">
                     {{ $aboutTitle }}
                 </h2>
 
                 <div class="lg:pt-14">
                     {{-- Mobile line --}}
-                    <div class="
-                        mb-8
-                        flex
-                        items-center
+                    <div class="mb-8 flex items-center lg:hidden" aria-hidden="true">
+                        <span class="size-3 shrink-0 rounded-full bg-white"></span>
 
-                        lg:hidden
-                    "
-                        aria-hidden="true">
-                        <span
-                            class="
-                            size-3
-                            shrink-0
-                            rounded-full
-                            bg-white
-                        "></span>
-
-                        <span
-                            class="
-                            h-0.5
-                            flex-1
-                            bg-white
-                        "></span>
+                        <span class="h-0.5 flex-1 bg-white"></span>
                     </div>
 
-                    <div
-                        class="
-                        max-w-96
-                        text-sm/7
-                        text-white
-
-                        sm:text-base/7
-                    ">
+                    <div class="max-w-96 text-sm/7 text-white sm:text-base/7">
                         {!! wp_kses_post(wpautop($aboutText)) !!}
                     </div>
 
                     <a href="{{ $aboutUrl }}"
-                        class="
-                        mt-10
-                        inline-flex
-                        h-13
-                        min-w-36
-                        items-center
-                        justify-center
-                        bg-white
-                        px-8
-                        text-xs
-                        font-medium
-                        tracking-[0.02em]
-                        text-ink
-                        uppercase
-                        transition
-                        duration-300
-
-                        hover:bg-ink
-                        hover:text-white
-
-                        focus-visible:outline-2
-                        focus-visible:outline-offset-4
-                        focus-visible:outline-white
-                    ">
+                        class="h-13 text-ink hover:bg-ink mt-10 inline-flex min-w-36 items-center justify-center bg-white px-8 text-xs font-medium uppercase tracking-[0.02em] transition duration-300 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
                         {{ $aboutLinkText }}
                     </a>
                 </div>
@@ -984,51 +502,18 @@
 
 
             {{-- About image --}}
-            <div
-                class="
-                relative
-                z-10
-                mx-auto
-                w-full
-                max-w-96
-
-                lg:max-w-none
-            ">
-                <div
-                    class="
-                    relative
-                    aspect-[1.05/1]
-                    overflow-hidden
-                    bg-charcoal
-                ">
+            <div class="relative z-10 mx-auto w-full max-w-96 lg:max-w-none">
+                <div class="bg-charcoal relative aspect-[1.05/1] overflow-hidden">
                     @if ($aboutImage)
                         <img src="{{ is_array($aboutImage) ? $aboutImage['url'] : $aboutImage }}"
                             alt="{{ is_array($aboutImage) ? $aboutImage['alt'] ?? $aboutTitle : $aboutTitle }}"
-                            class="
-                            absolute
-                            inset-0
-                            size-full
-                            object-cover
-                        ">
+                            class="absolute inset-0 size-full object-cover">
                     @endif
 
-                    <div class="
-                        absolute
-                        inset-0
-                        bg-black/10
-                    "
-                        aria-hidden="true"></div>
+                    <div class="absolute inset-0 bg-black/10" aria-hidden="true"></div>
 
                     {{-- Centre logo --}}
-                    <div class="
-                        absolute
-                        top-1/2
-                        left-1/2
-                        z-10
-                        -translate-x-1/2
-                        -translate-y-1/2
-                    "
-                        aria-hidden="true">
+                    <div class="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2" aria-hidden="true">
                         {{-- Your logo SVG/image --}}
                     </div>
                 </div>
@@ -1042,108 +527,36 @@
 --}}
 
     <section
-        class="
-        reviews-slider
-        relative
-        isolate
-        overflow-hidden
-        bg-charcoal
-        py-16
-
-        sm:py-20
-        lg:min-h-112
-        lg:py-18
-        xl:min-h-120
-    "
+        class="reviews-slider bg-charcoal lg:min-h-112 lg:py-18 xl:min-h-120 relative isolate overflow-hidden py-16 sm:py-20"
         data-reviews-slider>
         {{-- Background image --}}
         @if ($reviewsBackground)
             <img src="{{ is_array($reviewsBackground) ? $reviewsBackground['url'] : $reviewsBackground }}" alt=""
-                class="
-                absolute
-                inset-0
-                -z-20
-                size-full
-                object-cover
-            ">
+                class="absolute inset-0 -z-20 size-full object-cover">
         @endif
 
 
         {{-- Dark overlay --}}
-        <div class="
-            absolute
-            inset-0
-            -z-10
-            bg-black/75
-        "
-            aria-hidden="true"></div>
+        <div class="absolute inset-0 -z-10 bg-black/75" aria-hidden="true"></div>
 
 
         <div
-            class="
-            mx-auto
-            grid
-            max-w-site
-            gap-12
-            px-6
-
-            sm:px-8
-
-            lg:grid-cols-[280px_minmax(0,1fr)]
-            lg:items-end
-            lg:gap-16
-            lg:px-12
-
-            xl:grid-cols-[320px_minmax(0,1fr)]
-            xl:gap-20
-            xl:px-16
-        ">
+            class="max-w-site mx-auto grid gap-12 px-6 sm:px-8 lg:grid-cols-[280px_minmax(0,1fr)] lg:items-end lg:gap-16 lg:px-12 xl:grid-cols-[320px_minmax(0,1fr)] xl:gap-20 xl:px-16">
             {{--
         |--------------------------------------------------------------------------
         | Reviews intro
         |--------------------------------------------------------------------------
         --}}
 
-            <div class="
-                relative
-
-                lg:min-h-80
-            ">
-                <div
-                    class="
-                    flex
-                    items-end
-                    gap-6
-                ">
+            <div class="relative lg:min-h-80">
+                <div class="flex items-end gap-6">
                     <h2
-                        class="
-                        text-5xl
-                        leading-none
-                        font-light
-                        tracking-[-0.04em]
-                        text-primary
-                        uppercase
-
-                        lg:absolute
-                        lg:bottom-0
-                        lg:left-0
-                        lg:rotate-180
-                        lg:text-6xl
-                        lg:[writing-mode:vertical-rl]
-                    ">
+                        class="text-primary text-5xl font-light uppercase leading-none tracking-[-0.04em] lg:absolute lg:bottom-0 lg:left-0 lg:rotate-180 lg:text-6xl lg:[writing-mode:vertical-rl]">
                         Reviews
                     </h2>
 
 
-                    <p
-                        class="
-                        max-w-44
-                        text-sm/6
-                        text-white/80
-
-                        lg:ml-28
-                        lg:max-w-40
-                    ">
+                    <p class="max-w-44 text-sm/6 text-white/80 lg:ml-28 lg:max-w-40">
                         {{ $reviewsIntro }}
                     </p>
                 </div>
@@ -1158,59 +571,18 @@
 
             <div class="min-w-0">
                 <div class="overflow-hidden">
-                    <div class="
-                        flex
-                        transition-transform
-                        duration-500
-                        ease-out
-                    "
-                        data-reviews-track>
+                    <div class="flex transition-transform duration-500 ease-out" data-reviews-track>
                         @foreach ($reviews as $review)
-                            <article
-                                class="
-                                w-full
-                                shrink-0
-                                px-2
-
-                                md:w-1/2
-                                md:px-3
-                            "
-                                data-review-slide>
+                            <article class="w-full shrink-0 px-2 md:w-1/2 md:px-3" data-review-slide>
                                 <div
-                                    class="
-                                    flex
-                                    min-h-80
-                                    flex-col
-                                    justify-between
-                                    bg-white
-                                    p-8
-
-                                    sm:p-10
-                                    lg:min-h-84
-                                    xl:p-12
-                                ">
+                                    class="lg:min-h-84 flex min-h-80 flex-col justify-between bg-white p-8 sm:p-10 xl:p-12">
                                     <blockquote
-                                        class="
-                                        max-w-64
-                                        text-2xl/tight
-                                        font-light
-                                        tracking-tight
-                                        text-ink
-
-                                        lg:text-[27px]/[1.2]
-                                    ">
+                                        class="text-ink max-w-64 text-2xl/tight font-light tracking-tight lg:text-[27px]/[1.2]">
                                         {{ $review['review'] ?? '' }}
                                     </blockquote>
 
 
-                                    <p
-                                        class="
-                                        mt-10
-                                        text-xs
-                                        font-medium
-                                        text-accent
-                                        uppercase
-                                    ">
+                                    <p class="text-accent mt-10 text-xs font-medium uppercase">
                                         {{ $review['name'] ?? '' }}
                                     </p>
                                 </div>
@@ -1226,32 +598,9 @@
             |--------------------------------------------------------------------------
             --}}
 
-                <div
-                    class="
-                    mt-6
-                    flex
-                    items-center
-                    justify-between
-                    gap-6
-                ">
+                <div class="mt-6 flex items-center justify-between gap-6">
                     <button type="button"
-                        class="
-                        flex
-                        size-11
-                        shrink-0
-                        items-center
-                        justify-center
-                        text-primary
-                        transition
-                        duration-300
-
-                        hover:-translate-x-1
-                        hover:text-white
-
-                        focus-visible:outline-2
-                        focus-visible:outline-offset-4
-                        focus-visible:outline-primary
-                    "
+                        class="text-primary focus-visible:outline-primary flex size-11 shrink-0 items-center justify-center transition duration-300 hover:-translate-x-1 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4"
                         aria-label="Previous review" data-reviews-prev>
                         <svg viewBox="0 0 24 24" class="size-8" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M15 4L7 12L15 20" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"
@@ -1260,50 +609,14 @@
                     </button>
 
 
-                    <div class="
-                        flex
-                        min-w-0
-                        flex-1
-                        items-center
-                        gap-0
-                    "
-                        data-reviews-pagination>
+                    <div class="flex min-w-0 flex-1 items-center gap-0" data-reviews-pagination>
                         @foreach ($reviews as $index => $review)
-                            <button type="button"
-                                class="
-                                group
-                                flex
-                                h-8
-                                min-w-0
-                                flex-1
-                                items-center
-                            "
+                            <button type="button" class="group flex h-8 min-w-0 flex-1 items-center"
                                 aria-label="Go to review {{ $index + 1 }}" data-reviews-dot="{{ $index }}">
                                 <span
-                                    class="
-                                    relative
-                                    block
-                                    h-0.5
-                                    w-full
-                                    bg-white/35
-                                    transition
-                                    duration-300
-
-                                    group-hover:bg-white/60
-                                ">
+                                    class="relative block h-0.5 w-full bg-white/35 transition duration-300 group-hover:bg-white/60">
                                     <span
-                                        class="
-                                        absolute
-                                        top-1/2
-                                        left-0
-                                        size-3
-                                        -translate-y-1/2
-                                        rounded-full
-                                        bg-white
-                                        opacity-0
-                                        transition
-                                        duration-300
-                                    "
+                                        class="absolute left-0 top-1/2 size-3 -translate-y-1/2 rounded-full bg-white opacity-0 transition duration-300"
                                         data-reviews-dot-marker></span>
                                 </span>
                             </button>
@@ -1312,23 +625,7 @@
 
 
                     <button type="button"
-                        class="
-                        flex
-                        size-11
-                        shrink-0
-                        items-center
-                        justify-center
-                        text-primary
-                        transition
-                        duration-300
-
-                        hover:translate-x-1
-                        hover:text-white
-
-                        focus-visible:outline-2
-                        focus-visible:outline-offset-4
-                        focus-visible:outline-primary
-                    "
+                        class="text-primary focus-visible:outline-primary flex size-11 shrink-0 items-center justify-center transition duration-300 hover:translate-x-1 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4"
                         aria-label="Next review" data-reviews-next>
                         <svg viewBox="0 0 24 24" class="size-8" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M9 4L17 12L9 20" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"
@@ -1346,38 +643,18 @@
 --}}
 
     <section class="bg-white py-20 sm:py-24 lg:py-28">
-        <div class="mx-auto max-w-site px-6 sm:px-8 lg:px-12 xl:px-16">
+        <div class="max-w-site mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
 
             {{-- Heading --}}
             <div class="mb-14 text-center lg:mb-16">
-                <h2
-                    class="
-                    text-4xl
-                    leading-none
-                    font-light
-                    tracking-[-0.04em]
-                    text-ink
-                    uppercase
-
-                    sm:text-5xl
-                ">
+                <h2 class="text-ink text-4xl font-light uppercase leading-none tracking-[-0.04em] sm:text-5xl">
                     {{ $galleryTitle }}
                 </h2>
             </div>
 
 
             {{-- Gallery images --}}
-            <div
-                class="
-                grid
-                grid-cols-2
-                gap-4
-
-                md:grid-cols-3
-                md:gap-5
-
-                xl:grid-cols-5
-            ">
+            <div class="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-5 xl:grid-cols-5">
                 @foreach ($galleryImages as $item)
                     @php
                         $image = $item['image'] ?? null;
@@ -1387,45 +664,14 @@
                         $imageAlt = is_array($image) ? $image['alt'] ?? ($item['title'] ?? '') : $item['title'] ?? '';
                     @endphp
 
-                    <figure
-                        class="
-                        group
-                        relative
-                        aspect-3/4
-                        overflow-hidden
-                        bg-off-white
-                    ">
+                    <figure class="aspect-3/4 bg-off-white group relative overflow-hidden">
                         @if ($imageUrl)
                             <img src="{{ $imageUrl }}" alt="{{ $imageAlt }}"
-                                class="
-                                absolute
-                                inset-0
-                                size-full
-                                object-cover
-                                grayscale
-                                transition
-                                duration-700
-                                ease-out
-
-                                group-hover:scale-105
-                                group-hover:grayscale-0
-                                group-focus-within:scale-105
-                                group-focus-within:grayscale-0
-                            ">
+                                class="absolute inset-0 size-full object-cover grayscale transition duration-700 ease-out group-focus-within:scale-105 group-focus-within:grayscale-0 group-hover:scale-105 group-hover:grayscale-0">
                         @endif
 
                         {{-- Subtle wash visible in the resting state --}}
-                        <div class="
-                            pointer-events-none
-                            absolute
-                            inset-0
-                            bg-white/20
-                            transition-opacity
-                            duration-500
-
-                            group-hover:opacity-0
-                            group-focus-within:opacity-0
-                        "
+                        <div class="pointer-events-none absolute inset-0 bg-white/20 transition-opacity duration-500 group-focus-within:opacity-0 group-hover:opacity-0"
                             aria-hidden="true"></div>
                     </figure>
                 @endforeach
@@ -1433,58 +679,19 @@
 
 
             {{-- View more line --}}
-            <div
-                class="
-                mx-auto
-                mt-14
-                flex
-                max-w-170
-                items-center
+            <div class="max-w-170 mx-auto mt-14 flex items-center sm:mt-16">
+                <span class="bg-primary size-2.5 shrink-0 rounded-full" aria-hidden="true"></span>
 
-                sm:mt-16
-            ">
-                <span class="size-2.5 shrink-0 rounded-full bg-primary" aria-hidden="true"></span>
-
-                <span
-                    class="
-                    h-0.5
-                    min-w-6
-                    flex-1
-                    bg-primary
-                "
-                    aria-hidden="true"></span>
+                <span class="bg-primary h-0.5 min-w-6 flex-1" aria-hidden="true"></span>
 
                 <a href="{{ $galleryUrl }}"
-                    class="
-                    shrink-0
-                    px-6
-                    text-xs
-                    font-medium
-                    tracking-[0.02em]
-                    text-accent
-                    uppercase
-                    transition-colors
-                    duration-300
-
-                    hover:text-ink
-
-                    focus-visible:outline-2
-                    focus-visible:outline-offset-4
-                    focus-visible:outline-primary
-                ">
+                    class="text-accent hover:text-ink focus-visible:outline-primary shrink-0 px-6 text-xs font-medium uppercase tracking-[0.02em] transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-4">
                     {{ $galleryLinkText }}
                 </a>
 
-                <span
-                    class="
-                    h-0.5
-                    min-w-6
-                    flex-1
-                    bg-primary
-                "
-                    aria-hidden="true"></span>
+                <span class="bg-primary h-0.5 min-w-6 flex-1" aria-hidden="true"></span>
 
-                <span class="size-2.5 shrink-0 rounded-full bg-primary" aria-hidden="true"></span>
+                <span class="bg-primary size-2.5 shrink-0 rounded-full" aria-hidden="true"></span>
             </div>
         </div>
     </section>
@@ -1498,43 +705,14 @@
 --}}
 
     <section class="bg-white pb-24 sm:pb-28 lg:pb-32">
-        <div
-            class="
-            mx-auto
-            grid
-            max-w-170
-            gap-10
-            px-6
-
-            sm:px-8
-
-            lg:grid-cols-[140px_minmax(0,1fr)]
-            lg:gap-12
-            lg:px-0
-        ">
+        <div class="max-w-170 mx-auto grid gap-10 px-6 sm:px-8 lg:grid-cols-[140px_minmax(0,1fr)] lg:gap-12 lg:px-0">
             {{-- FAQ introduction --}}
             <div>
-                <h2
-                    class="
-                    text-4xl
-                    leading-none
-                    font-light
-                    tracking-[-0.04em]
-                    text-ink
-                    uppercase
-
-                    sm:text-5xl
-                ">
+                <h2 class="text-ink text-4xl font-light uppercase leading-none tracking-[-0.04em] sm:text-5xl">
                     {{ $faqTitle }}
                 </h2>
 
-                <p
-                    class="
-                    mt-5
-                    max-w-34
-                    text-sm/6
-                    text-accent
-                ">
+                <p class="max-w-34 text-accent mt-5 text-sm/6">
                     {{ $faqIntro }}
                 </p>
             </div>
@@ -1549,74 +727,21 @@
                         $isOpen = $index === 0;
                     @endphp
 
-                    <article
-                        class="
-                        bg-white
-                        shadow-[0_2px_12px_rgba(0,0,0,0.08)]
-                    "
-                        data-faq-item>
+                    <article class="bg-white shadow-[0_2px_12px_rgba(0,0,0,0.08)]" data-faq-item>
                         <h3>
                             <button id="{{ $buttonId }}" type="button"
-                                class="
-                                flex
-                                min-h-12
-                                w-full
-                                items-center
-                                justify-between
-                                gap-6
-                                px-7
-                                py-4
-                                text-left
-                                text-sm
-                                font-normal
-                                text-ink
-                                transition-colors
-                                duration-300
-
-                                hover:text-accent
-
-                                focus-visible:outline-2
-                                focus-visible:outline-offset-2
-                                focus-visible:outline-primary
-                            "
+                                class="text-ink hover:text-accent focus-visible:outline-primary flex min-h-12 w-full items-center justify-between gap-6 px-7 py-4 text-left text-sm font-normal transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2"
                                 aria-expanded="{{ $isOpen ? 'true' : 'false' }}" aria-controls="{{ $panelId }}"
                                 data-faq-trigger>
                                 <span>
                                     {{ $faq['question'] ?? '' }}
                                 </span>
 
-                                <span
-                                    class="
-                                    relative
-                                    size-4
-                                    shrink-0
-                                "
-                                    aria-hidden="true">
-                                    <span
-                                        class="
-                                        absolute
-                                        top-1/2
-                                        left-0
-                                        h-0.5
-                                        w-full
-                                        -translate-y-1/2
-                                        bg-primary
-                                    "></span>
+                                <span class="relative size-4 shrink-0" aria-hidden="true">
+                                    <span class="bg-primary absolute left-0 top-1/2 h-0.5 w-full -translate-y-1/2"></span>
 
                                     <span
-                                        class="
-                                        absolute
-                                        top-0
-                                        left-1/2
-                                        h-full
-                                        w-0.5
-                                        -translate-x-1/2
-                                        bg-primary
-                                        transition-transform
-                                        duration-300
-
-                                        {{ $isOpen ? 'scale-y-0' : 'scale-y-100' }}
-                                    "
+                                        class="bg-primary {{ $isOpen ? 'scale-y-0' : 'scale-y-100' }} absolute left-1/2 top-0 h-full w-0.5 -translate-x-1/2 transition-transform duration-300"
                                         data-faq-plus></span>
                                 </span>
                             </button>
@@ -1624,15 +749,7 @@
 
                         <div id="{{ $panelId }}" role="region" aria-labelledby="{{ $buttonId }}"
                             class="{{ $isOpen ? '' : 'hidden' }}" data-faq-panel>
-                            <div
-                                class="
-                                border-t
-                                border-black/5
-                                px-7
-                                py-5
-                                text-sm/6
-                                text-stone
-                            ">
+                            <div class="text-stone border-t border-black/5 px-7 py-5 text-sm/6">
                                 {!! wp_kses_post(wpautop($faq['answer'] ?? '')) !!}
                             </div>
                         </div>

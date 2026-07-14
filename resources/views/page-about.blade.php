@@ -80,113 +80,35 @@
 
     <section class="relative overflow-hidden bg-white">
         {{-- Yellow line from viewport edge --}}
-        <div class="
-            pointer-events-none
-            absolute
-            top-40
-            left-0
-            z-10
-            hidden
-            w-[calc(50%-24rem)]
-            items-center
-            lg:flex
-            xl:w-[calc(50%-26rem)]
-        "
+        <div class="pointer-events-none absolute left-0 top-40 z-10 hidden w-[calc(50%-24rem)] items-center lg:flex xl:w-[calc(50%-26rem)]"
             aria-hidden="true">
-            <span class="h-0.5 flex-1 bg-primary"></span>
-            <span class="size-2.5 shrink-0 rounded-full bg-primary"></span>
+            <span class="bg-primary h-0.5 flex-1"></span>
+            <span class="bg-primary size-2.5 shrink-0 rounded-full"></span>
         </div>
 
-        <div class="
-            grid
-            min-h-149
-            w-full
-            lg:grid-cols-2
-        ">
+        <div class="min-h-149 grid w-full lg:grid-cols-2">
             {{-- Text column --}}
-            <div
-                class="
-                relative
-                flex
-                items-center
-                px-6
-                py-20
-
-                sm:px-10
-                sm:py-24
-
-                lg:justify-end
-                lg:px-16
-                lg:py-28
-
-                xl:pr-24
-            ">
-                <div
-                    class="
-                    w-full
-                    max-w-100
-
-                    lg:mr-10
-                    xl:mr-14
-                ">
-                    <h1
-                        class="
-                        text-4xl
-                        leading-none
-                        font-light
-                        tracking-[-0.04em]
-                        text-ink
-                        uppercase
-
-                        sm:text-5xl
-                    ">
+            <div class="relative flex items-center px-6 py-20 sm:px-10 sm:py-24 lg:justify-end lg:px-16 lg:py-28 xl:pr-24">
+                <div class="max-w-100 w-full lg:mr-10 xl:mr-14">
+                    <h1 class="text-ink text-4xl font-light uppercase leading-none tracking-[-0.04em] sm:text-5xl">
                         {{ $aboutTitle }}
                     </h1>
 
                     {{-- Mobile line --}}
-                    <div class="
-                        mt-8
-                        flex
-                        items-center
-                        lg:hidden
-                    "
-                        aria-hidden="true">
-                        <span class="h-0.5 flex-1 bg-primary"></span>
-                        <span class="size-2.5 shrink-0 rounded-full bg-primary"></span>
+                    <div class="mt-8 flex items-center lg:hidden" aria-hidden="true">
+                        <span class="bg-primary h-0.5 flex-1"></span>
+                        <span class="bg-primary size-2.5 shrink-0 rounded-full"></span>
                     </div>
 
                     <div
-                        class="
-                        prose
-                        prose-sm
-                        mt-10
-                        max-w-none
-                        text-stone
-
-                        prose-p:my-0
-                        prose-p:mb-6
-                        prose-p:text-sm
-                        prose-p:leading-6
-                        prose-p:text-stone
-
-                        sm:prose-p:text-base
-                        sm:prose-p:leading-7
-                    ">
+                        class="prose prose-sm text-stone prose-p:my-0 prose-p:mb-6 prose-p:text-sm prose-p:leading-6 prose-p:text-stone sm:prose-p:text-base sm:prose-p:leading-7 mt-10 max-w-none">
                         {!! wp_kses_post($aboutContent) !!}
                     </div>
                 </div>
             </div>
 
             {{-- Image column — flush to viewport right --}}
-            <div
-                class="
-                relative
-                min-h-105
-                overflow-hidden
-                bg-off-white
-
-                lg:min-h-149
-            ">
+            <div class="min-h-105 bg-off-white lg:min-h-149 relative overflow-hidden">
                 @if ($aboutImage)
                     <img src="{{ is_array($aboutImage) ? $aboutImage['url'] : $aboutImage }}"
                         alt="{{ is_array($aboutImage) ? $aboutImage['alt'] ?? $aboutTitle : $aboutTitle }}"
@@ -206,109 +128,31 @@
 
     <section class="bg-off-white py-20 sm:py-24 lg:py-28">
         <div
-            class="
-            mx-auto
-            grid
-            max-w-6xl
-            gap-12
-            px-6
-
-            sm:px-10
-
-            lg:grid-cols-[180px_minmax(0,1fr)]
-            lg:gap-14
-            lg:px-16
-
-            xl:grid-cols-[200px_minmax(0,1fr)]
-            xl:gap-18
-            xl:px-20
-        ">
+            class="xl:gap-18 mx-auto grid max-w-6xl gap-12 px-6 sm:px-10 lg:grid-cols-[180px_minmax(0,1fr)] lg:gap-14 lg:px-16 xl:grid-cols-[200px_minmax(0,1fr)] xl:px-20">
             {{-- Reviews heading --}}
             <aside class="relative">
-                <div class="
-                    mb-8
-                    flex
-                    items-center
-
-                    lg:absolute
-                    lg:top-0
-                    lg:right-0
-                    lg:w-[calc(100vw-3rem)]
-                "
+                <div class="mb-8 flex items-center lg:absolute lg:right-0 lg:top-0 lg:w-[calc(100vw-3rem)]"
                     aria-hidden="true">
-                    <span class="size-2.5 shrink-0 rounded-full bg-primary"></span>
-                    <span class="h-0.5 flex-1 bg-primary"></span>
+                    <span class="bg-primary size-2.5 shrink-0 rounded-full"></span>
+                    <span class="bg-primary h-0.5 flex-1"></span>
                 </div>
 
                 <h2
-                    class="
-                    text-4xl
-                    leading-none
-                    font-light
-                    tracking-[-0.04em]
-                    text-ink
-                    uppercase
-
-                    sm:text-5xl
-
-                    lg:mt-12
-                    lg:rotate-180
-                    lg:text-5xl
-                    lg:[writing-mode:vertical-rl]
-                ">
+                    class="text-ink text-4xl font-light uppercase leading-none tracking-[-0.04em] sm:text-5xl lg:mt-12 lg:rotate-180 lg:text-5xl lg:[writing-mode:vertical-rl]">
                     {{ $reviewsTitle }}
                 </h2>
             </aside>
 
             {{-- Shifted review cards --}}
-            <div
-                class="
-                grid
-                gap-5
-
-                md:grid-cols-2
-
-                lg:translate-x-8
-                lg:gap-4
-
-                xl:translate-x-12
-            ">
+            <div class="grid gap-5 md:grid-cols-2 lg:translate-x-8 lg:gap-4 xl:translate-x-12">
                 @foreach ($reviews as $review)
                     <article
-                        class="
-                        flex
-                        min-h-67
-                        flex-col
-                        justify-between
-                        border
-                        border-black/25
-                        bg-white
-                        p-8
-
-                        sm:min-h-72
-                        sm:p-10
-
-                        lg:min-h-67
-                    ">
-                        <blockquote
-                            class="
-                            max-w-60
-                            text-2xl/tight
-                            font-light
-                            tracking-tight
-                            text-ink
-                        ">
+                        class="min-h-67 lg:min-h-67 flex flex-col justify-between border border-black/25 bg-white p-8 sm:min-h-72 sm:p-10">
+                        <blockquote class="text-ink max-w-60 text-2xl/tight font-light tracking-tight">
                             {{ $review['review'] ?? '' }}
                         </blockquote>
 
-                        <p
-                            class="
-                            mt-10
-                            text-xs
-                            font-medium
-                            text-accent
-                            uppercase
-                        ">
+                        <p class="text-accent mt-10 text-xs font-medium uppercase">
                             {{ $review['name'] ?? '' }}
                         </p>
                     </article>
