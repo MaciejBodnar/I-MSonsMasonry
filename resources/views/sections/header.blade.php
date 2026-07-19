@@ -5,7 +5,7 @@
 @endphp
 
 <header class="relative z-40 border-b border-black/5 bg-white">
-    <div class="h-22 max-w-384 mx-auto flex items-center justify-between gap-8 px-6 sm:px-8 lg:px-12 xl:px-16">
+    <div class="h-22 max-w-site mx-auto flex items-center justify-between gap-8 px-6 sm:px-8 lg:px-12 xl:px-16">
         {{-- Logo --}}
         <a href="{{ home_url('/') }}" class="shrink-0" aria-label="{{ get_bloginfo('name') }} home">
             @if (has_custom_logo())

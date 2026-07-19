@@ -227,7 +227,7 @@
         {{-- Hero content --}}
         <div
             class="min-h-155 max-w-site lg:min-h-170 xl:min-h-180 relative z-10 mx-auto flex items-center px-6 py-24 sm:px-8 lg:px-12 xl:px-16">
-            <div class="w-full lg:flex lg:items-end lg:justify-between lg:gap-8 xl:gap-10">
+            <div class="relative w-full lg:flex lg:items-end lg:justify-between lg:gap-8 xl:gap-10">
                 {{-- Hero title block --}}
                 <div class="max-w-185 shrink-0">
                     <p class="text-primary relative mb-6 text-xs font-medium uppercase tracking-[0.03em] sm:text-sm">
@@ -252,7 +252,7 @@
                     </div>
 
                     {{-- Desktop line --}}
-                    <span class="h-0.75 w-90 bg-primary xl:w-105 hidden shrink-0 lg:absolute lg:block"
+                    <span class="w-90 bg-primary xl:w-105 h-1.25 bottom-4 right-[32%] hidden shrink-0 lg:absolute lg:block"
                         aria-hidden="true"></span>
 
                     {{-- Intro text --}}
@@ -526,8 +526,7 @@
 |--------------------------------------------------------------------------
 --}}
 
-    <section
-        class="reviews-slider bg-charcoal lg:min-h-112 lg:py-18 xl:min-h-120 relative isolate overflow-hidden py-16 sm:py-20"
+    <section class="reviews-slider bg-charcoal relative isolate overflow-hidden py-16 sm:py-20 lg:py-24 xl:py-28"
         data-reviews-slider>
         {{-- Background image --}}
         @if ($reviewsBackground)
@@ -535,103 +534,112 @@
                 class="absolute inset-0 -z-20 size-full object-cover">
         @endif
 
-
         {{-- Dark overlay --}}
-        <div class="absolute inset-0 -z-10 bg-black/75" aria-hidden="true"></div>
+        <div class="bg-black/72 absolute inset-0 -z-10" aria-hidden="true"></div>
 
-
-        <div
-            class="max-w-site mx-auto grid gap-12 px-6 sm:px-8 lg:grid-cols-[280px_minmax(0,1fr)] lg:items-end lg:gap-16 lg:px-12 xl:grid-cols-[320px_minmax(0,1fr)] xl:gap-20 xl:px-16">
-            {{--
-        |--------------------------------------------------------------------------
-        | Reviews intro
-        |--------------------------------------------------------------------------
-        --}}
-
-            <div class="relative lg:min-h-80">
-                <div class="flex items-end gap-6">
-                    <h2
-                        class="text-primary text-5xl font-light uppercase leading-none tracking-[-0.04em] lg:absolute lg:bottom-0 lg:left-0 lg:rotate-180 lg:text-6xl lg:[writing-mode:vertical-rl]">
-                        Reviews
-                    </h2>
-
-
-                    <p class="max-w-44 text-sm/6 text-white/80 lg:ml-28 lg:max-w-40">
-                        {{ $reviewsIntro }}
-                    </p>
-                </div>
-            </div>
-
-
-            {{--
-        |--------------------------------------------------------------------------
-        | Slider area
-        |--------------------------------------------------------------------------
-        --}}
-
-            <div class="min-w-0">
-                <div class="overflow-hidden">
-                    <div class="flex transition-transform duration-500 ease-out" data-reviews-track>
-                        @foreach ($reviews as $review)
-                            <article class="w-full shrink-0 px-2 md:w-1/2 md:px-3" data-review-slide>
-                                <div
-                                    class="lg:min-h-84 flex min-h-80 flex-col justify-between bg-white p-8 sm:p-10 xl:p-12">
-                                    <blockquote
-                                        class="text-ink max-w-64 text-2xl/tight font-light tracking-tight lg:text-[27px]/[1.2]">
-                                        {{ $review['review'] ?? '' }}
-                                    </blockquote>
-
-
-                                    <p class="text-accent mt-10 text-xs font-medium uppercase">
-                                        {{ $review['name'] ?? '' }}
-                                    </p>
-                                </div>
-                            </article>
-                        @endforeach
-                    </div>
-                </div>
-
-
+        <div class="max-w-384 mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
+            <div
+                class="grid gap-10 lg:grid-cols-[180px_minmax(0,1fr)] lg:items-center lg:gap-12 xl:grid-cols-[220px_minmax(0,1fr)] xl:gap-16">
                 {{--
             |--------------------------------------------------------------------------
-            | Controls
+            | Left intro
             |--------------------------------------------------------------------------
             --}}
 
-                <div class="mt-6 flex items-center justify-between gap-6">
-                    <button type="button"
-                        class="text-primary focus-visible:outline-primary flex size-11 shrink-0 items-center justify-center transition duration-300 hover:-translate-x-1 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4"
-                        aria-label="Previous review" data-reviews-prev>
-                        <svg viewBox="0 0 24 24" class="size-8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15 4L7 12L15 20" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"
-                                stroke-linejoin="miter" />
-                        </svg>
-                    </button>
+                <div class="relative z-10">
+                    {{-- Mobile title --}}
+                    <h2 class="text-primary text-5xl font-light uppercase leading-none tracking-[-0.04em] lg:hidden">
+                        Reviews
+                    </h2>
 
+                    {{-- Desktop vertical title --}}
+                    <div class="lg:min-h-95 hidden lg:flex lg:items-center lg:gap-8">
+                        <h2
+                            class="text-primary rotate-180 text-[60px] font-light uppercase leading-none tracking-[-0.04em] [writing-mode:vertical-rl]">
+                            Reviews
+                        </h2>
 
-                    <div class="flex min-w-0 flex-1 items-center gap-0" data-reviews-pagination>
-                        @foreach ($reviews as $index => $review)
-                            <button type="button" class="group flex h-8 min-w-0 flex-1 items-center"
-                                aria-label="Go to review {{ $index + 1 }}" data-reviews-dot="{{ $index }}">
-                                <span
-                                    class="relative block h-0.5 w-full bg-white/35 transition duration-300 group-hover:bg-white/60">
-                                    <span
-                                        class="absolute left-0 top-1/2 size-3 -translate-y-1/2 rounded-full bg-white opacity-0 transition duration-300"
-                                        data-reviews-dot-marker></span>
-                                </span>
-                            </button>
-                        @endforeach
+                        <p class="max-w-34 text-sm/7 text-white/90">
+                            {{ $reviewsIntro }}
+                        </p>
                     </div>
 
+                    {{-- Mobile intro --}}
+                    <p class="mt-4 max-w-80 text-base/8 text-white/90 lg:hidden">
+                        {{ $reviewsIntro }}
+                    </p>
+                </div>
 
-                    <button type="button"
-                        class="text-primary focus-visible:outline-primary flex size-11 shrink-0 items-center justify-center transition duration-300 hover:translate-x-1 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4"
-                        aria-label="Next review" data-reviews-next>
-                        <svg viewBox="0 0 24 24" class="size-8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9 4L17 12L9 20" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"
-                                stroke-linejoin="miter" />
-                        </svg>
-                    </button>
+
+                {{-- Slider area --}}
+                <div class="relative min-w-0">
+                    <div class="flex items-end gap-5 xl:gap-6">
+                        {{-- Previous arrow --}}
+                        <button type="button"
+                            class="text-primary hidden size-11 shrink-0 items-center justify-center transition hover:-translate-x-1 hover:text-white disabled:opacity-30 lg:flex"
+                            aria-label="Previous review" data-reviews-prev>
+                            <svg viewBox="0 0 24 24" class="size-8" fill="none" aria-hidden="true">
+                                <path d="M15 4L7 12L15 20" stroke="currentColor" stroke-width="2.5" />
+                            </svg>
+                        </button>
+
+                        {{-- Cards viewport --}}
+                        <div class="max-w-174 min-w-0 flex-1 overflow-hidden">
+                            <div class="flex transition-transform duration-500 ease-out" data-reviews-track>
+                                @foreach ($reviews as $review)
+                                    <article class="w-full shrink-0 px-2 lg:w-1/2 lg:px-2.5" data-review-slide>
+                                        <div
+                                            class="h-114 max-w-94 lg:h-84 xl:h-88 mx-auto flex flex-col justify-between bg-white p-8 sm:p-10 lg:max-w-none lg:p-10 xl:p-12">
+                                            <blockquote
+                                                class="max-w-70 text-ink text-3xl/[1.2] font-light tracking-[-0.035em] lg:text-2xl/[1.25] xl:text-[27px]/[1.22]">
+                                                {{ $review['review'] ?? '' }}
+                                            </blockquote>
+
+                                            <p class="text-accent mt-8 text-xs font-medium uppercase">
+                                                {{ $review['name'] ?? '' }}
+                                            </p>
+                                        </div>
+                                    </article>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        {{-- Next arrow --}}
+                        <button type="button"
+                            class="text-primary hidden size-11 shrink-0 items-center justify-center transition hover:translate-x-1 hover:text-white disabled:opacity-30 lg:flex"
+                            aria-label="Next review" data-reviews-next>
+                            <svg viewBox="0 0 24 24" class="size-8" fill="none" aria-hidden="true">
+                                <path d="M9 4L17 12L9 20" stroke="currentColor" stroke-width="2.5" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    {{-- Right dot and line reaching viewport edge --}}
+                    <div class="pointer-events-none absolute bottom-3 left-full hidden items-center lg:flex"
+                        aria-hidden="true">
+                        <span class="size-3 shrink-0 rounded-full bg-white"></span>
+
+                        <span class="h-0.75 w-[calc(50vw-2rem)] bg-white xl:w-[calc(50vw-4rem)]"></span>
+                    </div>
+
+                    {{-- Mobile controls --}}
+                    <div class="mt-8 flex items-center justify-between lg:hidden">
+                        <button type="button"
+                            class="text-primary flex size-12 items-center justify-center disabled:opacity-30"
+                            aria-label="Previous review" data-reviews-prev-mobile>
+                            <svg viewBox="0 0 24 24" class="size-8" fill="none" aria-hidden="true">
+                                <path d="M15 4L7 12L15 20" stroke="currentColor" stroke-width="2.5" />
+                            </svg>
+                        </button>
+
+                        <button type="button"
+                            class="text-primary flex size-12 items-center justify-center disabled:opacity-30"
+                            aria-label="Next review" data-reviews-next-mobile>
+                            <svg viewBox="0 0 24 24" class="size-8" fill="none" aria-hidden="true">
+                                <path d="M9 4L17 12L9 20" stroke="currentColor" stroke-width="2.5" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -643,18 +651,87 @@
 --}}
 
     <section class="bg-white py-20 sm:py-24 lg:py-28">
-        <div class="max-w-site mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
-
-            {{-- Heading --}}
+        <div class="max-w-384 mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
             <div class="mb-14 text-center lg:mb-16">
-                <h2 class="text-ink text-4xl font-light uppercase leading-none tracking-[-0.04em] sm:text-5xl">
+                <h2 class="text-ink text-5xl font-light uppercase leading-none tracking-[-0.04em] sm:text-6xl lg:text-5xl">
                     {{ $galleryTitle }}
                 </h2>
             </div>
 
 
-            {{-- Gallery images --}}
-            <div class="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-5 xl:grid-cols-5">
+            {{--
+        |--------------------------------------------------------------------------
+        | Mobile gallery slider
+        |--------------------------------------------------------------------------
+        --}}
+
+            <div class="lg:hidden" data-home-gallery-slider>
+                <div class="overflow-hidden">
+                    <div class="flex transition-transform duration-500 ease-out" data-home-gallery-track>
+                        @foreach ($galleryImages as $item)
+                            @php
+                                $image = $item['image'] ?? null;
+
+                                $imageUrl = is_array($image) ? $image['url'] ?? '' : $image;
+
+                                $imageAlt = is_array($image)
+                                    ? $image['alt'] ?? ($item['title'] ?? '')
+                                    : $item['title'] ?? '';
+                            @endphp
+
+                            <figure class="w-full shrink-0" data-home-gallery-slide>
+                                <div class="bg-off-white relative aspect-[3/4.45] overflow-hidden">
+                                    @if ($imageUrl)
+                                        <img src="{{ $imageUrl }}" alt="{{ $imageAlt }}"
+                                            class="absolute inset-0 size-full object-cover grayscale">
+                                    @endif
+
+                                    <div class="pointer-events-none absolute inset-0 bg-white/20" aria-hidden="true">
+                                    </div>
+                                </div>
+                            </figure>
+                        @endforeach
+                    </div>
+                </div>
+
+
+                {{-- Mobile controls --}}
+                <div class="mt-8 grid grid-cols-[48px_minmax(0,1fr)_48px] items-center gap-5">
+                    <button type="button"
+                        class="text-primary hover:text-accent flex size-12 items-center justify-center transition hover:-translate-x-1 disabled:opacity-30"
+                        aria-label="Previous gallery image" data-home-gallery-prev>
+                        <svg viewBox="0 0 24 24" class="size-9" fill="none" aria-hidden="true">
+                            <path d="M15 4L7 12L15 20" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"
+                                stroke-linejoin="miter" />
+                        </svg>
+                    </button>
+
+
+                    <a href="{{ $galleryUrl }}"
+                        class="min-h-18 border-3 border-primary text-accent hover:bg-primary hover:text-ink focus-visible:outline-primary flex items-center justify-center px-6 text-xl font-normal uppercase transition-colors focus-visible:outline-2 focus-visible:outline-offset-4">
+                        {{ $galleryLinkText }}
+                    </a>
+
+
+                    <button type="button"
+                        class="text-primary hover:text-accent flex size-12 items-center justify-center transition hover:translate-x-1 disabled:opacity-30"
+                        aria-label="Next gallery image" data-home-gallery-next>
+                        <svg viewBox="0 0 24 24" class="size-9" fill="none" aria-hidden="true">
+                            <path d="M9 4L17 12L9 20" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"
+                                stroke-linejoin="miter" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+
+            {{--
+        |--------------------------------------------------------------------------
+        | Desktop gallery grid
+        |--------------------------------------------------------------------------
+        --}}
+
+            <div class="hidden gap-4 lg:grid lg:grid-cols-5 lg:gap-5">
                 @foreach ($galleryImages as $item)
                     @php
                         $image = $item['image'] ?? null;
@@ -667,31 +744,28 @@
                     <figure class="aspect-3/4 bg-off-white group relative overflow-hidden">
                         @if ($imageUrl)
                             <img src="{{ $imageUrl }}" alt="{{ $imageAlt }}"
-                                class="absolute inset-0 size-full object-cover grayscale transition duration-700 ease-out group-focus-within:scale-105 group-focus-within:grayscale-0 group-hover:scale-105 group-hover:grayscale-0">
+                                class="absolute inset-0 size-full object-cover grayscale transition duration-700 ease-out group-hover:scale-105 group-hover:grayscale-0">
                         @endif
 
-                        {{-- Subtle wash visible in the resting state --}}
-                        <div class="pointer-events-none absolute inset-0 bg-white/20 transition-opacity duration-500 group-focus-within:opacity-0 group-hover:opacity-0"
+                        <div class="pointer-events-none absolute inset-0 bg-white/20 transition-opacity duration-500 group-hover:opacity-0"
                             aria-hidden="true"></div>
                     </figure>
                 @endforeach
             </div>
 
 
-            {{-- View more line --}}
-            <div class="max-w-170 mx-auto mt-14 flex items-center sm:mt-16">
-                <span class="bg-primary size-2.5 shrink-0 rounded-full" aria-hidden="true"></span>
-
-                <span class="bg-primary h-0.5 min-w-6 flex-1" aria-hidden="true"></span>
+            {{-- Desktop view-more line --}}
+            <div class="max-w-170 mx-auto mt-14 hidden items-center lg:flex">
+                <span class="bg-primary size-2.5 shrink-0 rounded-full"></span>
+                <span class="bg-primary h-0.5 flex-1"></span>
 
                 <a href="{{ $galleryUrl }}"
-                    class="text-accent hover:text-ink focus-visible:outline-primary shrink-0 px-6 text-xs font-medium uppercase tracking-[0.02em] transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-4">
+                    class="text-accent hover:text-ink shrink-0 px-6 text-xs font-medium uppercase tracking-[0.02em] transition-colors">
                     {{ $galleryLinkText }}
                 </a>
 
-                <span class="bg-primary h-0.5 min-w-6 flex-1" aria-hidden="true"></span>
-
-                <span class="bg-primary size-2.5 shrink-0 rounded-full" aria-hidden="true"></span>
+                <span class="bg-primary h-0.5 flex-1"></span>
+                <span class="bg-primary size-2.5 shrink-0 rounded-full"></span>
             </div>
         </div>
     </section>
@@ -705,14 +779,14 @@
 --}}
 
     <section class="bg-white pb-24 sm:pb-28 lg:pb-32">
-        <div class="max-w-170 mx-auto grid gap-10 px-6 sm:px-8 lg:grid-cols-[140px_minmax(0,1fr)] lg:gap-12 lg:px-0">
+        <div class="max-w-250 mx-auto grid gap-10 px-6 sm:px-8 lg:grid-cols-[200px_minmax(0,1fr)] lg:gap-12 lg:px-0">
             {{-- FAQ introduction --}}
             <div>
                 <h2 class="text-ink text-4xl font-light uppercase leading-none tracking-[-0.04em] sm:text-5xl">
                     {{ $faqTitle }}
                 </h2>
 
-                <p class="max-w-34 text-accent mt-5 text-sm/6">
+                <p class="max-w-45 text-accent mt-5 text-sm/6 font-light">
                     {{ $faqIntro }}
                 </p>
             </div>
@@ -727,29 +801,21 @@
                         $isOpen = $index === 0;
                     @endphp
 
-                    <article class="bg-white shadow-[0_2px_12px_rgba(0,0,0,0.08)]" data-faq-item>
+                    <article data-faq-item>
                         <h3>
                             <button id="{{ $buttonId }}" type="button"
-                                class="text-ink hover:text-accent focus-visible:outline-primary flex min-h-12 w-full items-center justify-between gap-6 px-7 py-4 text-left text-sm font-normal transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2"
+                                class="text-ink hover:text-accent focus-visible:outline-primary flex min-h-12 w-full items-center justify-between gap-6 bg-white px-7 py-4 text-left text-sm font-normal shadow-[0_2px_12px_rgba(0,0,0,0.08)] transition-colors duration-300 hover:cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2"
                                 aria-expanded="{{ $isOpen ? 'true' : 'false' }}" aria-controls="{{ $panelId }}"
                                 data-faq-trigger>
                                 <span>
                                     {{ $faq['question'] ?? '' }}
-                                </span>
-
-                                <span class="relative size-4 shrink-0" aria-hidden="true">
-                                    <span class="bg-primary absolute left-0 top-1/2 h-0.5 w-full -translate-y-1/2"></span>
-
-                                    <span
-                                        class="bg-primary {{ $isOpen ? 'scale-y-0' : 'scale-y-100' }} absolute left-1/2 top-0 h-full w-0.5 -translate-x-1/2 transition-transform duration-300"
-                                        data-faq-plus></span>
                                 </span>
                             </button>
                         </h3>
 
                         <div id="{{ $panelId }}" role="region" aria-labelledby="{{ $buttonId }}"
                             class="{{ $isOpen ? '' : 'hidden' }}" data-faq-panel>
-                            <div class="text-stone border-t border-black/5 px-7 py-5 text-sm/6">
+                            <div class="text-stone px-7 py-5 text-sm/6">
                                 {!! wp_kses_post(wpautop($faq['answer'] ?? '')) !!}
                             </div>
                         </div>

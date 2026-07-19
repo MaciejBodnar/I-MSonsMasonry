@@ -60,7 +60,7 @@
         <div class="grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-3">
             @foreach ($services as $service)
                 <a href="{{ $service['url'] }}"
-                    class="hover:bg-primary focus-visible:outline-primary group flex min-h-48 flex-col justify-between bg-white p-7 transition-colors focus-visible:relative focus-visible:z-10 focus-visible:outline-2 focus-visible:outline-offset-[-2px]">
+                    class="hover:bg-primary focus-visible:outline-primary group flex min-h-48 flex-col justify-between bg-white p-7 transition-colors focus-visible:relative focus-visible:z-10 focus-visible:outline-2 focus-visible:-outline-offset-2">
                     <h3 class="max-w-48 text-xl/[1.15] font-normal uppercase">
                         {{ $service['title'] }}
                     </h3>

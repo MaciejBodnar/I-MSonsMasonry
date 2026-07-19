@@ -143,57 +143,49 @@
 
 
     {{--
-    |--------------------------------------------------------------------------
-    | FAQ
-    |--------------------------------------------------------------------------
-    --}}
+|--------------------------------------------------------------------------
+| FAQ
+|--------------------------------------------------------------------------
+--}}
 
     <section class="bg-white py-20 sm:py-24 lg:py-28">
-        <div class="max-w-196 mx-auto grid gap-10 px-6 sm:px-8 lg:grid-cols-[150px_minmax(0,1fr)] lg:gap-14 lg:px-0">
+        <div class="max-w-250 mx-auto grid gap-10 px-6 sm:px-8 lg:grid-cols-[200px_minmax(0,1fr)] lg:gap-12 lg:px-0">
             {{-- FAQ introduction --}}
             <div>
                 <h2 class="text-ink text-4xl font-light uppercase leading-none tracking-[-0.04em] sm:text-5xl">
                     {{ $faqTitle }}
                 </h2>
 
-                <p class="max-w-34 text-accent mt-5 text-sm/6">
+                <p class="max-w-45 text-accent mt-5 text-sm/6 font-light">
                     {{ $faqIntro }}
                 </p>
             </div>
 
 
-            {{-- FAQ accordion --}}
+            {{-- Accordion --}}
             <div class="space-y-4" data-faq-accordion>
                 @foreach ($faqs as $index => $faq)
                     @php
-                        $panelId = 'service-faq-panel-' . $index;
-                        $buttonId = 'service-faq-button-' . $index;
+                        $panelId = 'faq-panel-' . $index;
+                        $buttonId = 'faq-button-' . $index;
                         $isOpen = $index === 0;
                     @endphp
 
-                    <article class="bg-white shadow-[0_2px_12px_rgba(0,0,0,0.08)]" data-faq-item>
+                    <article data-faq-item>
                         <h3>
                             <button id="{{ $buttonId }}" type="button"
-                                class="text-ink hover:text-accent focus-visible:outline-primary flex min-h-12 w-full items-center justify-between gap-6 px-7 py-4 text-left text-sm font-normal transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2"
+                                class="text-ink hover:text-accent focus-visible:outline-primary flex min-h-12 w-full items-center justify-between gap-6 bg-white px-7 py-4 text-left text-sm font-normal shadow-[0_2px_12px_rgba(0,0,0,0.08)] transition-colors duration-300 hover:cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2"
                                 aria-expanded="{{ $isOpen ? 'true' : 'false' }}" aria-controls="{{ $panelId }}"
                                 data-faq-trigger>
                                 <span>
                                     {{ $faq['question'] ?? '' }}
-                                </span>
-
-                                <span class="relative size-4 shrink-0" aria-hidden="true">
-                                    <span class="bg-primary absolute left-0 top-1/2 h-0.5 w-full -translate-y-1/2"></span>
-
-                                    <span
-                                        class="bg-primary {{ $isOpen ? 'scale-y-0' : 'scale-y-100' }} absolute left-1/2 top-0 h-full w-0.5 -translate-x-1/2 transition-transform duration-300"
-                                        data-faq-plus></span>
                                 </span>
                             </button>
                         </h3>
 
                         <div id="{{ $panelId }}" role="region" aria-labelledby="{{ $buttonId }}"
                             class="{{ $isOpen ? '' : 'hidden' }}" data-faq-panel>
-                            <div class="text-stone border-t border-black/5 px-7 py-5 text-sm/6">
+                            <div class="text-stone px-7 py-5 text-sm/6">
                                 {!! wp_kses_post(wpautop($faq['answer'] ?? '')) !!}
                             </div>
                         </div>

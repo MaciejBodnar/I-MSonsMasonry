@@ -61,7 +61,7 @@
 
 <footer class="bg-black text-white">
     <div
-        class="max-w-288 py-18 mx-auto grid gap-14 px-6 sm:px-8 sm:py-20 lg:grid-cols-[280px_80px_minmax(0,1fr)] lg:items-center lg:gap-16 lg:px-12 xl:px-0">
+        class="py-18 mx-auto grid max-w-6xl gap-14 px-6 sm:px-8 sm:py-20 lg:grid-cols-[280px_80px_minmax(0,1fr)] lg:items-center lg:gap-16 lg:px-12 xl:px-0">
         {{-- Logo --}}
         <div class="flex justify-center lg:justify-start">
             <a href="{{ home_url('/') }}" class="block" aria-label="{{ get_bloginfo('name') }} home">
@@ -133,7 +133,7 @@
     {{-- Bottom bar --}}
     <div class="bg-linear-to-r from-primary to-accent">
         <div
-            class="max-w-288 mx-auto flex flex-col gap-4 px-6 py-6 text-sm text-white sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-12 xl:px-0">
+            class="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-6 text-sm text-white sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-12 xl:px-0">
             <p>
                 Contact us:
 

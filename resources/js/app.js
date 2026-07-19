@@ -56,9 +56,13 @@ const initialiseReviewsSliders = () => {
   sliders.forEach((slider) => {
     const track = slider.querySelector('[data-reviews-track]');
     const slides = Array.from(slider.querySelectorAll('[data-review-slide]'));
+
     const previousButton = slider.querySelector('[data-reviews-prev]');
     const nextButton = slider.querySelector('[data-reviews-next]');
-    const dots = Array.from(slider.querySelectorAll('[data-reviews-dot]'));
+    const previousButtonMobile = slider.querySelector(
+      '[data-reviews-prev-mobile]',
+    );
+    const nextButtonMobile = slider.querySelector('[data-reviews-next-mobile]');
 
     if (!track || slides.length === 0) {
       return;
@@ -69,19 +73,21 @@ const initialiseReviewsSliders = () => {
     let maximumIndex = 0;
 
     const getVisibleSlides = () => {
-      return window.matchMedia('(min-width: 768px)').matches ? 2 : 1;
+      return window.matchMedia('(min-width: 1024px)').matches ? 2 : 1;
     };
 
-    const updateDotStates = () => {
-      dots.forEach((dot, index) => {
-        const marker = dot.querySelector('[data-reviews-dot-marker]');
+    const updateButtons = () => {
+      const isAtStart = currentIndex === 0;
+      const isAtEnd = currentIndex === maximumIndex;
 
-        const isActive = index === currentIndex;
+      [previousButton, previousButtonMobile].forEach((button) => {
+        if (!button) return;
+        button.disabled = isAtStart;
+      });
 
-        dot.setAttribute('aria-current', isActive ? 'true' : 'false');
-
-        marker?.classList.toggle('opacity-0', !isActive);
-        marker?.classList.toggle('opacity-100', isActive);
+      [nextButton, nextButtonMobile].forEach((button) => {
+        if (!button) return;
+        button.disabled = isAtEnd;
       });
     };
 
@@ -94,34 +100,23 @@ const initialiseReviewsSliders = () => {
 
       track.style.transform = `translateX(-${currentIndex * slideWidth}%)`;
 
-      updateDotStates();
-
-      previousButton?.toggleAttribute('disabled', currentIndex === 0);
-
-      nextButton?.toggleAttribute('disabled', currentIndex === maximumIndex);
-
-      previousButton?.classList.toggle('opacity-40', currentIndex === 0);
-
-      nextButton?.classList.toggle('opacity-40', currentIndex === maximumIndex);
+      updateButtons();
     };
 
-    previousButton?.addEventListener('click', () => {
+    const goPrevious = () => {
       currentIndex = Math.max(currentIndex - 1, 0);
       updateSlider();
-    });
+    };
 
-    nextButton?.addEventListener('click', () => {
+    const goNext = () => {
       currentIndex = Math.min(currentIndex + 1, maximumIndex);
-
       updateSlider();
-    });
+    };
 
-    dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-        currentIndex = Math.min(index, maximumIndex);
-        updateSlider();
-      });
-    });
+    previousButton?.addEventListener('click', goPrevious);
+    nextButton?.addEventListener('click', goNext);
+    previousButtonMobile?.addEventListener('click', goPrevious);
+    nextButtonMobile?.addEventListener('click', goNext);
 
     let resizeTimer;
 
@@ -142,6 +137,7 @@ if (document.readyState === 'loading') {
 } else {
   initialiseReviewsSliders();
 }
+
 const initialiseCategoryGallery = () => {
   const galleryPage = document.querySelector('[data-gallery-page]');
 
@@ -423,4 +419,55 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initialiseHeaderNavigation);
 } else {
   initialiseHeaderNavigation();
+}
+
+const initialiseHomeGallerySliders = () => {
+  document.querySelectorAll('[data-home-gallery-slider]').forEach((slider) => {
+    const track = slider.querySelector('[data-home-gallery-track]');
+
+    const slides = Array.from(
+      slider.querySelectorAll('[data-home-gallery-slide]'),
+    );
+
+    const previousButton = slider.querySelector('[data-home-gallery-prev]');
+
+    const nextButton = slider.querySelector('[data-home-gallery-next]');
+
+    if (!track || slides.length === 0) {
+      return;
+    }
+
+    let currentIndex = 0;
+
+    const updateSlider = () => {
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+      if (previousButton) {
+        previousButton.disabled = currentIndex === 0;
+      }
+
+      if (nextButton) {
+        nextButton.disabled = currentIndex === slides.length - 1;
+      }
+    };
+
+    previousButton?.addEventListener('click', () => {
+      currentIndex = Math.max(currentIndex - 1, 0);
+      updateSlider();
+    });
+
+    nextButton?.addEventListener('click', () => {
+      currentIndex = Math.min(currentIndex + 1, slides.length - 1);
+
+      updateSlider();
+    });
+
+    updateSlider();
+  });
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initialiseHomeGallerySliders);
+} else {
+  initialiseHomeGallerySliders();
 }

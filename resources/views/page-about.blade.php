@@ -121,42 +121,45 @@
 
 
     {{--
-    |--------------------------------------------------------------------------
-    | REVIEWS
-    |--------------------------------------------------------------------------
-    --}}
+|--------------------------------------------------------------------------
+| REVIEWS
+|--------------------------------------------------------------------------
+--}}
 
-    <section class="bg-off-white py-20 sm:py-24 lg:py-28">
+    <section class="bg-off-white relative overflow-hidden py-20 sm:py-24 lg:py-28">
         <div
-            class="xl:gap-18 mx-auto grid max-w-6xl gap-12 px-6 sm:px-10 lg:grid-cols-[180px_minmax(0,1fr)] lg:gap-14 lg:px-16 xl:grid-cols-[200px_minmax(0,1fr)] xl:px-20">
+            class="max-w-288 mx-auto grid gap-12 px-6 sm:px-10 lg:grid-cols-[180px_minmax(0,1fr)] lg:gap-12 lg:px-16 xl:grid-cols-[210px_minmax(0,1fr)] xl:px-20">
             {{-- Reviews heading --}}
             <aside class="relative">
-                <div class="mb-8 flex items-center lg:absolute lg:right-0 lg:top-0 lg:w-[calc(100vw-3rem)]"
+                <div class="flex items-center gap-0 lg:absolute lg:left-0 lg:top-0 lg:w-[calc(100%+11rem)] xl:w-[calc(100%+14rem)]"
                     aria-hidden="true">
                     <span class="bg-primary size-2.5 shrink-0 rounded-full"></span>
+
                     <span class="bg-primary h-0.5 flex-1"></span>
                 </div>
 
                 <h2
-                    class="text-ink text-4xl font-light uppercase leading-none tracking-[-0.04em] sm:text-5xl lg:mt-12 lg:rotate-180 lg:text-5xl lg:[writing-mode:vertical-rl]">
+                    class="text-ink mt-10 text-4xl font-light uppercase leading-none tracking-[-0.04em] sm:text-5xl lg:mt-14 lg:rotate-180 lg:text-5xl lg:[writing-mode:vertical-rl]">
                     {{ $reviewsTitle }}
                 </h2>
             </aside>
 
-            {{-- Shifted review cards --}}
-            <div class="grid gap-5 md:grid-cols-2 lg:translate-x-8 lg:gap-4 xl:translate-x-12">
-                @foreach ($reviews as $review)
-                    <article
-                        class="min-h-67 lg:min-h-67 flex flex-col justify-between border border-black/25 bg-white p-8 sm:min-h-72 sm:p-10">
-                        <blockquote class="text-ink max-w-60 text-2xl/tight font-light tracking-tight">
-                            {{ $review['review'] ?? '' }}
-                        </blockquote>
+            {{-- Staggered cards --}}
+            <div class="relative min-w-0">
+                <div class="grid gap-5 md:grid-cols-2 lg:gap-6">
+                    @foreach ($reviews as $index => $review)
+                        <article
+                            class="min-h-67 lg:min-h-67 {{ $index === 0 ? 'lg:translate-x-12 xl:translate-x-16' : '' }} {{ $index === 1 ? 'lg:translate-x-12 xl:translate-x-16' : '' }} {{ $index === 2 ? 'lg:-translate-x-4 xl:-translate-x-8' : '' }} {{ $index === 3 ? 'lg:-translate-x-4 xl:-translate-x-8' : '' }} flex flex-col justify-between border border-black/25 bg-white p-8 sm:min-h-72 sm:p-10">
+                            <blockquote class="text-ink max-w-60 text-2xl/[1.25] font-light tracking-[-0.025em]">
+                                {{ $review['review'] ?? '' }}
+                            </blockquote>
 
-                        <p class="text-accent mt-10 text-xs font-medium uppercase">
-                            {{ $review['name'] ?? '' }}
-                        </p>
-                    </article>
-                @endforeach
+                            <p class="text-accent mt-10 text-xs font-medium uppercase">
+                                {{ $review['name'] ?? '' }}
+                            </p>
+                        </article>
+                    @endforeach
+                </div>
             </div>
         </div>
     </section>
