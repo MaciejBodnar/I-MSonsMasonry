@@ -1,62 +1,15 @@
 @php
-    $phone = get_field('contact_phone', 'option') ?: '0700 0000 000';
-
-    $email = get_field('contact_email', 'option') ?: 'info@yourdomain.com';
-
-    $facebookUrl = get_field('facebook_url', 'option') ?: '#';
-    $tiktokUrl = get_field('tiktok_url', 'option') ?: '#';
-    $googleUrl = get_field('google_url', 'option') ?: '#';
-
-    $footerServices = [
-        [
-            'title' => 'House Extension',
-            'url' => home_url('/services/house-extension/'),
-        ],
-        [
-            'title' => 'Roof Construction',
-            'url' => home_url('/services/roof-construction/'),
-        ],
-        [
-            'title' => 'Summer House',
-            'url' => home_url('/services/summer-house/'),
-        ],
-        [
-            'title' => 'Masonry & Bricklaying',
-            'url' => home_url('/services/masonry-bricklaying/'),
-        ],
-        [
-            'title' => 'Loft Conversion',
-            'url' => home_url('/services/loft-conversion/'),
-        ],
-        [
-            'title' => 'House Refurbishment',
-            'url' => home_url('/services/house-refurbishment/'),
-        ],
-        [
-            'title' => 'Garden Construction',
-            'url' => home_url('/services/garden-construction/'),
-        ],
-        [
-            'title' => 'Joinery',
-            'url' => home_url('/services/joinery/'),
-        ],
-        [
-            'title' => 'New Homes',
-            'url' => home_url('/services/new-homes/'),
-        ],
-        [
-            'title' => 'Painting & Decorating',
-            'url' => home_url('/services/painting-decorating/'),
-        ],
-        [
-            'title' => 'Driveways',
-            'url' => home_url('/services/driveways/'),
-        ],
-        [
-            'title' => 'Bathrooms',
-            'url' => home_url('/services/bathrooms/'),
-        ],
-    ];
+    $brandPrimary = im_sons_header_footer_setting('footer_brand_primary', 'I&M Sons');
+    $brandSecondary = im_sons_header_footer_setting('footer_brand_secondary', 'Masonry');
+    $contactLabel = im_sons_header_footer_setting('footer_contact_label', __('Contact us:', 'im-sons'));
+    $phone = im_sons_header_footer_setting('footer_phone', '0700 0000 000');
+    $email = im_sons_header_footer_setting('footer_email', 'info@yourdomain.com');
+    $socialLinks = im_sons_header_footer_social_links();
+    $footerServices = im_sons_header_footer_services();
+    $copyrightName = im_sons_header_footer_setting('footer_copyright_name', 'I&M Sons Masonry');
+    $creditPrefix = im_sons_header_footer_setting('footer_credit_text', 'D&C with');
+    $creditLinkText = im_sons_header_footer_setting('footer_credit_link_text', 'SLT Media');
+    $creditUrl = im_sons_header_footer_setting('footer_credit_url', '#');
 @endphp
 
 <footer class="bg-black text-white">
@@ -72,11 +25,11 @@
                 @else
                     <div class="text-center">
                         <div class="text-primary text-4xl font-semibold uppercase">
-                            I&amp;M Sons
+                            {{ $brandPrimary }}
                         </div>
 
                         <div class="text-accent mt-1 text-xl uppercase">
-                            Masonry
+                            {{ $brandSecondary }}
                         </div>
                     </div>
                 @endif
@@ -90,21 +43,21 @@
 
                 <span class="w-0.75 bg-primary h-8"></span>
 
-                <a href="{{ $facebookUrl }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
+                <a href="{{ $socialLinks['facebook'] }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
                     class="bg-primary hover:bg-accent flex size-11 items-center justify-center rounded-full font-semibold text-black transition hover:text-white">
                     f
                 </a>
 
                 <span class="w-0.75 bg-primary h-3"></span>
 
-                <a href="{{ $tiktokUrl }}" target="_blank" rel="noopener noreferrer" aria-label="TikTok"
+                <a href="{{ $socialLinks['tiktok'] }}" target="_blank" rel="noopener noreferrer" aria-label="TikTok"
                     class="bg-primary hover:bg-accent flex size-11 items-center justify-center rounded-full font-semibold text-black transition hover:text-white">
                     ♪
                 </a>
 
                 <span class="w-0.75 bg-primary h-3"></span>
 
-                <a href="{{ $googleUrl }}" target="_blank" rel="noopener noreferrer" aria-label="Google"
+                <a href="{{ $socialLinks['google'] }}" target="_blank" rel="noopener noreferrer" aria-label="Google"
                     class="bg-primary hover:bg-accent flex size-11 items-center justify-center rounded-full font-semibold text-black transition hover:text-white">
                     G
                 </a>
@@ -135,7 +88,7 @@
         <div
             class="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-6 text-sm text-white sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-12 xl:px-0">
             <p>
-                Contact us:
+                {{ $contactLabel }}
 
                 <a href="tel:{{ preg_replace('/\s+/', '', $phone) }}" class="text-primary font-semibold">
                     {{ $phone }}
@@ -157,18 +110,19 @@
                 <span>|</span>
 
                 <span>
-                    ©{{ date('Y') }} I&amp;M Sons Masonry
+                    ©{{ date('Y') }} {{ $copyrightName }}
                 </span>
 
-                <span>- D&amp;C with</span>
+                <span>- {{ $creditPrefix }}</span>
 
-                <a href="#" class="inline-flex items-center gap-1 transition-colors hover:text-black">
+                <a href="{{ $creditUrl }}"
+                    class="inline-flex items-center gap-1 transition-colors hover:text-black">
                     <span
                         class="border-primary text-primary inline-flex size-4 items-center justify-center border text-[10px]">
                         ?
                     </span>
 
-                    SLT Media
+                    {{ $creditLinkText }}
                 </a>
             </p>
         </div>

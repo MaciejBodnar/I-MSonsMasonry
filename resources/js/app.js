@@ -149,12 +149,11 @@ const initialiseCategoryGallery = () => {
   const dataElement = galleryPage.querySelector('[data-gallery-data]');
   const title = galleryPage.querySelector('[data-gallery-title]');
   const mainImage = galleryPage.querySelector('[data-gallery-main-image]');
-  const counter = galleryPage.querySelector('[data-gallery-counter]');
   const previousButton = galleryPage.querySelector('[data-gallery-prev]');
   const nextButton = galleryPage.querySelector('[data-gallery-next]');
   const closeButton = galleryPage.querySelector('[data-gallery-close]');
 
-  if (!viewer || !dataElement || !title || !mainImage || !counter) {
+  if (!viewer || !dataElement || !title || !mainImage) {
     return;
   }
 
@@ -179,7 +178,6 @@ const initialiseCategoryGallery = () => {
     if (!image) {
       mainImage.removeAttribute('src');
       mainImage.alt = '';
-      counter.textContent = '0 / 0';
       return;
     }
 
@@ -190,8 +188,6 @@ const initialiseCategoryGallery = () => {
       mainImage.alt = image.alt || activeCategory.title || '';
       mainImage.classList.remove('opacity-0');
     }, 150);
-
-    counter.textContent = `${activeImageIndex + 1} / ${images.length}`;
   };
 
   const openCategory = (

@@ -16,7 +16,7 @@
 
         $serviceContent = get_field('service_content') ?: apply_filters('the_content', get_the_content());
 
-        $serviceImage = get_field('service_image');
+        $serviceImage = get_field('service_image') ?: get_theme_file_uri('/resources/images/first-bg.png');
 
         $galleryLink = get_field('gallery_link');
 

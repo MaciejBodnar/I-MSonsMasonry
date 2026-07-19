@@ -1,36 +1,7 @@
 @php
-    $services = [
-        [
-            'title' => 'House Extensions',
-            'description' => 'Create more space for your family.',
-            'url' => home_url('/services/house-extensions/'),
-        ],
-        [
-            'title' => 'Roof Construction',
-            'description' => 'New roofs, repairs and full replacements.',
-            'url' => home_url('/services/roof-construction/'),
-        ],
-        [
-            'title' => 'Summer Houses',
-            'description' => 'Garden offices and additional living spaces.',
-            'url' => home_url('/services/summer-houses/'),
-        ],
-        [
-            'title' => 'Masonry & Bricklaying',
-            'description' => 'Specialist brickwork and structural construction.',
-            'url' => home_url('/services/masonry-bricklaying/'),
-        ],
-        [
-            'title' => 'Loft Conversions',
-            'description' => 'Transform unused roof space.',
-            'url' => home_url('/services/loft-conversions/'),
-        ],
-        [
-            'title' => 'House Refurbishments',
-            'description' => 'Individual rooms and complete renovations.',
-            'url' => home_url('/services/house-refurbishments/'),
-        ],
-    ];
+    $brandEyebrow = im_sons_header_footer_setting('services_dialog_eyebrow', 'I&M Sons Masonry');
+    $dialogTitle = im_sons_header_footer_setting('services_dialog_title', __('Our Services', 'im-sons'));
+    $services = im_sons_header_footer_services();
 @endphp
 
 <dialog id="services-dialog"
@@ -40,11 +11,11 @@
         <div class="flex items-center justify-between border-b border-black/10 px-6 py-5 sm:px-8 lg:px-12">
             <div>
                 <p class="text-primary text-xs font-medium uppercase tracking-[0.08em]">
-                    I&amp;M Sons Masonry
+                    {{ $brandEyebrow }}
                 </p>
 
                 <h2 class="mt-1 text-3xl font-light uppercase tracking-[-0.04em]">
-                    Our Services
+                    {{ $dialogTitle }}
                 </h2>
             </div>
 

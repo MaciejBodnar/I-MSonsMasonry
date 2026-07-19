@@ -109,14 +109,10 @@
 
             <div class="mt-14 hidden lg:mt-16" data-gallery-viewer>
                 <div class="mb-7 flex flex-wrap items-center justify-between gap-5">
-                    <h2 class="text-ink text-2xl font-light uppercase tracking-[-0.03em] sm:text-3xl" data-gallery-title>
+                    <h2 aria-hidden="true"
+                        class="text-ink hidden text-2xl font-light uppercase tracking-[-0.03em] sm:text-3xl"
+                        data-gallery-title>
                     </h2>
-
-                    <button type="button"
-                        class="text-ink hover:text-accent focus-visible:outline-primary text-sm uppercase transition-colors focus-visible:outline-2 focus-visible:outline-offset-4"
-                        data-gallery-close>
-                        Close gallery
-                    </button>
                 </div>
 
                 <div class="aspect-16/10 bg-off-white relative overflow-hidden lg:aspect-video">
@@ -140,8 +136,6 @@
                         </svg>
                     </button>
 
-                    <span class="absolute right-4 top-4 bg-black/65 px-3 py-2 text-xs text-white"
-                        data-gallery-counter></span>
                 </div>
             </div>
 
@@ -160,15 +154,6 @@
 
                         <span class="bg-linear-to-b absolute inset-0 from-black/20 via-black/20 to-black/80"></span>
 
-                        <span class="min-h-105 relative z-10 flex flex-col justify-between p-7">
-                            <span class="max-w-52 text-xl/[1.15] font-normal uppercase text-white">
-                                {{ $category['title'] }}
-                            </span>
-
-                            <span class="text-xs uppercase tracking-[0.04em] text-white/70">
-                                {{ count($category['images']) }} Images
-                            </span>
-                        </span>
                     </button>
                 @endforeach
             </div>

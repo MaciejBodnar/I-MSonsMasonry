@@ -1,0 +1,901 @@
+<?php
+
+namespace App\Providers;
+
+use Roots\Acorn\Sage\SageServiceProvider;
+
+class ACFFieldProvider extends SageServiceProvider
+{
+    public function boot()
+    {
+        parent::boot();
+
+        if (! function_exists('acf_add_local_field_group')) {
+            return;
+        }
+
+        if (did_action('acf/init')) {
+            $this->registerFields();
+
+            return;
+        }
+
+        add_action('acf/init', [$this, 'registerFields']);
+    }
+
+    public function registerFields(): void
+    {
+        $this->registerOptionsPage();
+        $this->registerHeaderFooterSettingsFields();
+        $this->registerFrontPageFields();
+        $this->registerAboutPageFields();
+        $this->registerContactPageFields();
+        $this->registerGalleryPageFields();
+        $this->registerServiceFields();
+        $this->registerPrivacyPolicyFields();
+    }
+
+    protected function registerOptionsPage(): void
+    {
+        if (! function_exists('acf_add_options_page')) {
+            return;
+        }
+
+        acf_add_options_page([
+            'page_title' => __('Theme Settings', 'im-sons'),
+            'menu_title' => __('Theme Settings', 'im-sons'),
+            'menu_slug' => 'im-sons-theme-settings',
+            'capability' => 'edit_posts',
+            'redirect' => false,
+            'position' => 59,
+        ]);
+
+        acf_add_local_field_group([
+            'key' => 'group_imsons_theme_settings',
+            'title' => __('Theme Settings', 'im-sons'),
+            'fields' => [
+                [
+                    'key' => 'field_imsons_theme_settings_contact_tab',
+                    'label' => __('Contact Details', 'im-sons'),
+                    'type' => 'tab',
+                ],
+                [
+                    'key' => 'field_imsons_contact_phone',
+                    'label' => __('Phone', 'im-sons'),
+                    'name' => 'contact_phone',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_contact_email',
+                    'label' => __('Email', 'im-sons'),
+                    'name' => 'contact_email',
+                    'type' => 'email',
+                ],
+                [
+                    'key' => 'field_imsons_contact_address',
+                    'label' => __('Address', 'im-sons'),
+                    'name' => 'contact_address',
+                    'type' => 'textarea',
+                    'new_lines' => 'br',
+                ],
+                [
+                    'key' => 'field_imsons_contact_postcode',
+                    'label' => __('Postcode', 'im-sons'),
+                    'name' => 'contact_postcode',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_theme_settings_social_tab',
+                    'label' => __('Social Links', 'im-sons'),
+                    'type' => 'tab',
+                ],
+                [
+                    'key' => 'field_imsons_facebook_url',
+                    'label' => __('Facebook URL', 'im-sons'),
+                    'name' => 'facebook_url',
+                    'type' => 'url',
+                ],
+                [
+                    'key' => 'field_imsons_tiktok_url',
+                    'label' => __('TikTok URL', 'im-sons'),
+                    'name' => 'tiktok_url',
+                    'type' => 'url',
+                ],
+                [
+                    'key' => 'field_imsons_google_url',
+                    'label' => __('Google URL', 'im-sons'),
+                    'name' => 'google_url',
+                    'type' => 'url',
+                ],
+            ],
+            'location' => [
+                [
+                    [
+                        'param' => 'options_page',
+                        'operator' => '==',
+                        'value' => 'im-sons-theme-settings',
+                    ],
+                ],
+            ],
+        ]);
+    }
+
+    protected function registerHeaderFooterSettingsFields(): void
+    {
+        if (! function_exists('acf_add_options_page')) {
+            return;
+        }
+
+        acf_add_options_page([
+            'page_title' => __('Header/Footer Settings', 'im-sons'),
+            'menu_title' => __('Header/Footer Settings', 'im-sons'),
+            'menu_slug' => 'im-sons-header-footer-settings',
+            'post_id' => 'header_footer_settings',
+            'capability' => 'edit_posts',
+            'redirect' => false,
+            'position' => 60,
+            'parent_slug' => 'im-sons-theme-settings',
+        ]);
+
+        acf_add_local_field_group([
+            'key' => 'group_imsons_header_footer_settings',
+            'title' => __('Header/Footer Settings', 'im-sons'),
+            'fields' => [
+                [
+                    'key' => 'field_imsons_header_footer_header_tab',
+                    'label' => __('Header', 'im-sons'),
+                    'type' => 'tab',
+                ],
+                [
+                    'key' => 'field_imsons_header_brand_primary',
+                    'label' => __('Brand Primary Line', 'im-sons'),
+                    'name' => 'header_brand_primary',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_header_brand_secondary',
+                    'label' => __('Brand Secondary Line', 'im-sons'),
+                    'name' => 'header_brand_secondary',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_header_contact_label',
+                    'label' => __('Contact Label', 'im-sons'),
+                    'name' => 'header_contact_label',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_header_phone',
+                    'label' => __('Phone', 'im-sons'),
+                    'name' => 'header_phone',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_header_email',
+                    'label' => __('Email', 'im-sons'),
+                    'name' => 'header_email',
+                    'type' => 'email',
+                ],
+                [
+                    'key' => 'field_imsons_primary_navigation_items',
+                    'label' => __('Primary Navigation Items', 'im-sons'),
+                    'name' => 'primary_navigation_items',
+                    'type' => 'repeater',
+                    'layout' => 'row',
+                    'button_label' => __('Add Navigation Item', 'im-sons'),
+                    'sub_fields' => [
+                        [
+                            'key' => 'field_imsons_primary_navigation_label',
+                            'label' => __('Label', 'im-sons'),
+                            'name' => 'label',
+                            'type' => 'text',
+                        ],
+                        [
+                            'key' => 'field_imsons_primary_navigation_url',
+                            'label' => __('Link', 'im-sons'),
+                            'name' => 'url',
+                            'type' => 'link',
+                            'return_format' => 'array',
+                        ],
+                        [
+                            'key' => 'field_imsons_primary_navigation_dialog',
+                            'label' => __('Open Services Dialog', 'im-sons'),
+                            'name' => 'dialog',
+                            'type' => 'true_false',
+                            'ui' => 1,
+                        ],
+                    ],
+                ],
+                [
+                    'key' => 'field_imsons_header_footer_services_tab',
+                    'label' => __('Services Dialog', 'im-sons'),
+                    'type' => 'tab',
+                ],
+                [
+                    'key' => 'field_imsons_services_dialog_eyebrow',
+                    'label' => __('Eyebrow', 'im-sons'),
+                    'name' => 'services_dialog_eyebrow',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_services_dialog_title',
+                    'label' => __('Title', 'im-sons'),
+                    'name' => 'services_dialog_title',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_header_footer_services',
+                    'label' => __('Services', 'im-sons'),
+                    'name' => 'services',
+                    'type' => 'repeater',
+                    'layout' => 'row',
+                    'button_label' => __('Add Service', 'im-sons'),
+                    'sub_fields' => [
+                        [
+                            'key' => 'field_imsons_header_footer_service_title',
+                            'label' => __('Title', 'im-sons'),
+                            'name' => 'title',
+                            'type' => 'text',
+                        ],
+                        [
+                            'key' => 'field_imsons_header_footer_service_description',
+                            'label' => __('Description', 'im-sons'),
+                            'name' => 'description',
+                            'type' => 'textarea',
+                            'new_lines' => 'br',
+                        ],
+                        [
+                            'key' => 'field_imsons_header_footer_service_url',
+                            'label' => __('Link', 'im-sons'),
+                            'name' => 'url',
+                            'type' => 'link',
+                            'return_format' => 'array',
+                        ],
+                    ],
+                ],
+                [
+                    'key' => 'field_imsons_header_footer_footer_tab',
+                    'label' => __('Footer', 'im-sons'),
+                    'type' => 'tab',
+                ],
+                [
+                    'key' => 'field_imsons_footer_brand_primary',
+                    'label' => __('Brand Primary Line', 'im-sons'),
+                    'name' => 'footer_brand_primary',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_footer_brand_secondary',
+                    'label' => __('Brand Secondary Line', 'im-sons'),
+                    'name' => 'footer_brand_secondary',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_footer_contact_label',
+                    'label' => __('Contact Label', 'im-sons'),
+                    'name' => 'footer_contact_label',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_footer_phone',
+                    'label' => __('Phone', 'im-sons'),
+                    'name' => 'footer_phone',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_footer_email',
+                    'label' => __('Email', 'im-sons'),
+                    'name' => 'footer_email',
+                    'type' => 'email',
+                ],
+                [
+                    'key' => 'field_imsons_footer_facebook_url',
+                    'label' => __('Facebook URL', 'im-sons'),
+                    'name' => 'footer_facebook_url',
+                    'type' => 'url',
+                ],
+                [
+                    'key' => 'field_imsons_footer_tiktok_url',
+                    'label' => __('TikTok URL', 'im-sons'),
+                    'name' => 'footer_tiktok_url',
+                    'type' => 'url',
+                ],
+                [
+                    'key' => 'field_imsons_footer_google_url',
+                    'label' => __('Google URL', 'im-sons'),
+                    'name' => 'footer_google_url',
+                    'type' => 'url',
+                ],
+                [
+                    'key' => 'field_imsons_footer_copyright_name',
+                    'label' => __('Copyright Name', 'im-sons'),
+                    'name' => 'footer_copyright_name',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_footer_credit_text',
+                    'label' => __('Credit Text', 'im-sons'),
+                    'name' => 'footer_credit_text',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_footer_credit_link_text',
+                    'label' => __('Credit Link Text', 'im-sons'),
+                    'name' => 'footer_credit_link_text',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_footer_credit_url',
+                    'label' => __('Credit Link', 'im-sons'),
+                    'name' => 'footer_credit_url',
+                    'type' => 'url',
+                ],
+            ],
+            'location' => [
+                [
+                    [
+                        'param' => 'options_page',
+                        'operator' => '==',
+                        'value' => 'im-sons-header-footer-settings',
+                    ],
+                ],
+            ],
+        ]);
+    }
+
+    protected function registerFrontPageFields(): void
+    {
+        acf_add_local_field_group([
+            'key' => 'group_imsons_front_page',
+            'title' => __('Front Page', 'im-sons'),
+            'fields' => [
+                [
+                    'key' => 'field_imsons_front_page_hero_tab',
+                    'label' => __('Hero', 'im-sons'),
+                    'type' => 'tab',
+                ],
+                [
+                    'key' => 'field_imsons_hero_eyebrow',
+                    'label' => __('Eyebrow', 'im-sons'),
+                    'name' => 'hero_eyebrow',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_hero_title_line_1',
+                    'label' => __('Title Line 1', 'im-sons'),
+                    'name' => 'hero_title_line_1',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_hero_title_line_2',
+                    'label' => __('Title Line 2', 'im-sons'),
+                    'name' => 'hero_title_line_2',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_hero_text',
+                    'label' => __('Hero Text', 'im-sons'),
+                    'name' => 'hero_text',
+                    'type' => 'textarea',
+                    'new_lines' => 'br',
+                ],
+                [
+                    'key' => 'field_imsons_hero_image',
+                    'label' => __('Hero Image', 'im-sons'),
+                    'name' => 'hero_image',
+                    'type' => 'image',
+                    'return_format' => 'array',
+                    'preview_size' => 'medium',
+                    'library' => 'all',
+                ],
+                [
+                    'key' => 'field_imsons_front_page_services_tab',
+                    'label' => __('Services', 'im-sons'),
+                    'type' => 'tab',
+                ],
+                [
+                    'key' => 'field_imsons_services_brand_primary',
+                    'label' => __('Brand Primary Line', 'im-sons'),
+                    'name' => 'services_brand_primary',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_services_brand_secondary',
+                    'label' => __('Brand Secondary Line', 'im-sons'),
+                    'name' => 'services_brand_secondary',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_services_mobile_title',
+                    'label' => __('Mobile Title', 'im-sons'),
+                    'name' => 'services_mobile_title',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_services_mobile_note',
+                    'label' => __('Mobile Note', 'im-sons'),
+                    'name' => 'services_mobile_note',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_services_vertical_label',
+                    'label' => __('Vertical Label', 'im-sons'),
+                    'name' => 'services_vertical_label',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_services_experience_note',
+                    'label' => __('Experience Note', 'im-sons'),
+                    'name' => 'services_experience_note',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_front_page_services',
+                    'label' => __('Service Cards', 'im-sons'),
+                    'name' => 'services',
+                    'type' => 'repeater',
+                    'layout' => 'row',
+                    'button_label' => __('Add Service', 'im-sons'),
+                    'sub_fields' => [
+                        [
+                            'key' => 'field_imsons_service_title',
+                            'label' => __('Title', 'im-sons'),
+                            'name' => 'title',
+                            'type' => 'text',
+                        ],
+                        [
+                            'key' => 'field_imsons_service_description',
+                            'label' => __('Description', 'im-sons'),
+                            'name' => 'description',
+                            'type' => 'textarea',
+                            'new_lines' => 'br',
+                        ],
+                        [
+                            'key' => 'field_imsons_service_image',
+                            'label' => __('Image', 'im-sons'),
+                            'name' => 'image',
+                            'type' => 'image',
+                            'return_format' => 'array',
+                            'preview_size' => 'medium',
+                            'library' => 'all',
+                        ],
+                        [
+                            'key' => 'field_imsons_service_url',
+                            'label' => __('Link', 'im-sons'),
+                            'name' => 'url',
+                            'type' => 'link',
+                            'return_format' => 'array',
+                        ],
+                    ],
+                ],
+                [
+                    'key' => 'field_imsons_front_page_about_tab',
+                    'label' => __('About', 'im-sons'),
+                    'type' => 'tab',
+                ],
+                [
+                    'key' => 'field_imsons_about_title',
+                    'label' => __('About Title', 'im-sons'),
+                    'name' => 'about_title',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_about_text',
+                    'label' => __('About Text', 'im-sons'),
+                    'name' => 'about_text',
+                    'type' => 'textarea',
+                    'new_lines' => 'br',
+                ],
+                [
+                    'key' => 'field_imsons_about_image',
+                    'label' => __('About Image', 'im-sons'),
+                    'name' => 'about_image',
+                    'type' => 'image',
+                    'return_format' => 'array',
+                    'preview_size' => 'medium',
+                    'library' => 'all',
+                ],
+                [
+                    'key' => 'field_imsons_about_link',
+                    'label' => __('About Link', 'im-sons'),
+                    'name' => 'about_link',
+                    'type' => 'link',
+                    'return_format' => 'array',
+                ],
+                [
+                    'key' => 'field_imsons_front_page_reviews_tab',
+                    'label' => __('Reviews', 'im-sons'),
+                    'type' => 'tab',
+                ],
+                [
+                    'key' => 'field_imsons_reviews_background',
+                    'label' => __('Background Image', 'im-sons'),
+                    'name' => 'reviews_background',
+                    'type' => 'image',
+                    'return_format' => 'array',
+                    'preview_size' => 'medium',
+                    'library' => 'all',
+                ],
+                [
+                    'key' => 'field_imsons_reviews_intro',
+                    'label' => __('Intro Text', 'im-sons'),
+                    'name' => 'reviews_intro',
+                    'type' => 'textarea',
+                    'new_lines' => 'br',
+                ],
+                [
+                    'key' => 'field_imsons_front_page_reviews',
+                    'label' => __('Review Cards', 'im-sons'),
+                    'name' => 'reviews',
+                    'type' => 'repeater',
+                    'layout' => 'row',
+                    'button_label' => __('Add Review', 'im-sons'),
+                    'sub_fields' => [
+                        [
+                            'key' => 'field_imsons_review_text',
+                            'label' => __('Review', 'im-sons'),
+                            'name' => 'review',
+                            'type' => 'textarea',
+                            'new_lines' => 'br',
+                        ],
+                        [
+                            'key' => 'field_imsons_review_name',
+                            'label' => __('Name', 'im-sons'),
+                            'name' => 'name',
+                            'type' => 'text',
+                        ],
+                    ],
+                ],
+                [
+                    'key' => 'field_imsons_front_page_gallery_tab',
+                    'label' => __('Gallery', 'im-sons'),
+                    'type' => 'tab',
+                ],
+                [
+                    'key' => 'field_imsons_gallery_title',
+                    'label' => __('Gallery Title', 'im-sons'),
+                    'name' => 'gallery_title',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_gallery_link',
+                    'label' => __('Gallery Link', 'im-sons'),
+                    'name' => 'gallery_link',
+                    'type' => 'link',
+                    'return_format' => 'array',
+                ],
+                [
+                    'key' => 'field_imsons_front_page_gallery_images',
+                    'label' => __('Gallery Images', 'im-sons'),
+                    'name' => 'gallery_images',
+                    'type' => 'repeater',
+                    'layout' => 'row',
+                    'button_label' => __('Add Gallery Image', 'im-sons'),
+                    'sub_fields' => [
+                        [
+                            'key' => 'field_imsons_gallery_image',
+                            'label' => __('Image', 'im-sons'),
+                            'name' => 'image',
+                            'type' => 'image',
+                            'return_format' => 'array',
+                            'preview_size' => 'medium',
+                            'library' => 'all',
+                        ],
+                        [
+                            'key' => 'field_imsons_gallery_image_title',
+                            'label' => __('Title', 'im-sons'),
+                            'name' => 'title',
+                            'type' => 'text',
+                        ],
+                    ],
+                ],
+                [
+                    'key' => 'field_imsons_front_page_faq_tab',
+                    'label' => __('FAQ', 'im-sons'),
+                    'type' => 'tab',
+                ],
+                [
+                    'key' => 'field_imsons_faq_title',
+                    'label' => __('FAQ Title', 'im-sons'),
+                    'name' => 'faq_title',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_faq_intro',
+                    'label' => __('FAQ Intro', 'im-sons'),
+                    'name' => 'faq_intro',
+                    'type' => 'textarea',
+                    'new_lines' => 'br',
+                ],
+                [
+                    'key' => 'field_imsons_front_page_faq_items',
+                    'label' => __('FAQ Items', 'im-sons'),
+                    'name' => 'faq_items',
+                    'type' => 'repeater',
+                    'layout' => 'row',
+                    'button_label' => __('Add FAQ Item', 'im-sons'),
+                    'sub_fields' => [
+                        [
+                            'key' => 'field_imsons_faq_question',
+                            'label' => __('Question', 'im-sons'),
+                            'name' => 'question',
+                            'type' => 'text',
+                        ],
+                        [
+                            'key' => 'field_imsons_faq_answer',
+                            'label' => __('Answer', 'im-sons'),
+                            'name' => 'answer',
+                            'type' => 'textarea',
+                            'new_lines' => 'br',
+                        ],
+                    ],
+                ],
+            ],
+            'location' => [
+                [
+                    [
+                        'param' => 'page_type',
+                        'operator' => '==',
+                        'value' => 'front_page',
+                    ],
+                ],
+            ],
+        ]);
+    }
+
+    protected function registerAboutPageFields(): void
+    {
+        acf_add_local_field_group([
+            'key' => 'group_imsons_about_page',
+            'title' => __('About Page', 'im-sons'),
+            'fields' => [
+                [
+                    'key' => 'field_imsons_about_page_about_title',
+                    'label' => __('About Title', 'im-sons'),
+                    'name' => 'about_title',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_about_content',
+                    'label' => __('About Content', 'im-sons'),
+                    'name' => 'about_content',
+                    'type' => 'wysiwyg',
+                    'tabs' => 'all',
+                    'toolbar' => 'basic',
+                    'media_upload' => 0,
+                ],
+                [
+                    'key' => 'field_imsons_about_page_about_image',
+                    'label' => __('About Image', 'im-sons'),
+                    'name' => 'about_image',
+                    'type' => 'image',
+                    'return_format' => 'array',
+                    'preview_size' => 'medium',
+                    'library' => 'all',
+                ],
+                [
+                    'key' => 'field_imsons_about_page_reviews_title',
+                    'label' => __('Reviews Title', 'im-sons'),
+                    'name' => 'reviews_title',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_about_page_reviews',
+                    'label' => __('Reviews', 'im-sons'),
+                    'name' => 'reviews',
+                    'type' => 'repeater',
+                    'layout' => 'row',
+                    'button_label' => __('Add Review', 'im-sons'),
+                    'sub_fields' => [
+                        [
+                            'key' => 'field_imsons_about_page_review_text',
+                            'label' => __('Review', 'im-sons'),
+                            'name' => 'review',
+                            'type' => 'textarea',
+                            'new_lines' => 'br',
+                        ],
+                        [
+                            'key' => 'field_imsons_about_page_review_name',
+                            'label' => __('Name', 'im-sons'),
+                            'name' => 'name',
+                            'type' => 'text',
+                        ],
+                    ],
+                ],
+            ],
+            'location' => [
+                [
+                    [
+                        'param' => 'page_template',
+                        'operator' => '==',
+                        'value' => 'page-about.blade.php',
+                    ],
+                ],
+            ],
+        ]);
+    }
+
+    protected function registerContactPageFields(): void
+    {
+        acf_add_local_field_group([
+            'key' => 'group_imsons_contact_page',
+            'title' => __('Contact Page', 'im-sons'),
+            'fields' => [
+                [
+                    'key' => 'field_imsons_contact_title',
+                    'label' => __('Contact Title', 'im-sons'),
+                    'name' => 'contact_title',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_contact_form_shortcode',
+                    'label' => __('Form Shortcode', 'im-sons'),
+                    'name' => 'contact_form_shortcode',
+                    'type' => 'text',
+                ],
+            ],
+            'location' => [
+                [
+                    [
+                        'param' => 'page_template',
+                        'operator' => '==',
+                        'value' => 'page-contact.blade.php',
+                    ],
+                ],
+            ],
+        ]);
+    }
+
+    protected function registerGalleryPageFields(): void
+    {
+        acf_add_local_field_group([
+            'key' => 'group_imsons_gallery_page',
+            'title' => __('Gallery Page', 'im-sons'),
+            'fields' => [
+                [
+                    'key' => 'field_imsons_gallery_page_title',
+                    'label' => __('Gallery Title', 'im-sons'),
+                    'name' => 'gallery_title',
+                    'type' => 'text',
+                ],
+            ],
+            'location' => [
+                [
+                    [
+                        'param' => 'page_template',
+                        'operator' => '==',
+                        'value' => 'page-gallery.blade.php',
+                    ],
+                ],
+            ],
+        ]);
+    }
+
+    protected function registerServiceFields(): void
+    {
+        acf_add_local_field_group([
+            'key' => 'group_imsons_service_page',
+            'title' => __('Service Page', 'im-sons'),
+            'fields' => [
+                [
+                    'key' => 'field_imsons_single_service_title',
+                    'label' => __('Service Title', 'im-sons'),
+                    'name' => 'service_title',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_single_service_content',
+                    'label' => __('Service Content', 'im-sons'),
+                    'name' => 'service_content',
+                    'type' => 'wysiwyg',
+                    'tabs' => 'all',
+                    'toolbar' => 'basic',
+                    'media_upload' => 0,
+                ],
+                [
+                    'key' => 'field_imsons_single_service_image',
+                    'label' => __('Service Image', 'im-sons'),
+                    'name' => 'service_image',
+                    'type' => 'image',
+                    'return_format' => 'array',
+                    'preview_size' => 'medium',
+                    'library' => 'all',
+                ],
+                [
+                    'key' => 'field_imsons_single_service_gallery_link',
+                    'label' => __('Gallery Link', 'im-sons'),
+                    'name' => 'gallery_link',
+                    'type' => 'link',
+                    'return_format' => 'array',
+                ],
+                [
+                    'key' => 'field_imsons_single_service_faq_title',
+                    'label' => __('FAQ Title', 'im-sons'),
+                    'name' => 'faq_title',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_single_service_faq_intro',
+                    'label' => __('FAQ Intro', 'im-sons'),
+                    'name' => 'faq_intro',
+                    'type' => 'textarea',
+                    'new_lines' => 'br',
+                ],
+                [
+                    'key' => 'field_imsons_single_service_faq_items',
+                    'label' => __('FAQ Items', 'im-sons'),
+                    'name' => 'faq_items',
+                    'type' => 'repeater',
+                    'layout' => 'row',
+                    'button_label' => __('Add FAQ Item', 'im-sons'),
+                    'sub_fields' => [
+                        [
+                            'key' => 'field_imsons_single_service_faq_question',
+                            'label' => __('Question', 'im-sons'),
+                            'name' => 'question',
+                            'type' => 'text',
+                        ],
+                        [
+                            'key' => 'field_imsons_single_service_faq_answer',
+                            'label' => __('Answer', 'im-sons'),
+                            'name' => 'answer',
+                            'type' => 'textarea',
+                            'new_lines' => 'br',
+                        ],
+                    ],
+                ],
+            ],
+            'location' => [
+                [
+                    [
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'service',
+                    ],
+                ],
+            ],
+        ]);
+    }
+
+    protected function registerPrivacyPolicyFields(): void
+    {
+        acf_add_local_field_group([
+            'key' => 'group_imsons_privacy_policy_page',
+            'title' => __('Privacy Policy Page', 'im-sons'),
+            'fields' => [
+                [
+                    'key' => 'field_imsons_privacy_title',
+                    'label' => __('Privacy Title', 'im-sons'),
+                    'name' => 'privacy_title',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_privacy_content',
+                    'label' => __('Privacy Content', 'im-sons'),
+                    'name' => 'privacy_content',
+                    'type' => 'wysiwyg',
+                    'tabs' => 'all',
+                    'toolbar' => 'basic',
+                    'media_upload' => 0,
+                ],
+                [
+                    'key' => 'field_imsons_privacy_last_updated',
+                    'label' => __('Last Updated', 'im-sons'),
+                    'name' => 'privacy_last_updated',
+                    'type' => 'date_picker',
+                    'display_format' => 'j F Y',
+                    'return_format' => 'j F Y',
+                ],
+            ],
+            'location' => [
+                [
+                    [
+                        'param' => 'page_template',
+                        'operator' => '==',
+                        'value' => 'page-privacy-policy.blade.php',
+                    ],
+                ],
+            ],
+        ]);
+    }
+}

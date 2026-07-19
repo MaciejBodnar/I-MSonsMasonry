@@ -1,7 +1,9 @@
 @php
-    $phone = get_field('contact_phone', 'option') ?: '0700 0000 000';
-
-    $email = get_field('contact_email', 'option') ?: 'info@yourdomain.com';
+    $brandPrimary = im_sons_header_footer_setting('header_brand_primary', 'I&M Sons');
+    $brandSecondary = im_sons_header_footer_setting('header_brand_secondary', 'Masonry');
+    $contactLabel = im_sons_header_footer_setting('header_contact_label', __('Contact us:', 'im-sons'));
+    $phone = im_sons_header_footer_setting('header_phone', '0700 0000 000');
+    $email = im_sons_header_footer_setting('header_email', 'info@yourdomain.com');
 @endphp
 
 <header class="relative z-40 border-b border-black/5 bg-white">
@@ -14,18 +16,18 @@
                 </div>
             @else
                 <span class="text-primary text-2xl font-semibold uppercase">
-                    I&amp;M Sons
+                    {{ $brandPrimary }}
                 </span>
 
                 <span class="text-accent block text-center text-sm uppercase">
-                    Masonry
+                    {{ $brandSecondary }}
                 </span>
             @endif
         </a>
 
         {{-- Contact text --}}
         <div class="hidden min-w-0 flex-1 text-sm text-black/40 lg:block">
-            Contact us:
+            {{ $contactLabel }}
 
             <a href="tel:{{ preg_replace('/\s+/', '', $phone) }}"
                 class="text-primary hover:text-accent font-semibold transition-colors">

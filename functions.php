@@ -1,5 +1,6 @@
 <?php
 
+use App\Providers\ACFFieldProvider;
 use App\Providers\ThemeServiceProvider;
 use Roots\Acorn\Application;
 
@@ -35,6 +36,7 @@ require $composer;
 Application::configure()
     ->withProviders([
         ThemeServiceProvider::class,
+        ACFFieldProvider::class,
     ])
     ->boot();
 
@@ -50,7 +52,7 @@ Application::configure()
 |
 */
 
-collect(['setup', 'filters'])
+collect(['helpers', 'setup', 'filters'])
     ->each(function ($file) {
         if (! locate_template($file = "app/{$file}.php", true, true)) {
             wp_die(

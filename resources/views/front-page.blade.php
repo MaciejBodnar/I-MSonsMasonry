@@ -10,6 +10,10 @@
 
         $heroEyebrow = get_field('hero_eyebrow') ?: 'I&M Sons Masonry';
 
+        $heroTitleLineOne = get_field('hero_title_line_1') ?: 'Your Home,';
+
+        $heroTitleLineTwo = get_field('hero_title_line_2') ?: 'Your Way';
+
         $heroText =
             get_field('hero_text') ?:
             'For over 20 years, we have been building, extending and improving homes across London. Every project is approached with the same focus on quality workmanship, reliability and attention to detail from start to finish.';
@@ -22,48 +26,54 @@
         |--------------------------------------------------------------------------
         */
 
-        $services = [
+        $servicesBrandPrimary = get_field('services_brand_primary') ?: 'I&M Sons';
+
+        $servicesBrandSecondary = get_field('services_brand_secondary') ?: 'Masonry';
+
+        $servicesMobileTitle = get_field('services_mobile_title') ?: 'Services';
+
+        $servicesMobileNote = get_field('services_mobile_note') ?: 'Over 20 Years of Building Experience';
+
+        $servicesVerticalLabel = get_field('services_vertical_label') ?: 'Services';
+
+        $servicesExperienceNote = get_field('services_experience_note') ?: 'Over 20 Years of Building Experience';
+
+        $services = get_field('services') ?: [
             [
                 'title' => 'House Extension',
                 'description' => 'Create more space for your family with a house extension.',
-                'image' =>
-                    get_field('service_house_extension_image') ?: get_theme_file_uri('/resources/images/service1.png'),
-                'url' => '#',
+                'image' => get_theme_file_uri('/resources/images/service1.png'),
+                'url' => home_url('/services/house-extensions/'),
             ],
             [
                 'title' => 'Roof Construction',
                 'description' => 'From new roofs to complete roof replacements.',
-                'image' =>
-                    get_field('service_roof_construction_image') ?:
-                    get_theme_file_uri('/resources/images/service2.png'),
-                'url' => '#',
+                'image' => get_theme_file_uri('/resources/images/service2.png'),
+                'url' => home_url('/services/roof-construction/'),
             ],
             [
                 'title' => 'Summer House',
                 'description' => 'Whether you need a garden office, gym or additional living space.',
-                'image' =>
-                    get_field('service_summer_house_image') ?: get_theme_file_uri('/resources/images/service3.png'),
-                'url' => '#',
+                'image' => get_theme_file_uri('/resources/images/service3.png'),
+                'url' => home_url('/services/summer-houses/'),
             ],
             [
                 'title' => 'Masonry & Bricklaying',
                 'description' => 'Brickwork is where our journey began.',
-                'image' => get_field('service_masonry_image') ?: get_theme_file_uri('/resources/images/service4.png'),
-                'url' => '#',
+                'image' => get_theme_file_uri('/resources/images/service4.png'),
+                'url' => home_url('/services/masonry-bricklaying/'),
             ],
             [
                 'title' => 'Loft Conversion',
                 'description' => 'Transform unused roof space into a practical part of your home.',
-                'image' =>
-                    get_field('service_loft_conversion_image') ?: get_theme_file_uri('/resources/images/service5.png'),
-                'url' => '#',
+                'image' => get_theme_file_uri('/resources/images/service5.png'),
+                'url' => home_url('/services/loft-conversions/'),
             ],
             [
                 'title' => 'House Refurbishment',
                 'description' => 'From individual rooms to complete property renovations.',
-                'image' =>
-                    get_field('service_refurbishment_image') ?: get_theme_file_uri('/resources/images/service6.png'),
-                'url' => '#',
+                'image' => get_theme_file_uri('/resources/images/service6.png'),
+                'url' => home_url('/services/house-refurbishments/'),
             ],
         ];
 
@@ -236,8 +246,8 @@
 
                     <h1
                         class="max-w-185 relative text-[clamp(3.5rem,7vw,7.25rem)] font-light uppercase leading-[0.9] tracking-[-0.055em] text-white">
-                        Your Home,<br>
-                        Your Way<span class="dots text-primary"></span>
+                        {{ $heroTitleLineOne }}<br>
+                        {{ $heroTitleLineTwo }}<span class="dots text-primary"></span>
                     </h1>
                 </div>
 
@@ -299,11 +309,11 @@
             <div class="mb-16 text-center lg:mb-20">
                 <div
                     class="text-primary text-[clamp(2rem,3.2vw,3.7rem)] font-light uppercase leading-none tracking-[-0.045em]">
-                    I&amp;M Sons
+                    {{ $servicesBrandPrimary }}
                 </div>
 
                 <div class="text-accent mt-1 text-[clamp(1rem,1.65vw,1.7rem)] font-normal uppercase leading-none">
-                    Masonry
+                    {{ $servicesBrandSecondary }}
                 </div>
             </div>
 
@@ -325,11 +335,11 @@
 
                 <div class="mt-5 flex items-end justify-between gap-5">
                     <h2 class="text-ink text-4xl font-light uppercase tracking-[-0.045em]">
-                        Services
+                        {{ $servicesMobileTitle }}
                     </h2>
 
                     <p class="max-w-36.25 text-stone text-right text-xs/5">
-                        Over 20 Years of Building Experience
+                        {{ $servicesMobileNote }}
                     </p>
                 </div>
             </div>
@@ -365,7 +375,7 @@
                         {{-- Vertical text --}}
                         <div
                             class="text-ink rotate-180 text-[42px] font-light uppercase leading-none tracking-[-0.04em] [writing-mode:vertical-rl]">
-                            Services
+                            {{ $servicesVerticalLabel }}
                         </div>
 
                     </div>
@@ -386,7 +396,13 @@
 
                 <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
                     @foreach ($services as $service)
-                        <a href="{{ $service['url'] }}"
+                        @php
+                            $serviceUrl = is_array($service['url'] ?? null)
+                                ? $service['url']['url'] ?? '#'
+                                : $service['url'] ?? '#';
+                        @endphp
+
+                        <a href="{{ $serviceUrl }}"
                             class="min-h-100 bg-charcoal sm:min-h-110 xl:min-h-117.5 focus-visible:outline-primary group relative isolate overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-4">
 
                             {{-- Image --}}
@@ -398,7 +414,7 @@
 
 
                             {{-- Default overlay --}}
-                            <div class="bg-linear-to-b absolute inset-0 from-black/40 via-black/20 to-black/70 transition-all duration-500 group-hover:from-black/50 group-hover:via-black/30 group-hover:to-black/85 group-focus-visible:from-black/50 group-focus-visible:via-black/30 group-focus-visible:to-black/85"
+                            <div class="absolute inset-0 bg-black/70 group-hover:bg-black/20 group-focus-visible:bg-black/20"
                                 aria-hidden="true"></div>
 
 
@@ -413,15 +429,15 @@
 
                                 {{-- Bottom area --}}
                                 <div>
-                                    <p
-                                        class="max-w-55 text-sm/6 text-white/80 transition-transform duration-500 group-hover:-translate-y-3 group-focus-visible:-translate-y-3">
-                                        {{ $service['description'] }}
-                                    </p>
+                                    <div
+                                        class="max-w-55 block text-sm/6 text-white/80 transition-transform duration-500 group-hover:hidden group-hover:-translate-y-3 group-focus-visible:-translate-y-3">
+                                        {!! $service['description'] !!}
+                                    </div>
 
 
                                     {{-- Hover state CTA --}}
                                     <span
-                                        class="max-w-45 pointer-events-none mt-0 flex h-11 translate-y-3 items-center justify-center border border-white text-[11px] uppercase tracking-[0.06em] text-white opacity-0 transition-all duration-500 group-hover:mt-5 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:mt-5 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
+                                        class="pointer-events-none mt-0 flex h-11 max-w-full translate-y-3 items-center justify-center border border-white bg-black/50 text-[11px] uppercase tracking-[0.06em] text-white opacity-0 transition-all duration-500 group-hover:mt-5 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:mt-5 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
                                         Read More
                                     </span>
                                 </div>
@@ -451,8 +467,7 @@
 
                         {{-- Experience text --}}
                         <p class="max-w-37.5 text-stone mt-12 text-sm/6">
-                            Over 20 Years of<br>
-                            Building Experience
+                            {{ $servicesExperienceNote }}
                         </p>
 
                     </div>
@@ -537,7 +552,7 @@
         {{-- Dark overlay --}}
         <div class="bg-black/72 absolute inset-0 -z-10" aria-hidden="true"></div>
 
-        <div class="max-w-384 mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
+        <div class="max-w-site mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
             <div
                 class="grid gap-10 lg:grid-cols-[180px_minmax(0,1fr)] lg:items-center lg:gap-12 xl:grid-cols-[220px_minmax(0,1fr)] xl:gap-16">
                 {{--
@@ -591,7 +606,7 @@
                                         <div
                                             class="h-114 max-w-94 lg:h-84 xl:h-88 mx-auto flex flex-col justify-between bg-white p-8 sm:p-10 lg:max-w-none lg:p-10 xl:p-12">
                                             <blockquote
-                                                class="max-w-70 text-ink text-3xl/[1.2] font-light tracking-[-0.035em] lg:text-2xl/[1.25] xl:text-[27px]/[1.22]">
+                                                class="max-w-70 text-ink text-3xl/[1.2] font-light tracking-[-0.035em] lg:text-2xl/tight xl:text-[27px]/[1.22]">
                                                 {{ $review['review'] ?? '' }}
                                             </blockquote>
 
@@ -651,7 +666,7 @@
 --}}
 
     <section class="bg-white py-20 sm:py-24 lg:py-28">
-        <div class="max-w-384 mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
+        <div class="max-w-site mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
             <div class="mb-14 text-center lg:mb-16">
                 <h2 class="text-ink text-5xl font-light uppercase leading-none tracking-[-0.04em] sm:text-6xl lg:text-5xl">
                     {{ $galleryTitle }}
