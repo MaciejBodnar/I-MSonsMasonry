@@ -9,6 +9,8 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="https://use.typekit.net/gjr0nrz.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body @php(body_class())>
@@ -20,8 +22,6 @@
         </a>
 
         @include('sections.header')
-        @include('partials.services-dialog')
-
 
         <main id="main" class="main">
             @yield('content')

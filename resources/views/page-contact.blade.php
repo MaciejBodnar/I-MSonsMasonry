@@ -19,9 +19,7 @@
         $contactAddress = get_field('contact_address') ?: '123 Street Road, City,';
         $contactPostcode = get_field('contact_postcode') ?: 'POST CODE';
 
-        $facebookUrl = get_field('facebook_url') ?: '#';
-        $tiktokUrl = get_field('tiktok_url') ?: '#';
-        $googleUrl = get_field('google_url') ?: '#';
+        $socialLinks = im_sons_normalize_social_links(get_field('contact_social_links') ?: []);
 
         /*
         |--------------------------------------------------------------------------
@@ -83,20 +81,13 @@
                             aria-hidden="true"></span>
 
                         <div class="relative z-10 flex items-center gap-2">
-                            <a href="{{ $facebookUrl }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
-                                class="bg-primary text-ink hover:bg-accent focus-visible:outline-offset-3 focus-visible:outline-primary flex size-9 items-center justify-center rounded-full text-base font-semibold transition duration-300 hover:scale-110 hover:text-white focus-visible:outline-2">
-                                f
-                            </a>
-
-                            <a href="{{ $tiktokUrl }}" target="_blank" rel="noopener noreferrer" aria-label="TikTok"
-                                class="bg-primary text-ink hover:bg-accent focus-visible:outline-offset-3 focus-visible:outline-primary flex size-9 items-center justify-center rounded-full text-base font-semibold transition duration-300 hover:scale-110 hover:text-white focus-visible:outline-2">
-                                ♪
-                            </a>
-
-                            <a href="{{ $googleUrl }}" target="_blank" rel="noopener noreferrer" aria-label="Google"
-                                class="bg-primary text-ink hover:bg-accent focus-visible:outline-offset-3 focus-visible:outline-primary flex size-9 items-center justify-center rounded-full text-sm font-semibold transition duration-300 hover:scale-110 hover:text-white focus-visible:outline-2">
-                                G
-                            </a>
+                            @foreach ($socialLinks as $socialLink)
+                                <a href="{{ $socialLink['url'] }}" target="_blank" rel="noopener noreferrer"
+                                    aria-label="{{ $socialLink['label'] }}"
+                                    class="bg-primary text-ink hover:bg-accent focus-visible:outline-offset-3 focus-visible:outline-primary flex size-9 items-center justify-center rounded-full text-base transition duration-300 hover:scale-110 hover:text-white focus-visible:outline-2">
+                                    <i class="{{ $socialLink['icon_class'] }}" aria-hidden="true"></i>
+                                </a>
+                            @endforeach
                         </div>
 
                         <span class="bg-primary relative z-10 ml-auto size-3 shrink-0 rounded-full"

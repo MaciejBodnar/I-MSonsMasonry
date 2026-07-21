@@ -4,8 +4,8 @@
     $contactLabel = im_sons_header_footer_setting('footer_contact_label', __('Contact us:', 'im-sons'));
     $phone = im_sons_header_footer_setting('footer_phone', '0700 0000 000');
     $email = im_sons_header_footer_setting('footer_email', 'info@yourdomain.com');
-    $socialLinks = im_sons_header_footer_social_links();
-    $footerServices = im_sons_header_footer_services();
+    $socialLinks = im_sons_footer_social_links();
+    $footerLinks = im_sons_footer_page_links();
     $copyrightName = im_sons_header_footer_setting('footer_copyright_name', 'I&M Sons Masonry');
     $creditPrefix = im_sons_header_footer_setting('footer_credit_text', 'D&C with');
     $creditLinkText = im_sons_header_footer_setting('footer_credit_link_text', 'SLT Media');
@@ -38,29 +38,45 @@
 
         {{-- Social line --}}
         <div class="flex justify-center">
-            <div class="flex flex-col items-center">
+            {{-- Mobile horizontal socials --}}
+            <div class="max-w-88 relative mx-auto flex w-full items-center justify-center py-4 lg:hidden">
+                {{-- Line with endpoint dots --}}
+                <div class="bg-primary pointer-events-none absolute left-0 top-1/2 h-1 w-full -translate-y-1/2"
+                    aria-hidden="true">
+                    <span
+                        class="bg-primary absolute left-0 top-1/2 size-6 -translate-x-1/2 -translate-y-1/2 rounded-full"></span>
+
+                    <span
+                        class="bg-primary absolute right-0 top-1/2 size-6 -translate-y-1/2 translate-x-1/2 rounded-full"></span>
+                </div>
+
+                {{-- Social icons --}}
+                <div class="relative z-10 flex items-center gap-4">
+                    @foreach ($socialLinks as $socialLink)
+                        <a href="{{ $socialLink['url'] }}" target="_blank" rel="noopener noreferrer"
+                            aria-label="{{ $socialLink['label'] }}"
+                            class="bg-primary hover:bg-accent flex size-16 items-center justify-center rounded-full text-3xl text-black transition hover:text-white">
+                            <i class="{{ $socialLink['icon_class'] }}" aria-hidden="true"></i>
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+            <div class="hidden flex-col items-center lg:flex">
                 <span class="bg-primary size-3 rounded-full"></span>
 
                 <span class="w-0.75 bg-primary h-8"></span>
 
-                <a href="{{ $socialLinks['facebook'] }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
-                    class="bg-primary hover:bg-accent flex size-11 items-center justify-center rounded-full font-semibold text-black transition hover:text-white">
-                    f
-                </a>
+                @foreach ($socialLinks as $socialLink)
+                    <a href="{{ $socialLink['url'] }}" target="_blank" rel="noopener noreferrer"
+                        aria-label="{{ $socialLink['label'] }}"
+                        class="bg-primary hover:bg-accent flex size-11 items-center justify-center rounded-full text-lg text-black transition hover:text-white">
+                        <i class="{{ $socialLink['icon_class'] }}" aria-hidden="true"></i>
+                    </a>
 
-                <span class="w-0.75 bg-primary h-3"></span>
-
-                <a href="{{ $socialLinks['tiktok'] }}" target="_blank" rel="noopener noreferrer" aria-label="TikTok"
-                    class="bg-primary hover:bg-accent flex size-11 items-center justify-center rounded-full font-semibold text-black transition hover:text-white">
-                    ♪
-                </a>
-
-                <span class="w-0.75 bg-primary h-3"></span>
-
-                <a href="{{ $socialLinks['google'] }}" target="_blank" rel="noopener noreferrer" aria-label="Google"
-                    class="bg-primary hover:bg-accent flex size-11 items-center justify-center rounded-full font-semibold text-black transition hover:text-white">
-                    G
-                </a>
+                    @if (!$loop->last)
+                        <span class="w-0.75 bg-primary h-3"></span>
+                    @endif
+                @endforeach
 
                 <span class="w-0.75 bg-primary h-8"></span>
 
@@ -68,14 +84,14 @@
             </div>
         </div>
 
-        {{-- Service links --}}
-        <nav aria-label="{{ __('Footer services', 'im-sons') }}">
+        {{-- Page links --}}
+        <nav aria-label="{{ __('Footer links', 'im-sons') }}">
             <ul class="grid gap-x-8 sm:grid-cols-2">
-                @foreach ($footerServices as $service)
+                @foreach ($footerLinks as $link)
                     <li class="border-b border-white/20">
-                        <a href="{{ $service['url'] }}"
+                        <a href="{{ $link['url'] }}"
                             class="hover:text-primary focus-visible:outline-offset-3 focus-visible:outline-primary block py-3 text-sm text-white/65 transition-colors focus-visible:outline-2">
-                            {{ $service['title'] }}
+                            {{ $link['name'] }}
                         </a>
                     </li>
                 @endforeach
@@ -84,9 +100,9 @@
     </div>
 
     {{-- Bottom bar --}}
-    <div class="bg-linear-to-r from-primary to-accent">
+    <div class="bg-accent">
         <div
-            class="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-6 text-sm text-white sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-12 xl:px-0">
+            class="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 py-6 text-sm text-white sm:px-8 lg:flex-row lg:justify-between lg:px-12 xl:px-0">
             <p>
                 {{ $contactLabel }}
 
@@ -117,9 +133,8 @@
 
                 <a href="{{ $creditUrl }}"
                     class="inline-flex items-center gap-1 transition-colors hover:text-black">
-                    <span
-                        class="border-primary text-primary inline-flex size-4 items-center justify-center border text-[10px]">
-                        ?
+                    <span class="text-primary">
+                        <i class="fa-solid fa-heart" aria-hidden="true"></i>
                     </span>
 
                     {{ $creditLinkText }}

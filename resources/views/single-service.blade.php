@@ -14,7 +14,10 @@
 
         $serviceTitle = get_field('service_title') ?: get_the_title();
 
-        $serviceContent = get_field('service_content') ?: apply_filters('the_content', get_the_content());
+        $serviceDescription =
+            get_field('service_description') ?:
+            get_field('service_content') ?:
+            apply_filters('the_content', get_the_content());
 
         $serviceImage = get_field('service_image') ?: get_theme_file_uri('/resources/images/first-bg.png');
 
@@ -22,7 +25,7 @@
 
         $galleryUrl = is_array($galleryLink) ? $galleryLink['url'] ?? '#' : ($galleryLink ?: '#');
 
-        $galleryText = is_array($galleryLink) ? $galleryLink['title'] ?? 'Gallery' : 'Gallery';
+        $galleryText = get_field('gallery_button_text') ?: 'Gallery';
 
         /*
         |--------------------------------------------------------------------------
@@ -107,7 +110,7 @@
 
                     <div
                         class="prose prose-sm text-stone prose-headings:text-ink prose-p:my-0 prose-p:mb-7 prose-p:text-sm prose-p:leading-6 prose-p:text-stone sm:prose-p:text-base sm:prose-p:leading-7 mt-10 max-w-none">
-                        {!! wp_kses_post($serviceContent) !!}
+                        {!! wp_kses_post($serviceDescription) !!}
                     </div>
                 </div>
             </div>

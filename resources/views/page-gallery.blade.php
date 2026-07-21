@@ -8,86 +8,165 @@
     @php
         $galleryTitle = get_field('gallery_title') ?: 'Gallery';
 
-        $galleryCategories = [
+        $galleryAlbums = get_field('gallery_albums') ?: [
             [
-                'slug' => 'house-extensions',
-                'title' => 'House Extensions',
+                'album_title' => 'House Extensions',
                 'cover_image' => get_theme_file_uri('/resources/images/service4.png'),
                 'images' => [
-                    get_theme_file_uri('/resources/images/service4.png'),
-                    get_theme_file_uri('/resources/images/service3.png'),
-                    get_theme_file_uri('/resources/images/service2.png'),
+                    [
+                        'image' => get_theme_file_uri('/resources/images/service4.png'),
+                        'alt' => 'House Extensions',
+                    ],
+                    [
+                        'image' => get_theme_file_uri('/resources/images/service3.png'),
+                        'alt' => 'House Extensions',
+                    ],
+                    [
+                        'image' => get_theme_file_uri('/resources/images/service2.png'),
+                        'alt' => 'House Extensions',
+                    ],
                 ],
             ],
             [
-                'slug' => 'roof-construction',
-                'title' => 'Roof Construction',
+                'album_title' => 'Roof Construction',
                 'cover_image' => get_theme_file_uri('/resources/images/service5.png'),
                 'images' => [
-                    get_theme_file_uri('/resources/images/gallery/house-extension1.jpg'),
-                    get_theme_file_uri('/resources/images/service2.png'),
-                    get_theme_file_uri('/resources/images/gallery/house-extension3.jpg'),
+                    [
+                        'image' => get_theme_file_uri('/resources/images/gallery/house-extension1.jpg'),
+                        'alt' => 'Roof Construction',
+                    ],
+                    [
+                        'image' => get_theme_file_uri('/resources/images/service2.png'),
+                        'alt' => 'Roof Construction',
+                    ],
+                    [
+                        'image' => get_theme_file_uri('/resources/images/gallery/house-extension3.jpg'),
+                        'alt' => 'Roof Construction',
+                    ],
                 ],
             ],
             [
-                'slug' => 'summer-houses',
-                'title' => 'Summer Houses',
+                'album_title' => 'Summer Houses',
                 'cover_image' => get_theme_file_uri('/resources/images/service6.png'),
                 'images' => [
-                    get_theme_file_uri('/resources/images/gallery/summer-house1.jpg'),
-                    get_theme_file_uri('/resources/images/gallery/summer-house2.jpg'),
-                    get_theme_file_uri('/resources/images/service3.png'),
+                    [
+                        'image' => get_theme_file_uri('/resources/images/gallery/summer-house1.jpg'),
+                        'alt' => 'Summer Houses',
+                    ],
+                    [
+                        'image' => get_theme_file_uri('/resources/images/gallery/summer-house2.jpg'),
+                        'alt' => 'Summer Houses',
+                    ],
+                    [
+                        'image' => get_theme_file_uri('/resources/images/service3.png'),
+                        'alt' => 'Summer Houses',
+                    ],
                 ],
             ],
             [
-                'slug' => 'masonry-bricklaying',
-                'title' => 'Masonry & Bricklaying',
+                'album_title' => 'Masonry & Bricklaying',
                 'cover_image' => get_theme_file_uri('/resources/images/service7.png'),
                 'images' => [
-                    get_theme_file_uri('/resources/images/gallery/masonry1.jpg'),
-                    get_theme_file_uri('/resources/images/gallery/masonry2.jpg'),
-                    get_theme_file_uri('/resources/images/gallery/masonry3.jpg'),
+                    [
+                        'image' => get_theme_file_uri('/resources/images/gallery/masonry1.jpg'),
+                        'alt' => 'Masonry & Bricklaying',
+                    ],
+                    [
+                        'image' => get_theme_file_uri('/resources/images/gallery/masonry2.jpg'),
+                        'alt' => 'Masonry & Bricklaying',
+                    ],
+                    [
+                        'image' => get_theme_file_uri('/resources/images/gallery/masonry3.jpg'),
+                        'alt' => 'Masonry & Bricklaying',
+                    ],
                 ],
             ],
             [
-                'slug' => 'loft-conversions',
-                'title' => 'Loft Conversions',
+                'album_title' => 'Loft Conversions',
                 'cover_image' => get_theme_file_uri('/resources/images/service8.png'),
                 'images' => [
-                    get_theme_file_uri('/resources/images/gallery/loft-conversion1.jpg'),
-                    get_theme_file_uri('/resources/images/gallery/loft-conversion2.jpg'),
-                    get_theme_file_uri('/resources/images/gallery/loft-conversion3.jpg'),
+                    [
+                        'image' => get_theme_file_uri('/resources/images/gallery/loft-conversion1.jpg'),
+                        'alt' => 'Loft Conversions',
+                    ],
+                    [
+                        'image' => get_theme_file_uri('/resources/images/gallery/loft-conversion2.jpg'),
+                        'alt' => 'Loft Conversions',
+                    ],
+                    [
+                        'image' => get_theme_file_uri('/resources/images/gallery/loft-conversion3.jpg'),
+                        'alt' => 'Loft Conversions',
+                    ],
                 ],
             ],
             [
-                'slug' => 'house-refurbishments',
-                'title' => 'House Refurbishments',
+                'album_title' => 'House Refurbishments',
                 'cover_image' => get_theme_file_uri('/resources/images/service9.png'),
                 'images' => [
-                    get_theme_file_uri('/resources/images/gallery/refurbishment1.jpg'),
-                    get_theme_file_uri('/resources/images/gallery/refurbishment2.jpg'),
-                    get_theme_file_uri('/resources/images/gallery/refurbishment3.jpg'),
+                    [
+                        'image' => get_theme_file_uri('/resources/images/gallery/refurbishment1.jpg'),
+                        'alt' => 'House Refurbishments',
+                    ],
+                    [
+                        'image' => get_theme_file_uri('/resources/images/gallery/refurbishment2.jpg'),
+                        'alt' => 'House Refurbishments',
+                    ],
+                    [
+                        'image' => get_theme_file_uri('/resources/images/gallery/refurbishment3.jpg'),
+                        'alt' => 'House Refurbishments',
+                    ],
                 ],
             ],
         ];
 
-        $galleryData = collect($galleryCategories)
-            ->map(function ($category) {
+        $galleryData = collect($galleryAlbums)
+            ->map(function ($album, $index) {
+                $albumTitle = trim((string) ($album['album_title'] ?? ($album['title'] ?? '')));
+                $coverImage = $album['cover_image'] ?? null;
+                $albumImages = collect($album['images'] ?? [])
+                    ->map(function ($image) use ($albumTitle) {
+                        $imageValue = $image['image'] ?? null;
+                        $imageUrl = is_array($imageValue) ? $imageValue['url'] ?? '' : ($imageValue ?: '');
+                        $imageAlt = trim(
+                            (string) ($image['alt'] ?? (is_array($imageValue) ? $imageValue['alt'] ?? '' : '')),
+                        );
+
+                        if ($imageAlt === '') {
+                            $imageAlt = $albumTitle;
+                        }
+
+                        if ($imageUrl === '') {
+                            return null;
+                        }
+
+                        return [
+                            'url' => $imageUrl,
+                            'thumbnail' => $imageUrl,
+                            'alt' => $imageAlt,
+                        ];
+                    })
+                    ->filter()
+                    ->values()
+                    ->all();
+
+                $coverImageUrl = is_array($coverImage) ? $coverImage['url'] ?? '' : ($coverImage ?: '');
+
+                if ($coverImageUrl === '' && $albumImages !== []) {
+                    $coverImageUrl = $albumImages[0]['url'];
+                }
+
+                if ($albumTitle === '' || $albumImages === []) {
+                    return null;
+                }
+
                 return [
-                    'slug' => $category['slug'],
-                    'title' => $category['title'],
-                    'images' => collect($category['images'])
-                        ->map(
-                            fn($image) => [
-                                'url' => $image,
-                                'thumbnail' => $image,
-                                'alt' => $category['title'],
-                            ],
-                        )
-                        ->values()
-                        ->all(),
+                    'slug' => sanitize_title($albumTitle ?: 'album-' . $index),
+                    'title' => $albumTitle,
+                    'cover_image' => $coverImageUrl,
+                    'images' => $albumImages,
                 ];
             })
+            ->filter()
             ->values()
             ->all();
     @endphp
@@ -97,7 +176,7 @@
         <div class="max-w-250 mx-auto w-full px-6 sm:px-8 lg:px-12 xl:px-0">
             <header class="text-center">
                 <h1 class="text-ink text-4xl font-light uppercase leading-none tracking-[-0.04em] sm:text-5xl">
-                    Gallery
+                    {{ $galleryTitle }}
                 </h1>
             </header>
 
@@ -146,7 +225,7 @@
         --}}
 
             <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3" data-gallery-categories>
-                @foreach ($galleryCategories as $index => $category)
+                @foreach ($galleryData as $index => $category)
                     <button type="button" class="min-h-105 bg-charcoal group relative overflow-hidden text-left"
                         data-gallery-category="{{ $index }}" data-gallery-slug="{{ $category['slug'] }}">
                         <img src="{{ $category['cover_image'] }}" alt="{{ $category['title'] }}"

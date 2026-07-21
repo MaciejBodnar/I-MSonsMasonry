@@ -47,9 +47,9 @@
                 'theme_location' => 'primary_navigation',
                 'container' => false,
                 'menu_class' => 'primary-menu flex items-center gap-10',
-                'fallback_cb' => 'im_sons_default_primary_menu',
+                'fallback_cb' => 'App\\im_sons_default_primary_menu',
                 'echo' => false,
-                'depth' => 1,
+                'depth' => 2,
             ]) !!}
         </nav>
 
@@ -57,9 +57,7 @@
         <button type="button" class="text-ink flex size-11 items-center justify-center lg:hidden"
             aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-navigation"
             data-mobile-menu-button>
-            <svg viewBox="0 0 24 24" class="size-7" fill="none" aria-hidden="true">
-                <path d="M4 7H20M4 12H20M4 17H20" stroke="currentColor" stroke-width="1.75" />
-            </svg>
+            <img src="{{ get_template_directory_uri() }}/resources/images/menu.svg" alt="Menu" class="size-6">
         </button>
     </div>
 
@@ -70,9 +68,9 @@
                 'theme_location' => 'primary_navigation',
                 'container' => false,
                 'menu_class' => 'mobile-menu flex flex-col',
-                'fallback_cb' => 'im_sons_default_primary_menu',
+                'fallback_cb' => 'App\\im_sons_default_primary_menu',
                 'echo' => false,
-                'depth' => 1,
+                'depth' => 2,
             ]) !!}
         </nav>
     </div>

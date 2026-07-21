@@ -323,98 +323,64 @@ if (document.readyState === 'loading') {
   initialiseCategoryGallery();
 }
 
-const initialiseHeaderNavigation = () => {
-  const dialog = document.querySelector('[data-services-dialog]');
+const initialiseMobileNavigation = () => {
+  const menu = document.querySelector('[data-mobile-menu]');
+  const button = document.querySelector('[data-mobile-menu-button]');
+  const parentLinks = document.querySelectorAll('[data-menu-parent]');
 
-  const dialogOpenButtons = document.querySelectorAll(
-    '[data-services-dialog-open]',
-  );
-
-  const dialogCloseButton = document.querySelector(
-    '[data-services-dialog-close]',
-  );
-
-  const mobileMenuButton = document.querySelector('[data-mobile-menu-button]');
-
-  const mobileMenu = document.querySelector('[data-mobile-menu]');
-
-  let lastFocusedElement = null;
-
-  const openServicesDialog = () => {
-    if (!(dialog instanceof HTMLDialogElement)) {
-      return;
-    }
-
-    lastFocusedElement = document.activeElement;
-
-    if (!dialog.open) {
-      dialog.showModal();
-    }
-
-    mobileMenu?.classList.add('hidden');
-    mobileMenuButton?.setAttribute('aria-expanded', 'false');
-
-    document.documentElement.classList.add('overflow-hidden');
-  };
-
-  const closeServicesDialog = () => {
-    if (!(dialog instanceof HTMLDialogElement)) {
-      return;
-    }
-
-    if (dialog.open) {
-      dialog.close();
-    }
-  };
-
-  dialogOpenButtons.forEach((button) => {
-    button.addEventListener('click', (event) => {
+  parentLinks.forEach((link) => {
+    link.addEventListener('click', (event) => {
       event.preventDefault();
-      openServicesDialog();
+
+      const item = link.closest('.menu-item-has-children');
+      const submenu = item?.querySelector(':scope > .sub-menu');
+
+      if (!item || !submenu) {
+        return;
+      }
+
+      const isMobileMenuLink = Boolean(link.closest('[data-mobile-menu]'));
+
+      if (!isMobileMenuLink) {
+        return;
+      }
+
+      const isOpen = item.classList.toggle('is-open');
+
+      link.setAttribute('aria-expanded', String(isOpen));
+      submenu.hidden = !isOpen;
     });
   });
 
-  dialogCloseButton?.addEventListener('click', closeServicesDialog);
+  if (!menu || !button) {
+    return;
+  }
 
-  dialog?.addEventListener('close', () => {
-    document.documentElement.classList.remove('overflow-hidden');
+  const parentItems = menu.querySelectorAll('.menu-item-has-children');
 
-    if (lastFocusedElement instanceof HTMLElement) {
-      lastFocusedElement.focus();
-    }
-  });
+  parentItems.forEach((item) => {
+    const link = item.querySelector(':scope > [data-menu-parent]');
+    const submenu = item.querySelector(':scope > .sub-menu');
 
-  dialog?.addEventListener('click', (event) => {
-    if (!(dialog instanceof HTMLDialogElement)) {
+    if (!link || !submenu) {
       return;
     }
 
-    const bounds = dialog.getBoundingClientRect();
-
-    const clickedOutside =
-      event.clientX < bounds.left ||
-      event.clientX > bounds.right ||
-      event.clientY < bounds.top ||
-      event.clientY > bounds.bottom;
-
-    if (clickedOutside) {
-      closeServicesDialog();
-    }
+    submenu.hidden = true;
+    link.setAttribute('aria-expanded', 'false');
   });
 
-  mobileMenuButton?.addEventListener('click', () => {
-    const isOpen = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+  button.addEventListener('click', () => {
+    const isOpen = menu.classList.toggle('hidden');
 
-    mobileMenuButton.setAttribute('aria-expanded', String(!isOpen));
-
-    mobileMenu?.classList.toggle('hidden', isOpen);
+    button.setAttribute('aria-expanded', String(!isOpen));
   });
 };
 
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initialiseHeaderNavigation);
+  document.addEventListener('DOMContentLoaded', initialiseMobileNavigation);
 } else {
-  initialiseHeaderNavigation();
+  initialiseMobileNavigation();
 }
 
 const initialiseHomeGallerySliders = () => {

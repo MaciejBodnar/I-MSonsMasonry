@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@import "@fortawesome/fontawesome-free/css/fontawesome.css";
+@import "@fortawesome/fontawesome-free/css/solid.css";
+@import "@fortawesome/fontawesome-free/css/brands.css";
 @source "../views";
 @source "../js";
 
@@ -254,3 +257,88 @@ a {
   bottom: 25px;
 }
 
+
+@layer components {
+    .primary-menu > .menu-item-has-children {
+        position: relative;
+    }
+
+    .primary-menu > .menu-item-has-children > .sub-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 50;
+        min-width: 14rem;
+        border: 1px solid rgb(0 0 0 / 0.08);
+        background: #fff;
+        box-shadow: 0 16px 40px rgb(0 0 0 / 0.12);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(0.5rem);
+        transition:
+            opacity 160ms ease,
+            transform 160ms ease,
+            visibility 160ms ease;
+    }
+
+    .primary-menu > .menu-item-has-children:hover > .sub-menu,
+    .primary-menu > .menu-item-has-children:focus-within > .sub-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .primary-menu .sub-menu a {
+        display: block;
+        padding: 0.85rem 1rem;
+        border-bottom: 1px solid rgb(0 0 0 / 0.06);
+        color: var(--color-ink);
+        font-size: 0.8125rem;
+        line-height: 1.25rem;
+        text-transform: uppercase;
+        transition:
+            background-color 160ms ease,
+            color 160ms ease;
+    }
+
+    .primary-menu .sub-menu .menu-item:last-child > a {
+        border-bottom: 0;
+    }
+
+    .primary-menu .sub-menu a:hover,
+    .primary-menu .sub-menu a:focus-visible {
+        background-color: var(--color-primary);
+        color: #fff;
+    }
+
+    .primary-menu > .menu-item-has-children > .primary-menu-link::after {
+        content: "";
+        width: 0.5rem;
+        height: 0.5rem;
+        margin-left: 0.35rem;
+        border-right: 1.5px solid currentColor;
+        border-bottom: 1.5px solid currentColor;
+        transform: translateY(-0.125rem) rotate(45deg);
+    }
+
+    .mobile-menu > .menu-item-has-children > .primary-menu-link::after {
+        content: "+";
+        margin-left: auto;
+        color: var(--color-primary);
+        font-size: 1.25rem;
+    }
+
+    .mobile-menu > .menu-item-has-children.is-open > .primary-menu-link::after {
+        content: "-";
+    }
+
+    .mobile-menu .sub-menu {
+        padding-left: 1rem;
+    }
+
+    .mobile-menu .sub-menu a {
+        min-height: 2.75rem;
+        color: rgb(0 0 0 / 0.65);
+        font-size: 0.8125rem;
+    }
+}

@@ -1,3 +1,6 @@
+{{--
+  Template Name: Privacy Policy
+--}}
 @extends('layouts.app')
 
 @section('content')

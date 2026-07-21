@@ -24,116 +24,182 @@ if (! function_exists('im_sons_normalize_link_value')) {
     }
 }
 
-if (! function_exists('im_sons_header_footer_primary_navigation_items')) {
-    function im_sons_header_footer_primary_navigation_items(): array
+if (! function_exists('im_sons_normalize_social_links')) {
+    function im_sons_normalize_social_links(array $items): array
     {
-        $items = im_sons_header_footer_setting('primary_navigation_items', []);
-
-        if (! is_array($items) || $items === []) {
-            return [
-                [
-                    'label' => 'Home',
-                    'url' => home_url('/'),
-                ],
-                [
-                    'label' => 'About',
-                    'url' => home_url('/about/'),
-                ],
-                [
-                    'label' => 'Services',
-                    'url' => '#services-dialog',
-                    'dialog' => true,
-                ],
-                [
-                    'label' => 'Gallery',
-                    'url' => home_url('/gallery/'),
-                ],
-                [
-                    'label' => 'Contact',
-                    'url' => home_url('/contact/'),
-                ],
-            ];
-        }
-
         return array_values(array_filter(array_map(static function ($item) {
             $label = trim((string) ($item['label'] ?? ''));
+            $iconClass = trim((string) ($item['icon_class'] ?? ''));
+            $url = im_sons_normalize_link_value($item['url'] ?? null, '');
 
-            if ($label === '') {
+            if ($label === '' || $iconClass === '' || $url === '') {
                 return null;
             }
 
             return [
                 'label' => $label,
-                'url' => im_sons_normalize_link_value($item['url'] ?? null),
-                'dialog' => ! empty($item['dialog']),
+                'icon_class' => $iconClass,
+                'url' => $url,
             ];
         }, $items)));
     }
 }
 
-if (! function_exists('im_sons_header_footer_services')) {
-    function im_sons_header_footer_services(): array
+if (! function_exists('im_sons_primary_navigation_dialog_context')) {
+    function im_sons_primary_navigation_dialog_context(): array
     {
-        $services = im_sons_header_footer_setting('services', []);
-
-        if (! is_array($services) || $services === []) {
+        if (! function_exists('wp_get_nav_menu_items') || ! function_exists('wp_get_nav_menu_locations')) {
             return [
-                [
-                    'title' => 'House Extensions',
-                    'description' => 'Create more space for your family.',
-                    'url' => home_url('/services/house-extensions/'),
-                ],
-                [
-                    'title' => 'Roof Construction',
-                    'description' => 'New roofs, repairs and full replacements.',
-                    'url' => home_url('/services/roof-construction/'),
-                ],
-                [
-                    'title' => 'Summer Houses',
-                    'description' => 'Garden offices and additional living spaces.',
-                    'url' => home_url('/services/summer-houses/'),
-                ],
-                [
-                    'title' => 'Masonry & Bricklaying',
-                    'description' => 'Specialist brickwork and structural construction.',
-                    'url' => home_url('/services/masonry-bricklaying/'),
-                ],
-                [
-                    'title' => 'Loft Conversions',
-                    'description' => 'Transform unused roof space.',
-                    'url' => home_url('/services/loft-conversions/'),
-                ],
-                [
-                    'title' => 'House Refurbishments',
-                    'description' => 'Individual rooms and complete renovations.',
-                    'url' => home_url('/services/house-refurbishments/'),
-                ],
+                'id' => 'services-dialog',
+                'parent_id' => 0,
+                'title' => __('Services', 'im-sons'),
+                'items' => [],
             ];
         }
 
-        return array_values(array_filter(array_map(static function ($service) {
-            $title = trim((string) ($service['title'] ?? ''));
+        $locations = wp_get_nav_menu_locations();
+        $menuId = (int) ($locations['primary_navigation'] ?? 0);
 
-            if ($title === '') {
+        if ($menuId === 0) {
+            return [
+                'id' => 'services-dialog',
+                'parent_id' => 0,
+                'title' => __('Services', 'im-sons'),
+                'items' => [],
+            ];
+        }
+
+        $menuItems = wp_get_nav_menu_items($menuId) ?: [];
+
+        if ($menuItems === []) {
+            return [
+                'id' => 'services-dialog',
+                'parent_id' => 0,
+                'title' => __('Services', 'im-sons'),
+                'items' => [],
+            ];
+        }
+
+        $groupedItems = [];
+
+        foreach ($menuItems as $menuItem) {
+            $parentId = (int) ($menuItem->menu_item_parent ?? 0);
+            $groupedItems[$parentId][] = $menuItem;
+        }
+
+        $selectedParent = null;
+
+        foreach (($groupedItems[0] ?? []) as $menuItem) {
+            $children = $groupedItems[(int) $menuItem->ID] ?? [];
+
+            if ($children === []) {
+                continue;
+            }
+
+            if (preg_match('/service/i', (string) ($menuItem->title ?? ''))) {
+                $selectedParent = $menuItem;
+                break;
+            }
+
+            if ($selectedParent === null) {
+                $selectedParent = $menuItem;
+            }
+        }
+
+        if (! $selectedParent) {
+            return [
+                'id' => 'services-dialog',
+                'parent_id' => 0,
+                'title' => __('Services', 'im-sons'),
+                'items' => [],
+            ];
+        }
+
+        $dialogItems = [];
+
+        foreach (($groupedItems[(int) $selectedParent->ID] ?? []) as $menuItem) {
+            $dialogItems[] = [
+                'title' => html_entity_decode((string) ($menuItem->title ?? ''), ENT_QUOTES, get_bloginfo('charset') ?: 'UTF-8'),
+                'url' => esc_url_raw((string) ($menuItem->url ?? '#')),
+                'description' => im_sons_menu_item_description($menuItem),
+            ];
+        }
+
+        return [
+            'id' => 'services-dialog',
+            'parent_id' => (int) $selectedParent->ID,
+            'title' => html_entity_decode((string) ($selectedParent->title ?? __('Services', 'im-sons')), ENT_QUOTES, get_bloginfo('charset') ?: 'UTF-8'),
+            'items' => $dialogItems,
+        ];
+    }
+}
+
+if (! function_exists('im_sons_menu_item_description')) {
+    function im_sons_menu_item_description(object $menuItem): string
+    {
+        $objectId = (int) ($menuItem->object_id ?? 0);
+
+        if ($objectId === 0 || ! function_exists('get_post')) {
+            return '';
+        }
+
+        $post = get_post($objectId);
+
+        if (! $post) {
+            return '';
+        }
+
+        if ($post->post_type === 'service' && function_exists('get_field')) {
+            $description = get_field('service_description', $objectId) ?: get_field('service_content', $objectId);
+
+            if (is_string($description) && trim(wp_strip_all_tags($description)) !== '') {
+                return wp_trim_words(wp_strip_all_tags($description), 22);
+            }
+        }
+
+        $excerpt = get_the_excerpt($objectId);
+
+        if (is_string($excerpt) && trim($excerpt) !== '') {
+            return wp_trim_words(wp_strip_all_tags($excerpt), 22);
+        }
+
+        return '';
+    }
+}
+
+if (! function_exists('im_sons_footer_social_links')) {
+    function im_sons_footer_social_links(): array
+    {
+        $socialLinks = im_sons_header_footer_setting('footer_social_links', []);
+
+        if (! is_array($socialLinks) || $socialLinks === []) {
+            return [];
+        }
+
+        return im_sons_normalize_social_links($socialLinks);
+    }
+}
+
+if (! function_exists('im_sons_footer_page_links')) {
+    function im_sons_footer_page_links(): array
+    {
+        $footerLinks = im_sons_header_footer_setting('footer_links', []);
+
+        if (! is_array($footerLinks) || $footerLinks === []) {
+            return [];
+        }
+
+        return array_values(array_filter(array_map(static function ($item) {
+            $name = trim((string) ($item['name'] ?? ''));
+
+            if ($name === '') {
                 return null;
             }
 
             return [
-                'title' => $title,
-                'description' => (string) ($service['description'] ?? ''),
-                'url' => im_sons_normalize_link_value($service['url'] ?? null),
+                'name' => $name,
+                'url' => im_sons_normalize_link_value($item['link'] ?? null),
             ];
-        }, $services)));
-    }
-}
-
-if (! function_exists('im_sons_header_footer_social_links')) {
-    function im_sons_header_footer_social_links(): array
-    {
-        return [
-            'facebook' => im_sons_header_footer_setting('footer_facebook_url', '#'),
-            'tiktok' => im_sons_header_footer_setting('footer_tiktok_url', '#'),
-            'google' => im_sons_header_footer_setting('footer_google_url', '#'),
-        ];
+        }, $footerLinks)));
     }
 }

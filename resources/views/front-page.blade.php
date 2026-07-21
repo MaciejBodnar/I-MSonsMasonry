@@ -20,6 +20,8 @@
 
         $heroImage = get_field('hero_image') ?: get_theme_file_uri('/resources/images/first-bg.png');
 
+        $logo = get_theme_file_uri('/resources/images/logo.svg');
+
         /*
         |--------------------------------------------------------------------------
         | Services
@@ -95,9 +97,10 @@
 
         $aboutLink = get_field('about_link');
 
-        $aboutUrl = is_array($aboutLink) ? $aboutLink['url'] ?? '#' : ($aboutLink ?: '#');
+        $aboutButtonText =
+            get_field('about_button_text') ?: (is_array($aboutLink) ? $aboutLink['title'] ?? 'Read More' : 'Read More');
 
-        $aboutLinkText = is_array($aboutLink) ? $aboutLink['title'] ?? 'Read More' : 'Read More';
+        $aboutButtonUrl = im_sons_normalize_link_value(get_field('about_button_url') ?: $aboutLink);
 
         /*
         |--------------------------------------------------------------------------
@@ -106,6 +109,8 @@
         */
 
         $reviewsBackground = get_field('reviews_background');
+
+        $reviewsTitle = get_field('reviews_title') ?: 'Reviews';
 
         $reviewsIntro =
             get_field('reviews_intro') ?:
@@ -140,9 +145,13 @@
 
         $galleryLink = get_field('gallery_link');
 
-        $galleryUrl = is_array($galleryLink) ? $galleryLink['url'] ?? '#' : ($galleryLink ?: '#');
+        $galleryButtonText =
+            get_field('gallery_button_text') ?:
+            (is_array($galleryLink)
+                ? $galleryLink['title'] ?? 'View More'
+                : 'View More');
 
-        $galleryLinkText = is_array($galleryLink) ? $galleryLink['title'] ?? 'View More' : 'View More';
+        $galleryButtonUrl = im_sons_normalize_link_value(get_field('gallery_button_url') ?: $galleryLink);
 
         $galleryImages = get_field('gallery_images') ?: [
             [
@@ -254,12 +263,6 @@
 
                 {{-- Connector + intro --}}
                 <div class="mt-8 lg:mt-0 lg:flex lg:min-w-0 lg:flex-1 lg:items-center lg:justify-end lg:gap-5 xl:gap-7">
-                    {{-- Mobile line --}}
-                    <div class="mb-6 flex items-center gap-3 lg:hidden" aria-hidden="true">
-                        <span class="bg-primary size-2.5 shrink-0 rounded-full"></span>
-
-                        <span class="bg-primary h-0.5 flex-1"></span>
-                    </div>
 
                     {{-- Desktop line --}}
                     <span class="w-90 bg-primary xl:w-105 h-1.25 bottom-4 right-[32%] hidden shrink-0 lg:absolute lg:block"
@@ -275,16 +278,9 @@
 
 
         {{-- Bottom centre masonry mark --}}
-        <div class="absolute bottom-0 left-1/2 z-20 -translate-x-1/2 translate-y-1/2" aria-hidden="true">
-            <div
-                class="size-14.5 bg-primary flex items-center justify-center rounded-full shadow-[0_8px_24px_rgba(0,0,0,0.2)]">
-                <svg viewBox="0 0 40 40" class="size-8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15 8H25L29 30H11L15 8Z" fill="currentColor" class="text-charcoal" />
-
-                    <path d="M18 30V37" stroke="currentColor" stroke-width="4" stroke-linecap="round" class="text-accent" />
-
-                    <path d="M22 30V37" stroke="currentColor" stroke-width="4" stroke-linecap="round" class="text-accent" />
-                </svg>
+        <div class="absolute bottom-4 left-1/2 z-20 -translate-x-1/2 translate-y-1/2" aria-hidden="true">
+            <div class="flex size-20 items-center justify-center">
+                <img src="{{ $logo }}" alt="I&M Sons Masonry" class="size-20">
             </div>
         </div>
     </section>
@@ -326,14 +322,9 @@
             --}}
 
             <div class="mb-10 lg:hidden">
-                <div class="flex items-center gap-4">
-                    <span class="bg-primary size-2.5 shrink-0 rounded-full"></span>
-
-                    <span class="bg-primary h-0.5 flex-1"></span>
-                </div>
 
 
-                <div class="mt-5 flex items-end justify-between gap-5">
+                <div class="mt-5 flex flex-col items-center justify-center gap-5">
                     <h2 class="text-ink text-4xl font-light uppercase tracking-[-0.045em]">
                         {{ $servicesMobileTitle }}
                     </h2>
@@ -508,16 +499,16 @@
                         {!! wp_kses_post(wpautop($aboutText)) !!}
                     </div>
 
-                    <a href="{{ $aboutUrl }}"
+                    <a href="{{ $aboutButtonUrl }}"
                         class="h-13 text-ink hover:bg-ink mt-10 inline-flex min-w-36 items-center justify-center bg-white px-8 text-xs font-medium uppercase tracking-[0.02em] transition duration-300 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
-                        {{ $aboutLinkText }}
+                        {{ $aboutButtonText }}
                     </a>
                 </div>
             </div>
 
 
             {{-- About image --}}
-            <div class="relative z-10 mx-auto w-full max-w-96 lg:max-w-none">
+            <div class="relative z-10 mx-auto w-full">
                 <div class="bg-charcoal relative aspect-[1.05/1] overflow-hidden">
                     @if ($aboutImage)
                         <img src="{{ is_array($aboutImage) ? $aboutImage['url'] : $aboutImage }}"
@@ -564,14 +555,14 @@
                 <div class="relative z-10">
                     {{-- Mobile title --}}
                     <h2 class="text-primary text-5xl font-light uppercase leading-none tracking-[-0.04em] lg:hidden">
-                        Reviews
+                        {{ $reviewsTitle }}
                     </h2>
 
                     {{-- Desktop vertical title --}}
                     <div class="lg:min-h-95 hidden lg:flex lg:items-center lg:gap-8">
                         <h2
                             class="text-primary rotate-180 text-[60px] font-light uppercase leading-none tracking-[-0.04em] [writing-mode:vertical-rl]">
-                            Reviews
+                            {{ $reviewsTitle }}
                         </h2>
 
                         <p class="max-w-34 text-sm/7 text-white/90">
@@ -722,9 +713,9 @@
                     </button>
 
 
-                    <a href="{{ $galleryUrl }}"
+                    <a href="{{ $galleryButtonUrl }}"
                         class="min-h-18 border-3 border-primary text-accent hover:bg-primary hover:text-ink focus-visible:outline-primary flex items-center justify-center px-6 text-xl font-normal uppercase transition-colors focus-visible:outline-2 focus-visible:outline-offset-4">
-                        {{ $galleryLinkText }}
+                        {{ $galleryButtonText }}
                     </a>
 
 
@@ -774,9 +765,9 @@
                 <span class="bg-primary size-2.5 shrink-0 rounded-full"></span>
                 <span class="bg-primary h-0.5 flex-1"></span>
 
-                <a href="{{ $galleryUrl }}"
+                <a href="{{ $galleryButtonUrl }}"
                     class="text-accent hover:text-ink shrink-0 px-6 text-xs font-medium uppercase tracking-[0.02em] transition-colors">
-                    {{ $galleryLinkText }}
+                    {{ $galleryButtonText }}
                 </a>
 
                 <span class="bg-primary h-0.5 flex-1"></span>
