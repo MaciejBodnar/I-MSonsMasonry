@@ -80,7 +80,7 @@
 
     <section class="relative overflow-hidden bg-white">
         {{-- Yellow line from viewport edge --}}
-        <div class="pointer-events-none absolute left-0 top-40 z-10 hidden w-[calc(50%-24rem)] items-center lg:flex xl:w-[calc(50%-26rem)]"
+        <div class="pointer-events-none absolute left-0 top-40 z-10 hidden w-[calc(50%-24rem)] items-center lg:flex xl:w-[calc(50%-36rem)]"
             aria-hidden="true">
             <span class="bg-primary h-0.5 flex-1"></span>
             <span class="bg-primary size-2.5 shrink-0 rounded-full"></span>
@@ -128,10 +128,10 @@
 
     <section class="bg-off-white relative overflow-hidden py-20 sm:py-24 lg:py-28">
         <div
-            class="max-w-288 mx-auto grid gap-12 px-6 sm:px-10 lg:grid-cols-[180px_minmax(0,1fr)] lg:gap-12 lg:px-16 xl:grid-cols-[210px_minmax(0,1fr)] xl:px-20">
+            class="xl:grid-cols-[210px_minmax(0,1fr) mx-auto grid max-w-7xl gap-12 lg:grid-cols-[180px_minmax(0,1fr)] lg:gap-12">
             {{-- Reviews heading --}}
             <aside class="relative">
-                <div class="flex items-center gap-0 lg:absolute lg:left-0 lg:top-0 lg:w-[calc(100%+11rem)] xl:w-[calc(100%+14rem)]"
+                <div class="flex items-center gap-0 lg:absolute lg:left-0 lg:top-0 lg:w-[calc(70%+5rem)] xl:w-[calc(70%+8rem)]"
                     aria-hidden="true">
                     <span class="bg-primary size-2.5 shrink-0 rounded-full"></span>
 
@@ -149,12 +149,12 @@
                 <div class="grid gap-5 md:grid-cols-2 lg:gap-6">
                     @foreach ($reviews as $index => $review)
                         <article
-                            class="min-h-67 lg:min-h-67 {{ $index === 0 ? 'lg:translate-x-12 xl:translate-x-16' : '' }} {{ $index === 1 ? 'lg:translate-x-12 xl:translate-x-16' : '' }} {{ $index === 2 ? 'lg:-translate-x-4 xl:-translate-x-8' : '' }} {{ $index === 3 ? 'lg:-translate-x-4 xl:-translate-x-8' : '' }} flex flex-col justify-between border border-black/25 bg-white p-8 sm:min-h-72 sm:p-10">
-                            <blockquote class="text-ink max-w-60 text-2xl/[1.25] font-light tracking-[-0.025em]">
+                            class="min-h-67 lg:min-h-115 lg:min-w-115 {{ $index === 0 ? 'lg:translate-x-12 xl:translate-x-16' : '' }} {{ $index === 1 ? 'lg:translate-x-12 xl:translate-x-16' : '' }} {{ $index === 2 ? 'lg:-translate-x-4 xl:-translate-x-8' : '' }} {{ $index === 3 ? 'lg:-translate-x-4 xl:-translate-x-8' : '' }} sm:min-h-115 sm:py-25 flex flex-col justify-between border border-black/25 bg-white p-8 sm:px-16">
+                            <blockquote class="text-ink text-3xl font-light leading-tight tracking-wide">
                                 {{ $review['review'] ?? '' }}
                             </blockquote>
 
-                            <p class="text-accent mt-10 text-xs font-medium uppercase">
+                            <p class="text-accent mt-10 text-[14px] font-medium uppercase">
                                 {{ $review['name'] ?? '' }}
                             </p>
                         </article>

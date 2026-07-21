@@ -226,7 +226,8 @@
 
             <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3" data-gallery-categories>
                 @foreach ($galleryData as $index => $category)
-                    <button type="button" class="min-h-105 bg-charcoal group relative overflow-hidden text-left"
+                    <button type="button"
+                        class="min-h-105 bg-charcoal group relative overflow-hidden text-left hover:cursor-pointer"
                         data-gallery-category="{{ $index }}" data-gallery-slug="{{ $category['slug'] }}">
                         <img src="{{ $category['cover_image'] }}" alt="{{ $category['title'] }}"
                             class="absolute inset-0 size-full object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0">

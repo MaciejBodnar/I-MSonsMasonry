@@ -18,21 +18,8 @@
         {{-- Logo --}}
         <div class="flex justify-center lg:justify-start">
             <a href="{{ home_url('/') }}" class="block" aria-label="{{ get_bloginfo('name') }} home">
-                @if (has_custom_logo())
-                    <div class="[&_img]:h-auto [&_img]:w-64 [&_img]:max-w-full">
-                        {!! get_custom_logo() !!}
-                    </div>
-                @else
-                    <div class="text-center">
-                        <div class="text-primary text-4xl font-semibold uppercase">
-                            {{ $brandPrimary }}
-                        </div>
-
-                        <div class="text-accent mt-1 text-xl uppercase">
-                            {{ $brandSecondary }}
-                        </div>
-                    </div>
-                @endif
+                <img src="{{ get_template_directory_uri() }}/resources/images/footer-logo.svg" alt="logo"
+                    class="h-50 w-auto" />
             </a>
         </div>
 

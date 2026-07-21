@@ -54,14 +54,12 @@ a {
     .contact-grid {
         display: grid;
         grid-template-columns: minmax(0, 1fr);
-        gap: 1.75rem;
+        gap: 1rem;
     }
 
     @media (min-width: 48rem) {
         .contact-grid {
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            column-gap: 1.75rem;
-            row-gap: 1.75rem;
         }
     }
 
@@ -75,7 +73,6 @@ a {
 
     .contact-field label {
         display: block;
-        margin-bottom: 0.75rem;
         color: var(--color-stone);
         font-size: 1rem;
         line-height: 1.5;
@@ -248,6 +245,7 @@ a {
   position: relative;
 }
 
+
 .dots::before {
   content: "";
   width:10px;
@@ -257,6 +255,13 @@ a {
   bottom: 25px;
 }
 
+@media (max-width: 1024px) {
+  .dots::before {
+    width:5px;
+    height:5px;
+    bottom: 10px;
+  }
+}
 
 @layer components {
     .primary-menu > .menu-item-has-children {

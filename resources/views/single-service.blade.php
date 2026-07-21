@@ -17,7 +17,10 @@
         $serviceDescription =
             get_field('service_description') ?:
             get_field('service_content') ?:
-            apply_filters('the_content', get_the_content());
+            apply_filters('the_content', get_the_content()) ?:
+            ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin arcu urna, dapibus pellentesque nibh faucibus, finibus convallis elit. Etiam dignissim libero quis erat finibus, a cursus tellus interdum. Nullam fermentum, ante non gravida lobortis, libero leo faucibus purus, eu blandit dui odio in leo. Suspendisse et enim id lacus malesuada sagittis et vel urna.
+              <br><br>Proin at hendrerit ipsum. Phasellus posuere nisl sed arcu faucibus, vel varius neque euismod. Curabitur egestas nisi quis felis condimentum pulvinar. Sed condimentum, leo nec fringilla facilisis, dolor urna lacinia libero, vitae semper lorem felis vel libero. Morbi porttitor purus nec nunc volutpat, in scelerisque felis vulputate.
+              <br><br>Etiam ac dignissim nibh. Sed ultrices congue ipsum, ultrices porta magna rutrum vitae. Suspendisse vitae metus ac tellus tempus malesuada vel ac urna. Fusce at sagittis lectus. Integer consectetur urna quis consequat molestie. Proin ac sem eu ante condimentum mattis. Integer lobortis dui in est tempus, at mollis orci pulvinar.';
 
         $serviceImage = get_field('service_image') ?: get_theme_file_uri('/resources/images/first-bg.png');
 
@@ -77,7 +80,7 @@
 
     <section class="relative overflow-hidden bg-white">
         {{-- Yellow line from viewport edge --}}
-        <div class="top-42 pointer-events-none absolute left-0 z-20 hidden w-[calc(50%-22rem)] items-center lg:flex xl:w-[calc(50%-24rem)]"
+        <div class="top-70 pointer-events-none absolute left-0 z-20 hidden w-[calc(50%-36rem)] items-center lg:flex xl:w-[calc(50%-36rem)]"
             aria-hidden="true">
             <span class="bg-primary h-0.5 flex-1"></span>
 
@@ -85,7 +88,7 @@
         </div>
 
 
-        <div class="min-h-172 grid w-full lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+        <div class="min-h-172 grid w-full lg:grid-cols-[minmax(0,1fr)_minmax(0,0.75fr)]">
             {{--
             |--------------------------------------------------------------------------
             | Service copy
@@ -93,10 +96,10 @@
             --}}
 
             <div class="relative flex items-center px-6 py-20 sm:px-10 sm:py-24 lg:justify-end lg:px-16 lg:py-28 xl:pr-24">
-                <div class="w-full max-w-96 lg:mr-10 xl:mr-16">
+                <div class="max-w-125 w-full lg:mr-10 xl:mr-16">
                     <h1
-                        class="max-w-76 text-ink text-4xl font-light uppercase leading-[1.05] tracking-[-0.045em] sm:text-5xl lg:text-[3.25rem]">
-                        {{ $serviceTitle }}
+                        class="text-ink text-4xl font-light uppercase leading-[1.05] tracking-[-0.045em] sm:text-5xl lg:text-[3.25rem]">
+                        {!! $serviceTitle !!}
                     </h1>
 
 

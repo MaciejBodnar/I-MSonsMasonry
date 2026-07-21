@@ -10,19 +10,8 @@
     <div class="h-22 max-w-site mx-auto flex items-center justify-between gap-8 px-6 sm:px-8 lg:px-12 xl:px-16">
         {{-- Logo --}}
         <a href="{{ home_url('/') }}" class="shrink-0" aria-label="{{ get_bloginfo('name') }} home">
-            @if (has_custom_logo())
-                <div class="[&_img]:w-42 [&_img]:h-auto">
-                    {!! get_custom_logo() !!}
-                </div>
-            @else
-                <span class="text-primary text-2xl font-semibold uppercase">
-                    {{ $brandPrimary }}
-                </span>
-
-                <span class="text-accent block text-center text-sm uppercase">
-                    {{ $brandSecondary }}
-                </span>
-            @endif
+            <img src="{{ get_template_directory_uri() }}/resources/images/header-logo.svg" alt="logo"
+                class="h-11.5 w-auto" />
         </a>
 
         {{-- Contact text --}}

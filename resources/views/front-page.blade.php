@@ -89,9 +89,7 @@
 
         $aboutText =
             get_field('about_text') ?:
-            'I&M Sons Masonry Ltd was established in 2017, but our experience in the building industry goes back more than 20
-        years. We started by specialising in masonry, bricklaying and structural construction work before expanding into
-        house extensions, loft conversions, roofing, refurbishments and a wide range of residential building services.';
+            'I&M Sons Masonry Ltd was established in 2017, but our experience in the building industry goes back more than 20 years. We started by specialising in masonry, bricklaying and structural construction work before expanding into house extensions, loft conversions, roofing, refurbishments and a wide range of residential building services.';
 
         $aboutImage = get_field('about_image');
 
@@ -265,7 +263,8 @@
                 <div class="mt-8 lg:mt-0 lg:flex lg:min-w-0 lg:flex-1 lg:items-center lg:justify-end lg:gap-5 xl:gap-7">
 
                     {{-- Desktop line --}}
-                    <span class="w-90 bg-primary xl:w-105 h-1.25 bottom-4 right-[32%] hidden shrink-0 lg:absolute lg:block"
+                    <span
+                        class="w-90 bg-primary xl:w-105 h-1.25 bottom-3.5 right-[32%] hidden shrink-0 lg:absolute lg:block"
                         aria-hidden="true"></span>
 
                     {{-- Intro text --}}
@@ -293,7 +292,7 @@
     |--------------------------------------------------------------------------
     --}}
 
-    <section class="relative overflow-hidden bg-white py-20 sm:py-24 lg:py-28">
+    <section class="relative overflow-hidden bg-white py-10 sm:py-24 lg:py-28">
         <div class="max-w-site mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
 
             {{--
@@ -304,11 +303,11 @@
 
             <div class="mb-16 text-center lg:mb-20">
                 <div
-                    class="text-primary text-[clamp(2rem,3.2vw,3.7rem)] font-light uppercase leading-none tracking-[-0.045em]">
+                    class="text-primary text-[clamp(3.7rem,3.2vw,3.7rem)] font-light uppercase leading-none tracking-[-0.045em]">
                     {{ $servicesBrandPrimary }}
                 </div>
 
-                <div class="text-accent mt-1 text-[clamp(1rem,1.65vw,1.7rem)] font-normal uppercase leading-none">
+                <div class="text-accent mt-1 text-[clamp(1.7rem,1.65vw,1.7rem)] font-normal uppercase leading-none">
                     {{ $servicesBrandSecondary }}
                 </div>
             </div>
@@ -326,7 +325,7 @@
                         {{ $servicesMobileTitle }}
                     </h2>
 
-                    <p class="max-w-36.25 text-stone text-center text-xs/5">
+                    <p class="text-stone text-center text-xs/5">
                         {{ $servicesMobileNote }}
                     </p>
                 </div>
@@ -349,7 +348,7 @@
             |--------------------------------------------------------------------------
             --}}
 
-                <div class="top-30 pointer-events-none absolute left-[calc(20%-20vw)] z-30 hidden items-center lg:flex lg:w-[calc(50vw-50%+100px)] xl:w-[calc(50vw-50%+140px)]"
+                <div class="top-30 pointer-events-none absolute left-[calc(18%-18vw+40px)] z-30 hidden items-center lg:flex lg:w-[calc(50vw-50%+140px+70px)]"
                     aria-hidden="true">
                     <span class="bg-primary size-3 shrink-0 rounded-full"></span>
 
@@ -362,7 +361,7 @@
                     aria-hidden="true">
                     <span class="border-b-3 border-l-3 border-primary relative z-10 size-4 shrink-0 rotate-45"></span>
 
-                    <span class="h-0.75 bg-primary -ml-2 flex-1"></span>
+                    <span class="h-0.75 bg-primary -ml-4 flex-1"></span>
                 </div>
 
 
@@ -372,8 +371,8 @@
             |--------------------------------------------------------------------------
             --}}
 
-                <aside class="relative hidden lg:flex lg:min-h-full lg:items-start lg:justify-center">
-                    <div class="sticky top-28 pt-20">
+                <aside class="relative hidden lg:flex lg:min-h-full lg:items-start lg:justify-start">
+                    <div class="sticky top-60 pt-20">
                         <div
                             class="text-ink rotate-180 text-[42px] font-light uppercase leading-none tracking-[-0.04em] [writing-mode:vertical-rl]">
                             {{ $servicesVerticalLabel }}
@@ -405,7 +404,7 @@
                         @endphp
 
                         <a href="{{ $serviceUrl }}"
-                            class="min-h-100 bg-charcoal sm:min-h-110 xl:min-h-117.5 focus-visible:outline-primary group relative isolate overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-4">
+                            class="min-h-55 bg-charcoal sm:min-h-110 xl:min-h-117.5 focus-visible:outline-primary group relative isolate overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-4">
                             {{-- Image --}}
                             @if ($serviceImageUrl)
                                 <img src="{{ $serviceImageUrl }}" alt="{{ $serviceImageAlt }}"
@@ -420,7 +419,7 @@
 
                             {{-- Content --}}
                             <div
-                                class="min-h-100 sm:min-h-110 xl:min-h-117.5 relative z-10 flex flex-col justify-between p-7 xl:p-8">
+                                class="min-h-55 sm:min-h-110 xl:min-h-117.5 p-15 relative z-10 flex flex-col justify-between xl:p-8">
                                 {{-- Title --}}
                                 <h3 class="max-w-45 text-lg/[1.15] font-normal uppercase text-white">
                                     {{ $service['title'] }}
@@ -430,14 +429,14 @@
                                 {{-- Bottom area --}}
                                 <div>
                                     <div
-                                        class="max-w-55 block text-sm/6 text-white/80 transition-all duration-500 group-hover:pointer-events-none group-hover:-translate-y-3 group-hover:opacity-0 group-focus-visible:pointer-events-none group-focus-visible:-translate-y-3 group-focus-visible:opacity-0">
+                                        class="block text-sm/6 text-white/80 transition-all duration-500 group-hover:pointer-events-none group-hover:-translate-y-3 group-hover:opacity-0 group-focus-visible:pointer-events-none group-focus-visible:-translate-y-3 group-focus-visible:opacity-0">
                                         {!! $service['description'] !!}
                                     </div>
 
 
                                     {{-- Hover state CTA --}}
                                     <span
-                                        class="pointer-events-none mt-0 flex h-11 max-w-full translate-y-3 items-center justify-center border border-white bg-black/50 text-[11px] uppercase tracking-[0.06em] text-white opacity-0 transition-all duration-500 group-hover:mt-5 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:mt-5 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
+                                        class="pointer-events-none mt-0 hidden h-11 max-w-full translate-y-3 items-center justify-center border border-white bg-black/50 text-[11px] uppercase tracking-[0.06em] text-white opacity-0 transition-all duration-500 group-hover:mt-5 group-hover:flex group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:mt-5 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
                                         Read More
                                     </span>
                                 </div>
@@ -466,7 +465,7 @@
         <div
             class="max-w-site relative mx-auto grid items-center gap-12 px-6 sm:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.8fr)] lg:gap-16 lg:px-12 xl:grid-cols-[minmax(0,1.05fr)_minmax(420px,0.75fr)] xl:gap-24 xl:px-16">
             {{-- White line that overlaps the image --}}
-            <div class="pointer-events-none absolute left-[30%] top-20 z-20 hidden items-center lg:flex lg:w-[58%] xl:left-[29%] xl:w-[60%]"
+            <div class="pointer-events-none absolute left-[30%] top-20 z-20 hidden items-center lg:flex lg:w-[58%] xl:left-[25%] xl:w-[40%]"
                 aria-hidden="true">
                 <span class="size-3 shrink-0 rounded-full bg-white"></span>
 
@@ -498,7 +497,7 @@
                         </div>
 
                         <a href="{{ $aboutButtonUrl }}"
-                            class="h-13 text-ink hover:bg-ink mt-10 inline-flex min-w-36 items-center justify-center bg-white px-8 text-xs font-medium uppercase tracking-[0.02em] transition duration-300 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
+                            class="h-13 text-ink hover:bg-ink mt-25 inline-flex min-w-36 items-center justify-center bg-white px-8 text-xs font-medium uppercase tracking-[0.02em] transition duration-300 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
                             {{ $aboutButtonText }}
                         </a>
                     </div>
@@ -624,7 +623,7 @@
                         aria-hidden="true">
                         <span class="size-3 shrink-0 rounded-full bg-white"></span>
 
-                        <span class="h-0.75 w-[calc(50vw-2rem)] bg-white xl:w-[calc(50vw-4rem)]"></span>
+                        <span class="h-0.75 block w-[calc(50vw-1rem)] bg-white xl:w-[calc(50vw-4rem)]"></span>
                     </div>
 
                     {{-- Mobile controls --}}
