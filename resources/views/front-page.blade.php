@@ -297,10 +297,10 @@
         <div class="max-w-site mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
 
             {{--
-            |--------------------------------------------------------------------------
-            | Services brand heading
-            |--------------------------------------------------------------------------
-            --}}
+        |--------------------------------------------------------------------------
+        | Services brand heading
+        |--------------------------------------------------------------------------
+        --}}
 
             <div class="mb-16 text-center lg:mb-20">
                 <div
@@ -314,76 +314,79 @@
             </div>
 
 
-
             {{--
-            |--------------------------------------------------------------------------
-            | Mobile heading
-            |--------------------------------------------------------------------------
-            --}}
+        |--------------------------------------------------------------------------
+        | Mobile heading
+        |--------------------------------------------------------------------------
+        --}}
 
             <div class="mb-10 lg:hidden">
-
-
                 <div class="mt-5 flex flex-col items-center justify-center gap-5">
                     <h2 class="text-ink text-4xl font-light uppercase tracking-[-0.045em]">
                         {{ $servicesMobileTitle }}
                     </h2>
 
-                    <p class="max-w-36.25 text-stone text-right text-xs/5">
+                    <p class="max-w-36.25 text-stone text-center text-xs/5">
                         {{ $servicesMobileNote }}
                     </p>
                 </div>
             </div>
 
 
-
             {{--
+        |--------------------------------------------------------------------------
+        | Main services layout
+        |--------------------------------------------------------------------------
+        --}}
+
+            <div
+                class="relative grid gap-10 lg:grid-cols-[130px_minmax(0,1fr)_190px] xl:grid-cols-[170px_minmax(0,1fr)_230px] xl:gap-12">
+                {{--
             |--------------------------------------------------------------------------
-            | Main services layout
+            | Left line
+            |
+            | Starts at the viewport edge and overlaps the first service card.
             |--------------------------------------------------------------------------
             --}}
 
-            <div
-                class="grid gap-10 lg:grid-cols-[130px_minmax(0,1fr)_190px] xl:grid-cols-[170px_minmax(0,1fr)_230px] xl:gap-12">
+                <div class="top-30 pointer-events-none absolute left-[calc(20%-20vw)] z-30 hidden items-center lg:flex lg:w-[calc(50vw-50%+100px)] xl:w-[calc(50vw-50%+140px)]"
+                    aria-hidden="true">
+                    <span class="bg-primary size-3 shrink-0 rounded-full"></span>
+
+                    <span class="h-0.75 bg-primary flex-1"></span>
+                </div>
+
+
+                {{-- Right arrow and line --}}
+                <div class="pointer-events-none absolute right-[calc(50%-50vw)] top-1/2 z-30 hidden -translate-y-1/2 items-center lg:flex lg:w-[calc(50vw-50%+190px)] xl:w-[calc(50vw-50%+230px)]"
+                    aria-hidden="true">
+                    <span class="border-b-3 border-l-3 border-primary relative z-10 size-4 shrink-0 rotate-45"></span>
+
+                    <span class="h-0.75 bg-primary -ml-2 flex-1"></span>
+                </div>
+
 
                 {{--
-                |--------------------------------------------------------------------------
-                | Left vertical services label
-                |--------------------------------------------------------------------------
-                --}}
+            |--------------------------------------------------------------------------
+            | Left vertical services label
+            |--------------------------------------------------------------------------
+            --}}
 
                 <aside class="relative hidden lg:flex lg:min-h-full lg:items-start lg:justify-center">
                     <div class="sticky top-28 pt-20">
-
-                        {{-- Dot + line --}}
-                        <div class="absolute left-1/2 top-10 flex -translate-x-1/2 items-center">
-                            <span class="bg-primary size-3 shrink-0 rounded-full"></span>
-
-                            <span class="h-0.75 w-31.25 bg-primary xl:w-41.25"></span>
-                        </div>
-
-
-                        {{-- Vertical text --}}
                         <div
                             class="text-ink rotate-180 text-[42px] font-light uppercase leading-none tracking-[-0.04em] [writing-mode:vertical-rl]">
                             {{ $servicesVerticalLabel }}
                         </div>
-
                     </div>
                 </aside>
 
 
-
                 {{--
-                |--------------------------------------------------------------------------
-                | Service cards
-                |--------------------------------------------------------------------------
-                |
-                | Every card starts in the normal state.
-                | Every card gets the reference "fifth card" treatment on hover.
-                |
-                |--------------------------------------------------------------------------
-                --}}
+            |--------------------------------------------------------------------------
+            | Service cards
+            |--------------------------------------------------------------------------
+            --}}
 
                 <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
                     @foreach ($services as $service)
@@ -391,21 +394,27 @@
                             $serviceUrl = is_array($service['url'] ?? null)
                                 ? $service['url']['url'] ?? '#'
                                 : $service['url'] ?? '#';
+
+                            $serviceImage = $service['image'] ?? null;
+
+                            $serviceImageUrl = is_array($serviceImage) ? $serviceImage['url'] ?? '' : $serviceImage;
+
+                            $serviceImageAlt = is_array($serviceImage)
+                                ? $serviceImage['alt'] ?? ($service['title'] ?? '')
+                                : $service['title'] ?? '';
                         @endphp
 
                         <a href="{{ $serviceUrl }}"
                             class="min-h-100 bg-charcoal sm:min-h-110 xl:min-h-117.5 focus-visible:outline-primary group relative isolate overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-4">
-
                             {{-- Image --}}
-                            @if ($service['image'])
-                                <img src="{{ is_array($service['image']) ? $service['image']['url'] : $service['image'] }}"
-                                    alt="{{ is_array($service['image']) ? $service['image']['alt'] ?? $service['title'] : $service['title'] }}"
+                            @if ($serviceImageUrl)
+                                <img src="{{ $serviceImageUrl }}" alt="{{ $serviceImageAlt }}"
                                     class="absolute inset-0 size-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 group-focus-visible:scale-105">
                             @endif
 
 
                             {{-- Default overlay --}}
-                            <div class="absolute inset-0 bg-black/70 group-hover:bg-black/20 group-focus-visible:bg-black/20"
+                            <div class="absolute inset-0 bg-black/70 transition-colors duration-500 group-hover:bg-black/20 group-focus-visible:bg-black/20"
                                 aria-hidden="true"></div>
 
 
@@ -421,7 +430,7 @@
                                 {{-- Bottom area --}}
                                 <div>
                                     <div
-                                        class="max-w-55 block text-sm/6 text-white/80 transition-transform duration-500 group-hover:hidden group-hover:-translate-y-3 group-focus-visible:-translate-y-3">
+                                        class="max-w-55 block text-sm/6 text-white/80 transition-all duration-500 group-hover:pointer-events-none group-hover:-translate-y-3 group-hover:opacity-0 group-focus-visible:pointer-events-none group-focus-visible:-translate-y-3 group-focus-visible:opacity-0">
                                         {!! $service['description'] !!}
                                     </div>
 
@@ -433,41 +442,27 @@
                                     </span>
                                 </div>
                             </div>
-
                         </a>
                     @endforeach
                 </div>
 
 
-
                 {{--
-                |--------------------------------------------------------------------------
-                | Right experience note
-                |--------------------------------------------------------------------------
-                --}}
+            |--------------------------------------------------------------------------
+            | Right experience note
+            |--------------------------------------------------------------------------
+            --}}
 
-                <aside class="hidden lg:flex lg:items-center">
-                    <div class="w-full">
-
-                        {{-- Arrow line --}}
-                        <div class="h-0.75 bg-primary relative">
-                            <span
-                                class="border-b-3 border-l-3 border-primary absolute left-0 top-1/2 size-4 -translate-x-0.5 -translate-y-1/2 rotate-45"></span>
-                        </div>
-
-
-                        {{-- Experience text --}}
-                        <p class="max-w-37.5 text-stone mt-12 text-sm/6">
-                            {{ $servicesExperienceNote }}
-                        </p>
-
-                    </div>
+                <aside class="mb-50 hidden lg:flex lg:items-center">
+                    <p class="max-w-37.5 text-stone text-sm/6">
+                        {{ $servicesExperienceNote }}
+                    </p>
                 </aside>
-
             </div>
         </div>
     </section>
-    <section class="bg-linear-to-r from-primary to-accent relative overflow-hidden py-20 sm:py-24 lg:py-28 xl:py-32">
+    <section
+        class="bg-linear-to-b lg:bg-linear-to-r from-primary to-accent relative overflow-hidden py-20 sm:py-24 lg:py-28 xl:py-32">
         <div
             class="max-w-site relative mx-auto grid items-center gap-12 px-6 sm:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.8fr)] lg:gap-16 lg:px-12 xl:grid-cols-[minmax(0,1.05fr)_minmax(420px,0.75fr)] xl:gap-24 xl:px-16">
             {{-- White line that overlaps the image --}}
@@ -487,22 +482,26 @@
                     {{ $aboutTitle }}
                 </h2>
 
-                <div class="lg:pt-14">
-                    {{-- Mobile line --}}
-                    <div class="mb-8 flex items-center lg:hidden" aria-hidden="true">
+                <div class="relative lg:pt-14">
+                    {{-- Mobile line escaping the inner padding --}}
+                    <div class="pointer-events-none absolute left-0 top-0 z-20 flex w-screen items-center lg:hidden"
+                        aria-hidden="true">
                         <span class="size-3 shrink-0 rounded-full bg-white"></span>
 
                         <span class="h-0.5 flex-1 bg-white"></span>
                     </div>
 
-                    <div class="max-w-96 text-sm/7 text-white sm:text-base/7">
-                        {!! wp_kses_post(wpautop($aboutText)) !!}
-                    </div>
+                    {{-- Push content below the absolute line --}}
+                    <div class="pt-12">
+                        <div class="max-w-96 text-sm/7 text-white sm:text-base/7">
+                            {!! wp_kses_post(wpautop($aboutText)) !!}
+                        </div>
 
-                    <a href="{{ $aboutButtonUrl }}"
-                        class="h-13 text-ink hover:bg-ink mt-10 inline-flex min-w-36 items-center justify-center bg-white px-8 text-xs font-medium uppercase tracking-[0.02em] transition duration-300 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
-                        {{ $aboutButtonText }}
-                    </a>
+                        <a href="{{ $aboutButtonUrl }}"
+                            class="h-13 text-ink hover:bg-ink mt-10 inline-flex min-w-36 items-center justify-center bg-white px-8 text-xs font-medium uppercase tracking-[0.02em] transition duration-300 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
+                            {{ $aboutButtonText }}
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -595,7 +594,7 @@
                                 @foreach ($reviews as $review)
                                     <article class="w-full shrink-0 px-2 lg:w-1/2 lg:px-2.5" data-review-slide>
                                         <div
-                                            class="h-114 max-w-94 lg:h-84 xl:h-88 mx-auto flex flex-col justify-between bg-white p-8 sm:p-10 lg:max-w-none lg:p-10 xl:p-12">
+                                            class="h-114 lg:h-84 xl:h-88 mx-auto flex flex-col justify-between bg-white p-8 sm:p-10 lg:p-10 xl:p-12">
                                             <blockquote
                                                 class="max-w-70 text-ink text-3xl/[1.2] font-light tracking-[-0.035em] lg:text-2xl/tight xl:text-[27px]/[1.22]">
                                                 {{ $review['review'] ?? '' }}
