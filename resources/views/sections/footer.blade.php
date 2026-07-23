@@ -43,7 +43,7 @@
                         <a href="{{ $socialLink['url'] }}" target="_blank" rel="noopener noreferrer"
                             aria-label="{{ $socialLink['label'] }}"
                             class="bg-primary hover:bg-accent flex size-16 items-center justify-center rounded-full text-3xl text-black transition hover:text-white">
-                            <i class="{{ $socialLink['icon_class'] }}" aria-hidden="true"></i>
+                            {!! $socialLink['icon_class'] !!}
                         </a>
                     @endforeach
                 </div>
@@ -57,7 +57,7 @@
                     <a href="{{ $socialLink['url'] }}" target="_blank" rel="noopener noreferrer"
                         aria-label="{{ $socialLink['label'] }}"
                         class="bg-primary hover:bg-accent flex size-11 items-center justify-center rounded-full text-lg text-black transition hover:text-white">
-                        <i class="{{ $socialLink['icon_class'] }}" aria-hidden="true"></i>
+                        {!! $socialLink['icon_class'] !!}
                     </a>
 
                     @if (!$loop->last)
@@ -77,7 +77,7 @@
                 @foreach ($footerLinks as $link)
                     <li class="border-b border-white/20">
                         <a href="{{ $link['url'] }}"
-                            class="hover:text-primary focus-visible:outline-offset-3 focus-visible:outline-primary block py-3 text-sm text-white/65 transition-colors focus-visible:outline-2">
+                            class="hover:text-primary focus-visible:outline-offset-3 focus-visible:outline-primary block py-3 text-lg text-white/65 transition-colors focus-visible:outline-2">
                             {{ $link['name'] }}
                         </a>
                     </li>
@@ -89,7 +89,7 @@
     {{-- Bottom bar --}}
     <div class="bg-accent">
         <div
-            class="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 py-6 text-sm text-white sm:px-8 lg:flex-row lg:justify-between lg:px-12 xl:px-0">
+            class="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 py-6 text-lg text-white sm:px-8 lg:flex-row lg:justify-between lg:px-12 xl:px-0">
             <p>
                 {{ $contactLabel }}
 
@@ -118,7 +118,7 @@
 
                 <span>- {{ $creditPrefix }}</span>
 
-                <a href="{{ $creditUrl }}"
+                <a href="{{ $creditUrl }} " target="_blank" rel="noopener noreferrer"
                     class="inline-flex items-center gap-1 transition-colors hover:text-black">
                     <span class="text-primary">
                         <i class="fa-solid fa-heart" aria-hidden="true"></i>

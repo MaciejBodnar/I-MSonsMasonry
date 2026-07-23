@@ -91,7 +91,7 @@
             get_field('about_text') ?:
             'I&M Sons Masonry Ltd was established in 2017, but our experience in the building industry goes back more than 20 years. We started by specialising in masonry, bricklaying and structural construction work before expanding into house extensions, loft conversions, roofing, refurbishments and a wide range of residential building services.';
 
-        $aboutImage = get_field('about_image');
+        $aboutImage = get_field('about_image') ?: get_theme_file_uri('/resources/images/about-front.svg');
 
         $aboutLink = get_field('about_link');
 
@@ -247,7 +247,7 @@
             <div class="relative w-full lg:flex lg:items-end lg:justify-between lg:gap-8 xl:gap-10">
                 {{-- Hero title block --}}
                 <div class="max-w-185 shrink-0">
-                    <p class="text-primary relative mb-6 text-xs font-medium uppercase tracking-[0.03em] sm:text-sm">
+                    <p class="text-primary relative mb-6 text-xs font-medium uppercase tracking-[0.03em] sm:text-lg">
                         {{ $heroEyebrow }}
                     </p>
 
@@ -264,11 +264,11 @@
 
                     {{-- Desktop line --}}
                     <span
-                        class="w-90 bg-primary xl:w-105 h-1.25 bottom-3.5 right-[32%] hidden shrink-0 lg:absolute lg:block"
+                        class="bg-primary xl:w-105 h-1.25 bottom-3.5 right-[40%] hidden w-60 shrink-0 lg:absolute lg:block xl:right-[32%]"
                         aria-hidden="true"></span>
 
                     {{-- Intro text --}}
-                    <p class="max-w-95 text-sm/7 text-white/80 lg:text-[15px]/7">
+                    <p class="max-w-95 text-lg/7 text-white/80 lg:text-[15px]/7">
                         {{ $heroText }}
                     </p>
                 </div>
@@ -293,7 +293,7 @@
     --}}
 
     <section class="relative overflow-hidden bg-white py-10 sm:py-24 lg:py-28">
-        <div class="max-w-site mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
+        <div class="max-w-site mx-auto px-6 sm:px-8 lg:px-0">
 
             {{--
         |--------------------------------------------------------------------------
@@ -357,7 +357,7 @@
 
 
                 {{-- Right arrow and line --}}
-                <div class="pointer-events-none absolute right-[calc(50%-50vw)] top-1/2 z-30 hidden -translate-y-1/2 items-center lg:flex lg:w-[calc(50vw-50%+190px)] xl:w-[calc(50vw-50%+230px)]"
+                <div class="pointer-events-none absolute right-[calc(50%-50vw)] top-1/3 z-30 hidden -translate-y-1/2 items-center lg:flex lg:w-[calc(50vw-50%+120px)] xl:w-[calc(50vw-50%+150px)]"
                     aria-hidden="true">
                     <span class="border-b-3 border-l-3 border-primary relative z-10 size-4 shrink-0 rotate-45"></span>
 
@@ -371,7 +371,7 @@
             |--------------------------------------------------------------------------
             --}}
 
-                <aside class="relative hidden lg:flex lg:min-h-full lg:items-start lg:justify-start">
+                <aside class="relative hidden lg:ml-6 lg:flex lg:min-h-full lg:items-start lg:justify-start">
                     <div class="sticky top-60 pt-20">
                         <div
                             class="text-ink rotate-180 text-[42px] font-light uppercase leading-none tracking-[-0.04em] [writing-mode:vertical-rl]">
@@ -429,7 +429,7 @@
                                 {{-- Bottom area --}}
                                 <div>
                                     <div
-                                        class="block text-sm/6 text-white/80 transition-all duration-500 group-hover:pointer-events-none group-hover:-translate-y-3 group-hover:opacity-0 group-focus-visible:pointer-events-none group-focus-visible:-translate-y-3 group-focus-visible:opacity-0">
+                                        class="block text-lg/6 text-white/80 transition-all duration-500 group-hover:pointer-events-none group-hover:-translate-y-3 group-hover:opacity-0 group-focus-visible:pointer-events-none group-focus-visible:-translate-y-3 group-focus-visible:opacity-0">
                                         {!! $service['description'] !!}
                                     </div>
 
@@ -452,8 +452,8 @@
             |--------------------------------------------------------------------------
             --}}
 
-                <aside class="mb-50 hidden lg:flex lg:items-center">
-                    <p class="max-w-37.5 text-stone text-sm/6">
+                <aside class="mb-50 hidden lg:flex lg:items-center lg:justify-end">
+                    <p class="max-w-37.5 text-stone text-lg/6">
                         {{ $servicesExperienceNote }}
                     </p>
                 </aside>
@@ -469,7 +469,7 @@
                 aria-hidden="true">
                 <span class="size-3 shrink-0 rounded-full bg-white"></span>
 
-                <span class="h-0.5 flex-1 bg-white"></span>
+                <span class="h-1.5 flex-1 bg-white"></span>
             </div>
 
 
@@ -487,12 +487,12 @@
                         aria-hidden="true">
                         <span class="size-3 shrink-0 rounded-full bg-white"></span>
 
-                        <span class="h-0.5 flex-1 bg-white"></span>
+                        <span class="h-1.5 flex-1 bg-white"></span>
                     </div>
 
                     {{-- Push content below the absolute line --}}
                     <div class="pt-12">
-                        <div class="max-w-96 text-sm/7 text-white sm:text-base/7">
+                        <div class="max-w-96 text-lg/7 text-white sm:text-base/7">
                             {!! wp_kses_post(wpautop($aboutText)) !!}
                         </div>
 
@@ -557,7 +557,7 @@
                     </h2>
 
                     {{-- Desktop vertical title --}}
-                    <div class="lg:min-h-95 hidden lg:flex lg:items-center lg:gap-8">
+                    <div class="lg:min-h-95 hidden lg:flex lg:items-end lg:gap-8">
                         <h2
                             class="text-primary rotate-180 text-[60px] font-light uppercase leading-none tracking-[-0.04em] [writing-mode:vertical-rl]">
                             {{ $reviewsTitle }}
@@ -588,12 +588,12 @@
                         </button>
 
                         {{-- Cards viewport --}}
-                        <div class="max-w-174 min-w-0 flex-1 overflow-hidden">
+                        <div class="max-w-374 min-w-0 flex-1 overflow-hidden">
                             <div class="flex transition-transform duration-500 ease-out" data-reviews-track>
                                 @foreach ($reviews as $review)
                                     <article class="w-full shrink-0 px-2 lg:w-1/2 lg:px-2.5" data-review-slide>
                                         <div
-                                            class="h-114 lg:h-84 xl:h-88 mx-auto flex flex-col justify-between bg-white p-8 sm:p-10 lg:p-10 xl:p-12">
+                                            class="h-115 w-115 mx-auto flex flex-col justify-between bg-white p-8 sm:p-10 lg:p-10 xl:p-12">
                                             <blockquote
                                                 class="max-w-70 text-ink text-3xl/[1.2] font-light tracking-[-0.035em] lg:text-2xl/tight xl:text-[27px]/[1.22]">
                                                 {{ $review['review'] ?? '' }}
@@ -619,11 +619,12 @@
                     </div>
 
                     {{-- Right dot and line reaching viewport edge --}}
-                    <div class="pointer-events-none absolute bottom-3 left-full hidden items-center lg:flex"
+                    <div class="pointer-events-none absolute bottom-3 left-full hidden items-center lg:flex xl:translate-x-12"
                         aria-hidden="true">
                         <span class="size-3 shrink-0 rounded-full bg-white"></span>
 
-                        <span class="h-0.75 block w-[calc(50vw-1rem)] bg-white xl:w-[calc(50vw-4rem)]"></span>
+                        <span
+                            class="h-0.75 w-[calc(50vw+5rem)] bg-white xl:w-[calc(50vw+7rem)] 2xl:w-[calc(50vw+9rem)]"></span>
                     </div>
 
                     {{-- Mobile controls --}}
@@ -655,7 +656,7 @@
 --}}
 
     <section class="bg-white py-20 sm:py-24 lg:py-28">
-        <div class="max-w-site mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
+        <div class="px-6">
             <div class="mb-14 text-center lg:mb-16">
                 <h2 class="text-ink text-5xl font-light uppercase leading-none tracking-[-0.04em] sm:text-6xl lg:text-5xl">
                     {{ $galleryTitle }}
@@ -683,11 +684,11 @@
                                     : $item['title'] ?? '';
                             @endphp
 
-                            <figure class="w-full shrink-0" data-home-gallery-slide>
+                            <figure class="group w-full shrink-0" data-home-gallery-slide>
                                 <div class="bg-off-white relative aspect-[3/4.45] overflow-hidden">
                                     @if ($imageUrl)
                                         <img src="{{ $imageUrl }}" alt="{{ $imageAlt }}"
-                                            class="absolute inset-0 size-full object-cover grayscale">
+                                            class="absolute inset-0 size-full object-cover grayscale group-hover:grayscale-0">
                                     @endif
 
                                     <div class="pointer-events-none absolute inset-0 bg-white/20" aria-hidden="true">
@@ -759,17 +760,17 @@
 
 
             {{-- Desktop view-more line --}}
-            <div class="max-w-170 mx-auto mt-14 hidden items-center lg:flex">
-                <span class="bg-primary size-2.5 shrink-0 rounded-full"></span>
-                <span class="bg-primary h-0.5 flex-1"></span>
+            <div class="max-w-270 mx-auto mt-14 hidden items-center lg:flex">
+                <span class="bg-primary size-4 shrink-0 rounded-full"></span>
+                <span class="bg-primary h-1.5 flex-1"></span>
 
                 <a href="{{ $galleryButtonUrl }}"
-                    class="text-accent hover:text-ink shrink-0 px-6 text-xs font-medium uppercase tracking-[0.02em] transition-colors">
+                    class="text-accent hover:text-ink shrink-0 px-6 text-sm font-medium uppercase tracking-[0.02em] transition-colors">
                     {{ $galleryButtonText }}
                 </a>
 
-                <span class="bg-primary h-0.5 flex-1"></span>
-                <span class="bg-primary size-2.5 shrink-0 rounded-full"></span>
+                <span class="bg-primary h-1.5 flex-1"></span>
+                <span class="bg-primary size-4 shrink-0 rounded-full"></span>
             </div>
         </div>
     </section>
@@ -790,7 +791,7 @@
                     {{ $faqTitle }}
                 </h2>
 
-                <p class="max-w-45 text-accent mt-5 text-sm/6 font-light">
+                <p class="max-w-45 text-accent mt-5 text-lg/6 font-light">
                     {{ $faqIntro }}
                 </p>
             </div>
@@ -808,7 +809,7 @@
                     <article data-faq-item>
                         <h3>
                             <button id="{{ $buttonId }}" type="button"
-                                class="text-ink hover:text-accent focus-visible:outline-primary flex min-h-12 w-full items-center justify-between gap-6 bg-white px-7 py-4 text-left text-sm font-normal shadow-[0_2px_12px_rgba(0,0,0,0.08)] transition-colors duration-300 hover:cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2"
+                                class="text-ink hover:text-accent focus-visible:outline-primary flex min-h-12 w-full items-center justify-between gap-6 bg-white px-7 py-4 text-left text-lg font-normal shadow-[0_2px_12px_rgba(0,0,0,0.08)] transition-colors duration-300 hover:cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2"
                                 aria-expanded="{{ $isOpen ? 'true' : 'false' }}" aria-controls="{{ $panelId }}"
                                 data-faq-trigger>
                                 <span>
@@ -819,7 +820,7 @@
 
                         <div id="{{ $panelId }}" role="region" aria-labelledby="{{ $buttonId }}"
                             class="{{ $isOpen ? '' : 'hidden' }}" data-faq-panel>
-                            <div class="text-stone px-7 py-5 text-sm/6">
+                            <div class="text-stone px-7 py-5 text-lg/6">
                                 {!! wp_kses_post(wpautop($faq['answer'] ?? '')) !!}
                             </div>
                         </div>

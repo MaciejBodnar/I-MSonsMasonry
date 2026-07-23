@@ -15,7 +15,7 @@
         </a>
 
         {{-- Contact text --}}
-        <div class="hidden min-w-0 flex-1 text-sm text-black/40 lg:block">
+        <div class="hidden min-w-0 flex-1 text-lg text-black/40 lg:block">
             {{ $contactLabel }}
 
             <a href="tel:{{ preg_replace('/\s+/', '', $phone) }}"
@@ -31,7 +31,7 @@
         </div>
 
         {{-- Desktop menu --}}
-        <nav class="hidden lg:block" aria-label="{{ __('Primary navigation', 'im-sons') }}">
+        <nav class="hidden xl:block" aria-label="{{ __('Primary navigation', 'im-sons') }}">
             {!! wp_nav_menu([
                 'theme_location' => 'primary_navigation',
                 'container' => false,
@@ -43,7 +43,7 @@
         </nav>
 
         {{-- Mobile menu button --}}
-        <button type="button" class="text-ink flex size-11 items-center justify-center lg:hidden"
+        <button type="button" class="text-ink flex size-11 items-center justify-center xl:hidden"
             aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-navigation"
             data-mobile-menu-button>
             <img src="{{ get_template_directory_uri() }}/resources/images/menu.svg" alt="Menu" class="size-6">
@@ -51,7 +51,7 @@
     </div>
 
     {{-- Mobile menu --}}
-    <div id="mobile-navigation" class="hidden border-t border-black/5 bg-white px-6 py-6 lg:hidden" data-mobile-menu>
+    <div id="mobile-navigation" class="hidden border-t border-black/5 bg-white px-6 py-6 xl:hidden" data-mobile-menu>
         <nav aria-label="{{ __('Mobile navigation', 'im-sons') }}">
             {!! wp_nav_menu([
                 'theme_location' => 'primary_navigation',

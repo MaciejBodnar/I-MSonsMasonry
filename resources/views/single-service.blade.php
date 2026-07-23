@@ -80,11 +80,11 @@
 
     <section class="relative overflow-hidden bg-white">
         {{-- Yellow line from viewport edge --}}
-        <div class="top-70 pointer-events-none absolute left-0 z-20 hidden w-[calc(50%-36rem)] items-center lg:flex xl:w-[calc(50%-36rem)]"
+        <div class="top-75 pointer-events-none absolute left-0 z-20 hidden w-[calc(50%-36rem)] items-center lg:flex xl:w-[calc(50%-36rem)]"
             aria-hidden="true">
-            <span class="bg-primary h-0.5 flex-1"></span>
+            <span class="bg-primary h-1.5 flex-1"></span>
 
-            <span class="bg-primary size-2.5 shrink-0 rounded-full"></span>
+            <span class="bg-primary size-4 shrink-0 rounded-full"></span>
         </div>
 
 
@@ -105,14 +105,14 @@
 
                     {{-- Mobile line --}}
                     <div class="mt-8 flex items-center lg:hidden" aria-hidden="true">
-                        <span class="bg-primary h-0.5 flex-1"></span>
+                        <span class="bg-primary h-1.5 flex-1"></span>
 
-                        <span class="bg-primary size-2.5 shrink-0 rounded-full"></span>
+                        <span class="bg-primary size-4 shrink-0 rounded-full"></span>
                     </div>
 
 
                     <div
-                        class="prose prose-sm text-stone prose-headings:text-ink prose-p:my-0 prose-p:mb-7 prose-p:text-sm prose-p:leading-6 prose-p:text-stone sm:prose-p:text-base sm:prose-p:leading-7 mt-10 max-w-none">
+                        class="prose prose-lg text-stone prose-headings:text-ink prose-p:my-0 prose-p:mb-7 prose-p:text-lg prose-p:leading-6 prose-p:text-stone sm:prose-p:text-lg sm:prose-p:leading-10 mt-10 max-w-none">
                         {!! wp_kses_post($serviceDescription) !!}
                     </div>
                 </div>
@@ -125,7 +125,7 @@
             |--------------------------------------------------------------------------
             --}}
 
-            <div class="min-h-105 bg-off-white lg:min-h-172 relative overflow-hidden">
+            <div class="min-h-105 bg-off-white lg:min-h-246 relative overflow-hidden">
                 @if ($serviceImage)
                     <img src="{{ is_array($serviceImage) ? $serviceImage['url'] : $serviceImage }}"
                         alt="{{ is_array($serviceImage) ? $serviceImage['alt'] ?? $serviceTitle : $serviceTitle }}"
@@ -162,7 +162,7 @@
                     {{ $faqTitle }}
                 </h2>
 
-                <p class="max-w-45 text-accent mt-5 text-sm/6 font-light">
+                <p class="max-w-45 text-accent mt-5 text-lg/6 font-light">
                     {{ $faqIntro }}
                 </p>
             </div>
@@ -180,7 +180,7 @@
                     <article data-faq-item>
                         <h3>
                             <button id="{{ $buttonId }}" type="button"
-                                class="text-ink hover:text-accent focus-visible:outline-primary flex min-h-12 w-full items-center justify-between gap-6 bg-white px-7 py-4 text-left text-sm font-normal shadow-[0_2px_12px_rgba(0,0,0,0.08)] transition-colors duration-300 hover:cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2"
+                                class="text-ink hover:text-accent focus-visible:outline-primary flex min-h-12 w-full items-center justify-between gap-6 bg-white px-7 py-4 text-left text-lg font-normal shadow-[0_2px_12px_rgba(0,0,0,0.08)] transition-colors duration-300 hover:cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2"
                                 aria-expanded="{{ $isOpen ? 'true' : 'false' }}" aria-controls="{{ $panelId }}"
                                 data-faq-trigger>
                                 <span>
@@ -191,7 +191,7 @@
 
                         <div id="{{ $panelId }}" role="region" aria-labelledby="{{ $buttonId }}"
                             class="{{ $isOpen ? '' : 'hidden' }}" data-faq-panel>
-                            <div class="text-stone px-7 py-5 text-sm/6">
+                            <div class="text-stone px-7 py-5 text-lg/6">
                                 {!! wp_kses_post(wpautop($faq['answer'] ?? '')) !!}
                             </div>
                         </div>

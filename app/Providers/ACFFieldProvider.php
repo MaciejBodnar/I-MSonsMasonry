@@ -142,8 +142,7 @@ class ACFFieldProvider extends SageServiceProvider
                             'key' => 'field_imsons_footer_social_icon_class',
                             'label' => __('Icon Class', 'im-sons'),
                             'name' => 'icon_class',
-                            'type' => 'text',
-                            'instructions' => __('Example: fa-brands fa-facebook-f', 'im-sons'),
+                            'type' => 'font-awesome',
                         ],
                         [
                             'key' => 'field_imsons_footer_social_url',
@@ -673,8 +672,7 @@ class ACFFieldProvider extends SageServiceProvider
                             'key' => 'field_imsons_contact_social_icon_class',
                             'label' => __('Icon Class', 'im-sons'),
                             'name' => 'icon_class',
-                            'type' => 'text',
-                            'instructions' => __('Example: fa-brands fa-facebook-f', 'im-sons'),
+                            'type' => 'font-awesome',
                         ],
                         [
                             'key' => 'field_imsons_contact_social_url',

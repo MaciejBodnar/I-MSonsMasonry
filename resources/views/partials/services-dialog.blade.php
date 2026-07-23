@@ -76,7 +76,7 @@
 
                         <div>
                             @if (!empty($service['description']))
-                                <p class="max-w-60 text-sm/6 text-black/55">
+                                <p class="max-w-60 text-lg/6 text-black/55">
                                     {{ $service['description'] }}
                                 </p>
                             @endif

@@ -80,10 +80,10 @@
 
     <section class="relative overflow-hidden bg-white">
         {{-- Yellow line from viewport edge --}}
-        <div class="pointer-events-none absolute left-0 top-40 z-10 hidden w-[calc(50%-24rem)] items-center lg:flex xl:w-[calc(50%-36rem)]"
+        <div class="top-75 pointer-events-none absolute left-0 z-10 hidden w-[calc(50%-24rem)] items-center lg:flex xl:w-[calc(50%-36rem)]"
             aria-hidden="true">
-            <span class="bg-primary h-0.5 flex-1"></span>
-            <span class="bg-primary size-2.5 shrink-0 rounded-full"></span>
+            <span class="bg-primary h-1.5 flex-1"></span>
+            <span class="bg-primary size-4 shrink-0 rounded-full"></span>
         </div>
 
         <div class="min-h-149 grid w-full lg:grid-cols-2">
@@ -96,19 +96,19 @@
 
                     {{-- Mobile line --}}
                     <div class="mt-8 flex items-center lg:hidden" aria-hidden="true">
-                        <span class="bg-primary h-0.5 flex-1"></span>
-                        <span class="bg-primary size-2.5 shrink-0 rounded-full"></span>
+                        <span class="bg-primary h-1.5 flex-1"></span>
+                        <span class="bg-primary size-4 shrink-0 rounded-full"></span>
                     </div>
 
                     <div
-                        class="prose prose-sm text-stone prose-p:my-0 prose-p:mb-6 prose-p:text-sm prose-p:leading-6 prose-p:text-stone sm:prose-p:text-base sm:prose-p:leading-7 mt-10 max-w-none">
+                        class="prose prose-sm text-stone prose-p:my-0 prose-p:mb-6 prose-p:text-lg prose-p:leading-6 prose-p:text-stone sm:prose-p:text-base sm:prose-p:leading-7 mt-10 max-w-none">
                         {!! wp_kses_post($aboutContent) !!}
                     </div>
                 </div>
             </div>
 
             {{-- Image column — flush to viewport right --}}
-            <div class="min-h-105 bg-off-white lg:min-h-149 relative overflow-hidden">
+            <div class="min-h-105 bg-off-white lg:min-h-246 relative overflow-hidden">
                 @if ($aboutImage)
                     <img src="{{ is_array($aboutImage) ? $aboutImage['url'] : $aboutImage }}"
                         alt="{{ is_array($aboutImage) ? $aboutImage['alt'] ?? $aboutTitle : $aboutTitle }}"
@@ -126,16 +126,16 @@
 |--------------------------------------------------------------------------
 --}}
 
-    <section class="bg-off-white relative overflow-hidden py-20 sm:py-24 lg:py-28">
+    <section class="bg-off-white relative overflow-hidden px-6 py-20 sm:py-24 lg:px-0 lg:py-28">
         <div
-            class="xl:grid-cols-[210px_minmax(0,1fr) mx-auto grid max-w-7xl gap-12 lg:grid-cols-[180px_minmax(0,1fr)] lg:gap-12">
+            class="xl:grid-cols-[210px_minmax(0,1fr) lg:mr-100 mx-auto grid max-w-7xl gap-12 lg:mx-0 lg:max-w-full lg:grid-cols-[180px_minmax(0,1fr)] lg:gap-12 lg:pl-20">
             {{-- Reviews heading --}}
             <aside class="relative">
                 <div class="flex items-center gap-0 lg:absolute lg:left-0 lg:top-0 lg:w-[calc(70%+5rem)] xl:w-[calc(70%+8rem)]"
                     aria-hidden="true">
-                    <span class="bg-primary size-2.5 shrink-0 rounded-full"></span>
+                    <span class="bg-primary size-4 shrink-0 rounded-full"></span>
 
-                    <span class="bg-primary h-0.5 flex-1"></span>
+                    <span class="bg-primary h-1.5 flex-1"></span>
                 </div>
 
                 <h2
@@ -146,10 +146,10 @@
 
             {{-- Staggered cards --}}
             <div class="relative min-w-0">
-                <div class="grid gap-5 md:grid-cols-2 lg:gap-6">
+                <div class="grid gap-5 lg:gap-6 xl:grid-cols-2">
                     @foreach ($reviews as $index => $review)
                         <article
-                            class="min-h-67 lg:min-h-115 lg:min-w-115 {{ $index === 0 ? 'lg:translate-x-12 xl:translate-x-16' : '' }} {{ $index === 1 ? 'lg:translate-x-12 xl:translate-x-16' : '' }} {{ $index === 2 ? 'lg:-translate-x-4 xl:-translate-x-8' : '' }} {{ $index === 3 ? 'lg:-translate-x-4 xl:-translate-x-8' : '' }} sm:min-h-115 sm:py-25 flex flex-col justify-between border border-black/25 bg-white p-8 sm:px-16">
+                            class="min-h-67 lg:min-h-115 lg:min-w-115 {{ $index === 0 ? 'xl:translate-x-16' : '' }} {{ $index === 1 ? 'xl:translate-x-16' : '' }} {{ $index === 2 ? 'xl:-translate-x-8' : '' }} {{ $index === 3 ? 'xl:-translate-x-8' : '' }} sm:min-h-115 sm:py-25 flex flex-col justify-between border border-black/25 bg-white p-8 xl:px-16">
                             <blockquote class="text-ink text-3xl font-light leading-tight tracking-wide">
                                 {{ $review['review'] ?? '' }}
                             </blockquote>

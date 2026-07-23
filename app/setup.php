@@ -139,6 +139,12 @@ add_action('after_setup_theme', function () {
 }, 20);
 
 /**
+ * Hide the default WordPress content editor on pages.
+ */
+add_action('init', function () {
+    remove_post_type_support('page', 'editor');
+});
+/**
  * Register the theme sidebars.
  *
  * @return void

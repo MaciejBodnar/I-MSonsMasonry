@@ -140,11 +140,11 @@
 
     <section class="relative overflow-hidden bg-white py-20 sm:py-24 lg:py-28">
         {{-- Yellow line from the viewport edge --}}
-        <div class="top-42 pointer-events-none absolute left-0 z-10 hidden w-[calc(50%-24rem)] items-center lg:flex"
+        <div class="top-42 pointer-events-none absolute left-0 z-10 hidden w-[calc(50%-24rem)] items-center md:w-[calc(50%-34rem)] lg:flex"
             aria-hidden="true">
-            <span class="bg-primary h-0.5 flex-1"></span>
+            <span class="bg-primary h-1.5 flex-1"></span>
 
-            <span class="bg-primary size-2.5 shrink-0 rounded-full"></span>
+            <span class="bg-primary size-4 shrink-0 rounded-full"></span>
         </div>
 
         <div
@@ -156,9 +156,9 @@
                 </h1>
 
                 <div class="mt-8 flex items-center lg:hidden" aria-hidden="true">
-                    <span class="bg-primary h-0.5 flex-1"></span>
+                    <span class="bg-primary h-1.5 flex-1"></span>
 
-                    <span class="bg-primary size-2.5 shrink-0 rounded-full"></span>
+                    <span class="bg-primary size-4 shrink-0 rounded-full"></span>
                 </div>
 
                 @if ($lastUpdated)
@@ -170,7 +170,7 @@
 
             {{-- Privacy content --}}
             <article
-                class="max-w-170 text-stone [&_a]:text-accent hover:[&_a]:text-primary [&_h2]:text-ink [&_h3]:text-ink text-sm/7 sm:text-base/7 [&_a]:underline [&_a]:underline-offset-4 [&_a]:transition-colors [&_h2:first-child]:mt-0 [&_h2]:mb-4 [&_h2]:mt-12 [&_h2]:text-2xl [&_h2]:font-light [&_h2]:uppercase [&_h2]:leading-tight [&_h2]:tracking-[-0.03em] [&_h3]:mb-3 [&_h3]:mt-8 [&_h3]:text-lg [&_h3]:font-medium [&_ol]:mb-6 [&_ol]:list-decimal [&_ol]:space-y-2 [&_ol]:pl-5 [&_p]:mb-5 [&_ul]:mb-6 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5">
+                class="max-w-170 text-stone [&_a]:text-accent hover:[&_a]:text-primary [&_h2]:text-ink [&_h3]:text-ink text-lg/7 sm:text-base/7 [&_a]:underline [&_a]:underline-offset-4 [&_a]:transition-colors [&_h2:first-child]:mt-0 [&_h2]:mb-4 [&_h2]:mt-12 [&_h2]:text-2xl [&_h2]:font-light [&_h2]:uppercase [&_h2]:leading-tight [&_h2]:tracking-[-0.03em] [&_h3]:mb-3 [&_h3]:mt-8 [&_h3]:text-lg [&_h3]:font-medium [&_ol]:mb-6 [&_ol]:list-decimal [&_ol]:space-y-2 [&_ol]:pl-5 [&_p]:mb-5 [&_ul]:mb-6 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5">
                 {!! wp_kses_post($privacyContent) !!}
             </article>
         </div>
