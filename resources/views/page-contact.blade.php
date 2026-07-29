@@ -36,7 +36,7 @@
 
     <section class="lg:min-h-180 relative overflow-hidden bg-white py-20 sm:py-24 lg:py-28">
         <div class="max-w-250 mx-auto w-full px-6 sm:px-10 lg:px-12 xl:px-0">
-            <h1 class="text-ink text-5xl font-light uppercase leading-none tracking-[-0.04em] sm:text-6xl">
+            <h1 class="text-ink font1-light text-5xl uppercase leading-none tracking-[-0.04em] sm:text-6xl">
                 {{ $contactTitle }}
             </h1>
 

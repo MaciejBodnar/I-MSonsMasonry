@@ -48,11 +48,11 @@
         <div>
             <div class="flex items-center justify-between border-b border-black/10 px-6 py-5 sm:px-8 lg:px-12">
                 <div>
-                    <p class="text-primary text-xs font-medium uppercase tracking-[0.08em]">
+                    <p class="text-primary font1-medium text-xs uppercase tracking-[0.08em]">
                         {{ __('Our Services', 'im-sons') }}
                     </p>
 
-                    <h2 class="mt-1 text-3xl font-light uppercase tracking-[-0.04em]">
+                    <h2 class="font1-light mt-1 text-3xl uppercase tracking-[-0.04em]">
                         {{ $dialog['title'] }}
                     </h2>
                 </div>
@@ -70,7 +70,7 @@
                 @foreach ($dialog['items'] as $service)
                     <a href="{{ $service['url'] }}"
                         class="hover:bg-primary focus-visible:outline-primary group flex min-h-48 flex-col justify-between bg-white p-7 transition-colors focus-visible:relative focus-visible:z-10 focus-visible:outline-2 focus-visible:-outline-offset-2">
-                        <h3 class="max-w-48 text-xl/[1.15] font-normal uppercase">
+                        <h3 class="font1-normal max-w-48 text-xl/[1.15] uppercase">
                             {{ $service['title'] }}
                         </h3>
 
@@ -81,7 +81,7 @@
                                 </p>
                             @endif
 
-                            <span class="mt-5 inline-flex items-center gap-2 text-xs font-medium uppercase">
+                            <span class="font1-medium mt-5 inline-flex items-center gap-2 text-xs uppercase">
                                 View service
 
                                 <span class="transition-transform group-hover:translate-x-1">

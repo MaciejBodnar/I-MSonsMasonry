@@ -90,7 +90,7 @@
             {{-- Text column --}}
             <div class="relative flex items-center px-6 py-20 sm:px-10 sm:py-24 lg:justify-end lg:px-16 lg:py-28 xl:pr-24">
                 <div class="max-w-100 w-full lg:mr-10 xl:mr-14">
-                    <h1 class="text-ink text-4xl font-light uppercase leading-none tracking-[-0.04em] sm:text-5xl">
+                    <h1 class="text-ink font1-light text-4xl uppercase leading-none tracking-[-0.04em] sm:text-5xl">
                         {{ $aboutTitle }}
                     </h1>
 
@@ -139,7 +139,7 @@
                 </div>
 
                 <h2
-                    class="text-ink mt-10 text-4xl font-light uppercase leading-none tracking-[-0.04em] sm:text-5xl lg:mt-14 lg:rotate-180 lg:text-5xl lg:[writing-mode:vertical-rl]">
+                    class="text-ink font1-light mt-10 text-4xl uppercase leading-none tracking-[-0.04em] sm:text-5xl lg:mt-14 lg:rotate-180 lg:text-5xl lg:[writing-mode:vertical-rl]">
                     {{ $reviewsTitle }}
                 </h2>
             </aside>
@@ -150,11 +150,11 @@
                     @foreach ($reviews as $index => $review)
                         <article
                             class="min-h-67 lg:min-h-115 lg:min-w-115 {{ $index === 0 ? 'xl:translate-x-16' : '' }} {{ $index === 1 ? 'xl:translate-x-16' : '' }} {{ $index === 2 ? 'xl:-translate-x-8' : '' }} {{ $index === 3 ? 'xl:-translate-x-8' : '' }} sm:min-h-115 sm:py-25 flex flex-col justify-between border border-black/25 bg-white p-8 xl:px-16">
-                            <blockquote class="text-ink text-3xl font-light leading-tight tracking-wide">
+                            <blockquote class="text-ink font1-light text-3xl leading-tight tracking-wide">
                                 {{ $review['review'] ?? '' }}
                             </blockquote>
 
-                            <p class="text-accent mt-10 text-[14px] font-medium uppercase">
+                            <p class="text-accent font1-medium mt-10 text-[14px] uppercase">
                                 {{ $review['name'] ?? '' }}
                             </p>
                         </article>

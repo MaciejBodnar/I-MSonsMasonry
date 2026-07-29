@@ -168,12 +168,10 @@ const initialiseReviewsSliders = () => {
 
       [previousButton, previousButtonMobile].forEach((button) => {
         if (!button) return;
-        button.disabled = isAtStart;
       });
 
       [nextButton, nextButtonMobile].forEach((button) => {
         if (!button) return;
-        button.disabled = isAtEnd;
       });
     };
 
@@ -238,28 +236,26 @@ const initialiseMobileMenu = () => {
     mobileMenuButton.setAttribute('aria-expanded', 'false');
   };
 
-  mobileMenu
-    .querySelectorAll('.menu-item-has-children')
-    .forEach((menuItem) => {
-      const parentLink = menuItem.querySelector(':scope > [data-menu-parent]');
-      const submenu = menuItem.querySelector(':scope > .sub-menu');
+  mobileMenu.querySelectorAll('.menu-item-has-children').forEach((menuItem) => {
+    const parentLink = menuItem.querySelector(':scope > [data-menu-parent]');
+    const submenu = menuItem.querySelector(':scope > .sub-menu');
 
-      if (!parentLink || !submenu) {
-        return;
-      }
+    if (!parentLink || !submenu) {
+      return;
+    }
 
-      submenu.hidden = true;
-      parentLink.setAttribute('aria-expanded', 'false');
+    submenu.hidden = true;
+    parentLink.setAttribute('aria-expanded', 'false');
 
-      parentLink.addEventListener('click', (event) => {
-        event.preventDefault();
+    parentLink.addEventListener('click', (event) => {
+      event.preventDefault();
 
-        const isOpen = menuItem.classList.toggle('is-open');
+      const isOpen = menuItem.classList.toggle('is-open');
 
-        parentLink.setAttribute('aria-expanded', String(isOpen));
-        submenu.hidden = !isOpen;
-      });
+      parentLink.setAttribute('aria-expanded', String(isOpen));
+      submenu.hidden = !isOpen;
     });
+  });
 
   mobileMenuButton.addEventListener('click', () => {
     const isHidden = mobileMenu.classList.toggle('hidden');

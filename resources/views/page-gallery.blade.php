@@ -95,7 +95,7 @@
     <section class="min-h-screen bg-white py-20 sm:py-24 lg:py-28" data-gallery-page>
         <div class="max-w-250 mx-auto w-full px-6 sm:px-8 lg:px-12 xl:px-0">
             <header class="text-center">
-                <h1 class="text-ink text-4xl font-light uppercase leading-none tracking-[-0.04em] sm:text-5xl">
+                <h1 class="text-ink font1-light text-4xl uppercase leading-none tracking-[-0.04em] sm:text-5xl">
                     {{ $galleryTitle }}
                 </h1>
             </header>

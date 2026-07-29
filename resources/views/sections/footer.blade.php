@@ -92,13 +92,13 @@
             <p>
                 {{ $contactLabel }}
 
-                <a href="tel:{{ preg_replace('/\s+/', '', $phone) }}" class="text-primary font-semibold">
+                <a href="tel:{{ preg_replace('/\s+/', '', $phone) }}" class="text-primary font1-semibold">
                     {{ $phone }}
                 </a>
 
                 <span>or</span>
 
-                <a href="mailto:{{ $email }}" class="text-primary font-semibold">
+                <a href="mailto:{{ $email }}" class="text-primary font1-semibold">
                     {{ $email }}
                 </a>
             </p>

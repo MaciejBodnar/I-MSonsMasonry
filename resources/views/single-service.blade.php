@@ -98,7 +98,7 @@
             <div class="relative flex items-center px-6 py-20 sm:px-10 sm:py-24 lg:justify-end lg:px-16 lg:py-28 xl:pr-24">
                 <div class="max-w-125 w-full lg:mr-10 xl:mr-16">
                     <h1
-                        class="text-ink text-4xl font-light uppercase leading-[1.05] tracking-[-0.045em] sm:text-5xl lg:text-[3.25rem]">
+                        class="text-ink font1-light text-4xl uppercase leading-[1.05] tracking-[-0.045em] sm:text-5xl lg:text-[3.25rem]">
                         {!! $serviceTitle !!}
                     </h1>
 
@@ -139,7 +139,7 @@
 
                 {{-- Gallery button --}}
                 <a href="{{ $galleryUrl }}"
-                    class="text-ink hover:bg-primary hover:text-ink focus-visible:outline-primary absolute left-1/2 top-1/2 z-10 inline-flex h-14 min-w-36 -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-white px-8 text-xs font-medium uppercase tracking-[0.02em] transition duration-300 focus-visible:outline-2 focus-visible:outline-offset-4">
+                    class="text-ink hover:bg-primary hover:text-ink focus-visible:outline-primary font1-medium absolute left-1/2 top-1/2 z-10 inline-flex h-14 min-w-36 -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-white px-8 text-xs uppercase tracking-[0.02em] transition duration-300 focus-visible:outline-2 focus-visible:outline-offset-4">
                     {{ $galleryText }}
                 </a>
             </div>
@@ -158,11 +158,11 @@
         <div class="max-w-250 mx-auto grid gap-10 px-6 sm:px-8 lg:grid-cols-[200px_minmax(0,1fr)] lg:gap-12 lg:px-0">
             {{-- FAQ introduction --}}
             <div>
-                <h2 class="text-ink text-4xl font-light uppercase leading-none tracking-[-0.04em] sm:text-5xl">
+                <h2 class="text-ink font1-light text-4xl uppercase leading-none tracking-[-0.04em] sm:text-5xl">
                     {{ $faqTitle }}
                 </h2>
 
-                <p class="max-w-45 text-accent mt-5 text-lg/6 font-light">
+                <p class="max-w-45 text-accent font1-light mt-5 text-lg/6">
                     {{ $faqIntro }}
                 </p>
             </div>
@@ -180,7 +180,7 @@
                     <article data-faq-item>
                         <h3>
                             <button id="{{ $buttonId }}" type="button"
-                                class="text-ink hover:text-accent focus-visible:outline-primary flex min-h-12 w-full items-center justify-between gap-6 bg-white px-7 py-4 text-left text-lg font-normal shadow-[0_2px_12px_rgba(0,0,0,0.08)] transition-colors duration-300 hover:cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2"
+                                class="text-ink hover:text-accent focus-visible:outline-primary font1-normal flex min-h-12 w-full items-center justify-between gap-6 bg-white px-7 py-4 text-left text-lg shadow-[0_2px_12px_rgba(0,0,0,0.08)] transition-colors duration-300 hover:cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2"
                                 aria-expanded="{{ $isOpen ? 'true' : 'false' }}" aria-controls="{{ $panelId }}"
                                 data-faq-trigger>
                                 <span>

@@ -19,13 +19,14 @@
             {{ $contactLabel }}
 
             <a href="tel:{{ preg_replace('/\s+/', '', $phone) }}"
-                class="text-primary hover:text-accent font-semibold transition-colors">
+                class="text-primary hover:text-accent font1-semibold transition-colors">
                 {{ $phone }}
             </a>
 
             <span>or</span>
 
-            <a href="mailto:{{ $email }}" class="text-primary hover:text-accent font-semibold transition-colors">
+            <a href="mailto:{{ $email }}"
+                class="text-primary hover:text-accent font1-semibold transition-colors">
                 {{ $email }}
             </a>
         </div>

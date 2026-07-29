@@ -5,6 +5,25 @@
 @source "../views";
 @source "../js";
 
+@layer base {
+    html {
+        font-family: var(--font-body);
+    }
+
+    body {
+        font-family: var(--font-body);
+        font-weight: 500;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: var(--font-display);
+    }
+}
 
 a {
 	text-decoration: none !important;
@@ -29,6 +48,10 @@ a {
 
     /* Layout */
     --container-site: 96rem;
+
+
+    --font-display: "pacaembu", Arial, sans-serif;
+    --font-body: "pacaembu", Arial, sans-serif;
 }
 
 /*
@@ -136,7 +159,7 @@ a {
 
     .contact-submit {
         display: inline-flex;
-        min-width: 10.5rem;
+        max-width: 190px;
         min-height: 3.25rem;
         align-items: center;
         justify-content: center;
@@ -147,7 +170,7 @@ a {
             var(--color-accent)
         );
         padding-inline: 2rem;
-        color: #fff;
+        color: #fff !important;
         font-size: 0.75rem;
         font-weight: 500;
         text-transform: uppercase;
@@ -248,11 +271,12 @@ a {
 
 .dots::before {
   content: "";
-  width:10px;
-  height:10px;
+  width:20px;
+  height:20px;
   background-color: #FFBC00;
   position: absolute;
   bottom: 25px;
+  border-radius: 100%;
 }
 
 @media (max-width: 1024px) {

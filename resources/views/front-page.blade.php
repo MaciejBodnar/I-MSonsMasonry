@@ -20,7 +20,7 @@
 
         $heroImage = get_field('hero_image') ?: get_theme_file_uri('/resources/images/first-bg.png');
 
-        $logo = get_theme_file_uri('/resources/images/logo.svg');
+        $logo = get_theme_file_uri('/resources/images/logo_full.svg');
 
         /*
         |--------------------------------------------------------------------------
@@ -244,31 +244,39 @@
         {{-- Hero content --}}
         <div
             class="min-h-155 max-w-site lg:min-h-170 xl:min-h-180 relative z-10 mx-auto flex items-center px-6 py-24 sm:px-8 lg:px-12 xl:px-16">
-            <div class="relative w-full lg:flex lg:items-end lg:justify-between lg:gap-8 xl:gap-10">
-                {{-- Hero title block --}}
-                <div class="max-w-185 shrink-0">
-                    <p class="text-primary relative mb-6 text-xs font-medium uppercase tracking-[0.03em] sm:text-lg">
+
+            <div
+                class="relative w-full sm:grid lg:grid-cols-[minmax(0,1fr)_minmax(260px,270px)_minmax(340px,400px)] lg:grid-rows-[auto_auto] lg:items-start xl:grid-cols-[minmax(0,1fr)_minmax(260px,420px)_minmax(340px,400px)]">
+
+                {{-- Row 1: title --}}
+                <div class="relative z-10 lg:col-span-2 lg:row-start-1">
+                    <p class="font1-medium text-primary mb-6 text-xs uppercase tracking-[0.03em] sm:text-lg">
                         {{ $heroEyebrow }}
                     </p>
 
                     <h1
-                        class="max-w-185 relative text-[clamp(3.5rem,7vw,7.25rem)] font-light uppercase leading-[0.9] tracking-[-0.055em] text-white">
+                        class="font1-light text-[clamp(3.5rem,7vw,7.25rem)] uppercase leading-[0.9] tracking-[-0.055em] text-white">
                         {{ $heroTitleLineOne }}<br>
-                        {{ $heroTitleLineTwo }}<span class="dots text-primary"></span>
+                        {{ $heroTitleLineTwo }}<span class="text-primary">.</span>
                     </h1>
                 </div>
 
 
-                {{-- Connector + intro --}}
-                <div class="mt-8 lg:mt-0 lg:flex lg:min-w-0 lg:flex-1 lg:items-center lg:justify-end lg:gap-5 xl:gap-7">
+                {{-- Row 2: overlapped line and paragraph --}}
+                <div
+                    class="relative z-20 mt-8 lg:col-span-3 lg:row-start-2 lg:-mt-10 lg:grid lg:grid-cols-subgrid lg:items-start xl:-mt-8">
 
-                    {{-- Desktop line --}}
-                    <span
-                        class="bg-primary xl:w-105 h-1.25 bottom-3.5 right-[40%] hidden w-60 shrink-0 lg:absolute lg:block xl:right-[32%]"
-                        aria-hidden="true"></span>
+                    {{-- Empty area below title --}}
+                    <div class="hidden lg:block"></div>
 
-                    {{-- Intro text --}}
-                    <p class="max-w-95 text-lg/7 text-white/80 lg:text-[15px]/7">
+                    {{-- Connector --}}
+                    <div class="hidden items-center pt-4 lg:flex" aria-hidden="true">
+                        <span class="size-4 shrink-0 rounded-full bg-transparent"></span>
+                        <span class="bg-primary h-1.25 flex-1"></span>
+                    </div>
+
+                    {{-- Paragraph --}}
+                    <p class="max-w-95 text-lg/7 text-white/80 lg:pl-7 lg:text-[15px]/7 xl:pl-10">
                         {{ $heroText }}
                     </p>
                 </div>
@@ -277,9 +285,9 @@
 
 
         {{-- Bottom centre masonry mark --}}
-        <div class="absolute bottom-4 left-1/2 z-20 -translate-x-1/2 translate-y-1/2" aria-hidden="true">
-            <div class="flex size-20 items-center justify-center">
-                <img src="{{ $logo }}" alt="I&M Sons Masonry" class="size-20">
+        <div class="absolute bottom-4 left-1/2 z-20 -translate-x-1/2 translate-y-[64%]" aria-hidden="true">
+            <div class="size-50 flex items-center justify-center">
+                <img src="{{ $logo }}" alt="I&M Sons Masonry" class="size-50">
             </div>
         </div>
     </section>
@@ -292,8 +300,8 @@
     |--------------------------------------------------------------------------
     --}}
 
-    <section class="relative overflow-hidden bg-white py-10 sm:py-24 lg:py-28">
-        <div class="max-w-site mx-auto px-6 sm:px-8 lg:px-0">
+    <section class="relative overflow-hidden bg-white py-32 lg:py-40">
+        <div class="mx-auto px-6 sm:px-8 lg:px-0">
 
             {{--
         |--------------------------------------------------------------------------
@@ -301,16 +309,16 @@
         |--------------------------------------------------------------------------
         --}}
 
-            <div class="mb-16 text-center lg:mb-20">
+            {{-- <div class="mb-16 text-center lg:mb-20">
                 <div
-                    class="text-primary text-[clamp(3.7rem,3.2vw,3.7rem)] font-light uppercase leading-none tracking-[-0.045em]">
+                    class="text-primary text-[clamp(3.7rem,3.2vw,3.7rem)] font1-light uppercase leading-none tracking-[-0.045em]">
                     {{ $servicesBrandPrimary }}
                 </div>
 
-                <div class="text-accent mt-1 text-[clamp(1.7rem,1.65vw,1.7rem)] font-normal uppercase leading-none">
+                <div class="text-accent mt-1 text-[clamp(1.7rem,1.65vw,1.7rem)] font1-normal uppercase leading-none">
                     {{ $servicesBrandSecondary }}
                 </div>
-            </div>
+            </div> --}}
 
 
             {{--
@@ -321,7 +329,7 @@
 
             <div class="mb-10 lg:hidden">
                 <div class="mt-5 flex flex-col items-center justify-center gap-5">
-                    <h2 class="text-ink text-4xl font-light uppercase tracking-[-0.045em]">
+                    <h2 class="text-ink font1-light text-4xl uppercase tracking-[-0.045em]">
                         {{ $servicesMobileTitle }}
                     </h2>
 
@@ -339,7 +347,7 @@
         --}}
 
             <div
-                class="relative grid gap-10 lg:grid-cols-[130px_minmax(0,1fr)_190px] xl:grid-cols-[170px_minmax(0,1fr)_230px] xl:gap-12">
+                class="relative grid justify-items-center gap-10 lg:grid-cols-[130px_minmax(0,1fr)_190px] xl:grid-cols-[170px_minmax(0,1fr)_230px] xl:gap-12">
                 {{--
             |--------------------------------------------------------------------------
             | Left line
@@ -348,7 +356,7 @@
             |--------------------------------------------------------------------------
             --}}
 
-                <div class="top-30 pointer-events-none absolute left-[calc(18%-18vw+40px)] z-30 hidden items-center lg:flex lg:w-[calc(50vw-50%+140px+70px)]"
+                <div class="top-30 pointer-events-none absolute left-[calc(18%-18vw+7rem)] z-30 hidden items-center lg:flex lg:w-[calc(50vw-50%+140px)] xl:w-[calc(50vw-50%+30rem)]"
                     aria-hidden="true">
                     <span class="bg-primary size-3 shrink-0 rounded-full"></span>
 
@@ -357,7 +365,7 @@
 
 
                 {{-- Right arrow and line --}}
-                <div class="pointer-events-none absolute right-[calc(50%-50vw)] top-1/3 z-30 hidden -translate-y-1/2 items-center lg:flex lg:w-[calc(50vw-50%+120px)] xl:w-[calc(50vw-50%+150px)]"
+                <div class="pointer-events-none absolute right-[calc(50%-50vw)] top-1/3 z-30 hidden -translate-y-1/2 items-center lg:flex lg:w-[calc(50vw-50%+120px)] xl:w-[calc(50vw-50%+15rem)]"
                     aria-hidden="true">
                     <span class="border-b-3 border-l-3 border-primary relative z-10 size-4 shrink-0 rotate-45"></span>
 
@@ -372,11 +380,11 @@
             --}}
 
                 <aside class="relative hidden lg:ml-6 lg:flex lg:min-h-full lg:items-start lg:justify-start">
-                    <div class="sticky top-60 pt-20">
-                        <div
-                            class="text-ink rotate-180 text-[42px] font-light uppercase leading-none tracking-[-0.04em] [writing-mode:vertical-rl]">
+                    <div class="sticky top-20 pt-20">
+                        <h2
+                            class="text-ink font1-bold rotate-180 text-[42px] uppercase leading-none tracking-[-0.04em] [writing-mode:vertical-rl]">
                             {{ $servicesVerticalLabel }}
-                        </div>
+                        </h2>
                     </div>
                 </aside>
 
@@ -387,7 +395,7 @@
             |--------------------------------------------------------------------------
             --}}
 
-                <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+                <div class="grid max-w-6xl gap-5 sm:grid-cols-2 xl:grid-cols-3">
                     @foreach ($services as $service)
                         @php
                             $serviceUrl = is_array($service['url'] ?? null)
@@ -421,7 +429,7 @@
                             <div
                                 class="min-h-55 sm:min-h-110 xl:min-h-117.5 p-15 relative z-10 flex flex-col justify-between xl:p-8">
                                 {{-- Title --}}
-                                <h3 class="max-w-45 text-lg/[1.15] font-normal uppercase text-white">
+                                <h3 class="max-w-45 font1-normal text-lg/[1.15] uppercase text-white">
                                     {{ $service['title'] }}
                                 </h3>
 
@@ -452,8 +460,8 @@
             |--------------------------------------------------------------------------
             --}}
 
-                <aside class="mb-50 hidden lg:flex lg:items-center lg:justify-end">
-                    <p class="max-w-37.5 text-stone text-lg/6">
+                <aside class="mb-50 hidden w-full lg:flex lg:items-center lg:justify-end">
+                    <p class="text-stone text-lg/6">
                         {{ $servicesExperienceNote }}
                     </p>
                 </aside>
@@ -475,9 +483,9 @@
 
             {{-- About content --}}
             <div
-                class="relative z-10 grid gap-8 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-12 xl:grid-cols-[240px_minmax(0,1fr)] xl:gap-16">
+                class="relative z-10 grid gap-8 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-12 xl:grid-cols-[250px_minmax(0,1fr)] xl:gap-16">
                 <h2
-                    class="text-4xl font-light uppercase leading-none tracking-[-0.04em] text-white sm:text-5xl lg:text-[44px] xl:text-5xl">
+                    class="font1-light text-4xl uppercase leading-none tracking-[-0.04em] text-white sm:text-5xl lg:text-[44px] xl:text-5xl">
                     {{ $aboutTitle }}
                 </h2>
 
@@ -497,7 +505,7 @@
                         </div>
 
                         <a href="{{ $aboutButtonUrl }}"
-                            class="h-13 text-ink hover:bg-ink mt-25 inline-flex min-w-36 items-center justify-center bg-white px-8 text-xs font-medium uppercase tracking-[0.02em] transition duration-300 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
+                            class="h-13 text-ink hover:bg-ink mt-25 font1-medium inline-flex min-w-36 items-center justify-center bg-white px-8 text-xs uppercase tracking-[0.02em] transition duration-300 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
                             {{ $aboutButtonText }}
                         </a>
                     </div>
@@ -539,11 +547,11 @@
         @endif
 
         {{-- Dark overlay --}}
-        <div class="bg-black/72 absolute inset-0 -z-10" aria-hidden="true"></div>
+        <div class="absolute inset-0 -z-10 bg-black/60" aria-hidden="true"></div>
 
-        <div class="max-w-site mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
+        <div class="mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
             <div
-                class="grid gap-10 lg:grid-cols-[180px_minmax(0,1fr)] lg:items-center lg:gap-12 xl:grid-cols-[220px_minmax(0,1fr)] xl:gap-16">
+                class="grid gap-10 lg:grid-cols-[180px_minmax(0,1fr)] lg:items-center lg:gap-12 xl:grid-cols-[400px_minmax(0,1fr)] xl:gap-16">
                 {{--
             |--------------------------------------------------------------------------
             | Left intro
@@ -552,14 +560,14 @@
 
                 <div class="relative z-10">
                     {{-- Mobile title --}}
-                    <h2 class="text-primary text-5xl font-light uppercase leading-none tracking-[-0.04em] lg:hidden">
+                    <h2 class="text-primary font1-light text-5xl uppercase leading-none tracking-[-0.04em] lg:hidden">
                         {{ $reviewsTitle }}
                     </h2>
 
                     {{-- Desktop vertical title --}}
-                    <div class="lg:min-h-95 hidden lg:flex lg:items-end lg:gap-8">
+                    <div class="lg:min-h-95 lg:gap-25 hidden lg:flex lg:items-end">
                         <h2
-                            class="text-primary rotate-180 text-[60px] font-light uppercase leading-none tracking-[-0.04em] [writing-mode:vertical-rl]">
+                            class="text-primary font1-light rotate-180 text-[60px] uppercase leading-none tracking-[-0.04em] [writing-mode:vertical-rl]">
                             {{ $reviewsTitle }}
                         </h2>
 
@@ -576,7 +584,7 @@
 
 
                 {{-- Slider area --}}
-                <div class="relative min-w-0">
+                <div class="relative min-w-0 xl:max-w-6xl">
                     <div class="flex items-end gap-5 xl:gap-6">
                         {{-- Previous arrow --}}
                         <button type="button"
@@ -593,13 +601,13 @@
                                 @foreach ($reviews as $review)
                                     <article class="w-full shrink-0 px-2 lg:w-1/2 lg:px-2.5" data-review-slide>
                                         <div
-                                            class="h-115 w-115 mx-auto flex flex-col justify-between bg-white p-8 sm:p-10 lg:p-10 xl:p-12">
+                                            class="h-115 w-115 mx-auto flex flex-col justify-center bg-white p-8 sm:p-10 lg:p-10 xl:p-12">
                                             <blockquote
-                                                class="max-w-70 text-ink text-3xl/[1.2] font-light tracking-[-0.035em] lg:text-2xl/tight xl:text-[27px]/[1.22]">
+                                                class="max-w-70 text-ink text-3xl/[1.2] tracking-[-0.035em] lg:text-2xl/tight xl:text-[30px]/[1.22]">
                                                 {{ $review['review'] ?? '' }}
                                             </blockquote>
 
-                                            <p class="text-accent mt-8 text-xs font-medium uppercase">
+                                            <p class="text-accent font1-medium mt-8 text-sm uppercase">
                                                 {{ $review['name'] ?? '' }}
                                             </p>
                                         </div>
@@ -658,7 +666,8 @@
     <section class="bg-white py-20 sm:py-24 lg:py-28">
         <div class="px-6">
             <div class="mb-14 text-center lg:mb-16">
-                <h2 class="text-ink text-5xl font-light uppercase leading-none tracking-[-0.04em] sm:text-6xl lg:text-5xl">
+                <h2
+                    class="text-ink font1-light text-5xl uppercase leading-none tracking-[-0.04em] sm:text-6xl lg:text-5xl">
                     {{ $galleryTitle }}
                 </h2>
             </div>
@@ -713,7 +722,7 @@
 
 
                     <a href="{{ $galleryButtonUrl }}"
-                        class="min-h-18 border-3 border-primary text-accent hover:bg-primary hover:text-ink focus-visible:outline-primary flex items-center justify-center px-6 text-xl font-normal uppercase transition-colors focus-visible:outline-2 focus-visible:outline-offset-4">
+                        class="min-h-18 border-3 border-primary text-accent hover:bg-primary hover:text-ink focus-visible:outline-primary font1-normal flex items-center justify-center px-6 text-xl uppercase transition-colors focus-visible:outline-2 focus-visible:outline-offset-4">
                         {{ $galleryButtonText }}
                     </a>
 
@@ -765,7 +774,7 @@
                 <span class="bg-primary h-1.5 flex-1"></span>
 
                 <a href="{{ $galleryButtonUrl }}"
-                    class="text-accent hover:text-ink shrink-0 px-6 text-sm font-medium uppercase tracking-[0.02em] transition-colors">
+                    class="text-accent hover:text-ink font1-medium shrink-0 px-6 text-sm uppercase tracking-[0.02em] transition-colors">
                     {{ $galleryButtonText }}
                 </a>
 
@@ -787,11 +796,11 @@
         <div class="max-w-250 mx-auto grid gap-10 px-6 sm:px-8 lg:grid-cols-[200px_minmax(0,1fr)] lg:gap-12 lg:px-0">
             {{-- FAQ introduction --}}
             <div>
-                <h2 class="text-ink text-4xl font-light uppercase leading-none tracking-[-0.04em] sm:text-5xl">
+                <h2 class="text-ink font1-light text-4xl uppercase leading-none tracking-[-0.04em] sm:text-5xl">
                     {{ $faqTitle }}
                 </h2>
 
-                <p class="max-w-45 text-accent mt-5 text-lg/6 font-light">
+                <p class="max-w-45 text-accent font1-light mt-5 text-lg/6">
                     {{ $faqIntro }}
                 </p>
             </div>
@@ -809,7 +818,7 @@
                     <article data-faq-item>
                         <h3>
                             <button id="{{ $buttonId }}" type="button"
-                                class="text-ink hover:text-accent focus-visible:outline-primary flex min-h-12 w-full items-center justify-between gap-6 bg-white px-7 py-4 text-left text-lg font-normal shadow-[0_2px_12px_rgba(0,0,0,0.08)] transition-colors duration-300 hover:cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2"
+                                class="text-ink hover:text-accent focus-visible:outline-primary font1-normal flex min-h-12 w-full items-center justify-between gap-6 bg-white px-7 py-4 text-left text-lg shadow-[0_2px_12px_rgba(0,0,0,0.08)] transition-colors duration-300 hover:cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2"
                                 aria-expanded="{{ $isOpen ? 'true' : 'false' }}" aria-controls="{{ $panelId }}"
                                 data-faq-trigger>
                                 <span>
