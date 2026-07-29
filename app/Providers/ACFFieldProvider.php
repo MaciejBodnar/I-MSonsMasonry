@@ -60,18 +60,6 @@ class ACFFieldProvider extends SageServiceProvider
                     'type' => 'tab',
                 ],
                 [
-                    'key' => 'field_imsons_header_brand_primary',
-                    'label' => __('Brand Primary Line', 'im-sons'),
-                    'name' => 'header_brand_primary',
-                    'type' => 'text',
-                ],
-                [
-                    'key' => 'field_imsons_header_brand_secondary',
-                    'label' => __('Brand Secondary Line', 'im-sons'),
-                    'name' => 'header_brand_secondary',
-                    'type' => 'text',
-                ],
-                [
                     'key' => 'field_imsons_header_contact_label',
                     'label' => __('Contact Label', 'im-sons'),
                     'name' => 'header_contact_label',
@@ -93,18 +81,6 @@ class ACFFieldProvider extends SageServiceProvider
                     'key' => 'field_imsons_header_footer_footer_tab',
                     'label' => __('Footer', 'im-sons'),
                     'type' => 'tab',
-                ],
-                [
-                    'key' => 'field_imsons_footer_brand_primary',
-                    'label' => __('Brand Primary Line', 'im-sons'),
-                    'name' => 'footer_brand_primary',
-                    'type' => 'text',
-                ],
-                [
-                    'key' => 'field_imsons_footer_brand_secondary',
-                    'label' => __('Brand Secondary Line', 'im-sons'),
-                    'name' => 'footer_brand_secondary',
-                    'type' => 'text',
                 ],
                 [
                     'key' => 'field_imsons_footer_contact_label',
@@ -132,12 +108,6 @@ class ACFFieldProvider extends SageServiceProvider
                     'layout' => 'row',
                     'button_label' => __('Add Social Link', 'im-sons'),
                     'sub_fields' => [
-                        [
-                            'key' => 'field_imsons_footer_social_label',
-                            'label' => __('Label', 'im-sons'),
-                            'name' => 'label',
-                            'type' => 'text',
-                        ],
                         [
                             'key' => 'field_imsons_footer_social_icon_class',
                             'label' => __('Icon Class', 'im-sons'),
@@ -300,19 +270,6 @@ class ACFFieldProvider extends SageServiceProvider
                     'type' => 'text',
                 ],
                 [
-                    'key' => 'field_imsons_front_page_about_button_text',
-                    'label' => __('About Button Text', 'im-sons'),
-                    'name' => 'about_button_text',
-                    'type' => 'text',
-                ],
-                [
-                    'key' => 'field_imsons_front_page_about_button_url',
-                    'label' => __('About Button Link', 'im-sons'),
-                    'name' => 'about_button_url',
-                    'type' => 'link',
-                    'return_format' => 'array',
-                ],
-                [
                     'key' => 'field_imsons_front_page_services',
                     'label' => __('Service Cards', 'im-sons'),
                     'name' => 'services',
@@ -379,9 +336,15 @@ class ACFFieldProvider extends SageServiceProvider
                     'library' => 'all',
                 ],
                 [
-                    'key' => 'field_imsons_about_link',
-                    'label' => __('About Link', 'im-sons'),
-                    'name' => 'about_link',
+                    'key' => 'field_imsons_front_page_about_button_text',
+                    'label' => __('About Button Text', 'im-sons'),
+                    'name' => 'about_button_text',
+                    'type' => 'text',
+                ],
+                [
+                    'key' => 'field_imsons_front_page_about_button_url',
+                    'label' => __('About Button Link', 'im-sons'),
+                    'name' => 'about_button_url',
                     'type' => 'link',
                     'return_format' => 'array',
                 ],
@@ -389,6 +352,12 @@ class ACFFieldProvider extends SageServiceProvider
                     'key' => 'field_imsons_front_page_reviews_tab',
                     'label' => __('Reviews', 'im-sons'),
                     'type' => 'tab',
+                ],
+                [
+                    'key' => 'field_imsons_front_page_reviews_title',
+                    'label' => __('Reviews Title', 'im-sons'),
+                    'name' => 'reviews_title',
+                    'type' => 'text',
                 ],
                 [
                     'key' => 'field_imsons_reviews_background',
@@ -502,12 +471,6 @@ class ACFFieldProvider extends SageServiceProvider
                     'name' => 'faq_intro',
                     'type' => 'textarea',
                     'new_lines' => 'br',
-                ],
-                [
-                    'key' => 'field_imsons_front_page_reviews_title',
-                    'label' => __('Reviews Title', 'im-sons'),
-                    'name' => 'reviews_title',
-                    'type' => 'text',
                 ],
                 [
                     'key' => 'field_imsons_front_page_faq_items',
@@ -663,12 +626,6 @@ class ACFFieldProvider extends SageServiceProvider
                     'button_label' => __('Add Social Link', 'im-sons'),
                     'sub_fields' => [
                         [
-                            'key' => 'field_imsons_contact_social_label',
-                            'label' => __('Label', 'im-sons'),
-                            'name' => 'label',
-                            'type' => 'text',
-                        ],
-                        [
                             'key' => 'field_imsons_contact_social_icon_class',
                             'label' => __('Icon Class', 'im-sons'),
                             'name' => 'icon_class',
@@ -715,54 +672,14 @@ class ACFFieldProvider extends SageServiceProvider
                     'type' => 'text',
                 ],
                 [
-                    'key' => 'field_imsons_gallery_albums',
-                    'label' => __('Albums', 'im-sons'),
-                    'name' => 'gallery_albums',
-                    'type' => 'repeater',
-                    'layout' => 'row',
-                    'button_label' => __('Add Album', 'im-sons'),
-                    'sub_fields' => [
-                        [
-                            'key' => 'field_imsons_gallery_album_title',
-                            'label' => __('Album Title', 'im-sons'),
-                            'name' => 'album_title',
-                            'type' => 'text',
-                        ],
-                        [
-                            'key' => 'field_imsons_gallery_album_cover_image',
-                            'label' => __('Cover Image', 'im-sons'),
-                            'name' => 'cover_image',
-                            'type' => 'image',
-                            'return_format' => 'array',
-                            'preview_size' => 'medium',
-                            'library' => 'all',
-                        ],
-                        [
-                            'key' => 'field_imsons_gallery_album_images',
-                            'label' => __('Images', 'im-sons'),
-                            'name' => 'images',
-                            'type' => 'repeater',
-                            'layout' => 'row',
-                            'button_label' => __('Add Image', 'im-sons'),
-                            'sub_fields' => [
-                                [
-                                    'key' => 'field_imsons_gallery_album_image',
-                                    'label' => __('Image', 'im-sons'),
-                                    'name' => 'image',
-                                    'type' => 'image',
-                                    'return_format' => 'array',
-                                    'preview_size' => 'medium',
-                                    'library' => 'all',
-                                ],
-                                [
-                                    'key' => 'field_imsons_gallery_album_image_alt',
-                                    'label' => __('Alt Text', 'im-sons'),
-                                    'name' => 'alt',
-                                    'type' => 'text',
-                                ],
-                            ],
-                        ],
-                    ],
+                    'key' => 'field_imsons_gallery_page_images',
+                    'label' => __('Gallery Images', 'im-sons'),
+                    'name' => 'gallery_images',
+                    'type' => 'gallery',
+                    'return_format' => 'array',
+                    'preview_size' => 'medium',
+                    'insert' => 'append',
+                    'library' => 'all',
                 ],
             ],
             'location' => [

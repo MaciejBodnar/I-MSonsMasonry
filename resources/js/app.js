@@ -304,7 +304,7 @@ const initialiseGalleryPage = () => {
     galleryPage.querySelectorAll('[data-gallery-thumbnail]'),
   );
 
-  if (!dataElement || !mainImage || !counter) {
+  if (!dataElement || !mainImage) {
     return;
   }
 
@@ -360,7 +360,9 @@ const initialiseGalleryPage = () => {
       mainImage.classList.remove('opacity-0');
     }, 150);
 
-    counter.textContent = `${currentIndex + 1} / ${images.length}`;
+    if (counter) {
+      counter.textContent = `${currentIndex + 1} / ${images.length}`;
+    }
 
     updateThumbnailStates();
   };
@@ -408,91 +410,7 @@ const initialiseGalleryPage = () => {
     }
   });
 
-  if (swipeArea instanceof HTMLElement) {
-    let startX = 0;
-    let startY = 0;
-    let currentX = 0;
-    let pointerId = null;
-    let isDragging = false;
-
-    swipeArea.style.touchAction = 'pan-y';
-
-    const resetSwipe = () => {
-      startX = 0;
-      startY = 0;
-      currentX = 0;
-      pointerId = null;
-      isDragging = false;
-    };
-
-    swipeArea.addEventListener('pointerdown', (event) => {
-      const target = event.target;
-
-      /*
-       * Do not start swiping when an arrow or another control
-       * inside the slider is pressed.
-       */
-      if (
-        target instanceof Element &&
-        target.closest('button, a, [data-gallery-control]')
-      ) {
-        return;
-      }
-
-      if (event.pointerType === 'mouse' && event.button !== 0) {
-        return;
-      }
-
-      startX = event.clientX;
-      startY = event.clientY;
-      currentX = event.clientX;
-      pointerId = event.pointerId;
-      isDragging = true;
-
-      swipeArea.setPointerCapture(pointerId);
-    });
-
-    swipeArea.addEventListener('pointermove', (event) => {
-      if (!isDragging || event.pointerId !== pointerId) {
-        return;
-      }
-
-      currentX = event.clientX;
-
-      const deltaX = currentX - startX;
-      const deltaY = event.clientY - startY;
-
-      if (Math.abs(deltaX) > Math.abs(deltaY)) {
-        event.preventDefault();
-      }
-    });
-
-    swipeArea.addEventListener('pointerup', (event) => {
-      if (!isDragging || event.pointerId !== pointerId) {
-        return;
-      }
-
-      const deltaX = currentX - startX;
-      const deltaY = event.clientY - startY;
-      const threshold = 50;
-
-      const isHorizontalSwipe =
-        Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) >= threshold;
-
-      if (isHorizontalSwipe) {
-        if (deltaX < 0) {
-          showNextImage();
-        } else {
-          showPreviousImage();
-        }
-      }
-
-      resetSwipe();
-    });
-
-    swipeArea.addEventListener('pointercancel', resetSwipe);
-    swipeArea.addEventListener('lostpointercapture', resetSwipe);
-  }
+  bindSwipeNavigation(swipeArea, showPreviousImage, showNextImage);
 
   updateGallery();
 };

@@ -28,16 +28,14 @@ if (! function_exists('im_sons_normalize_social_links')) {
     function im_sons_normalize_social_links(array $items): array
     {
         return array_values(array_filter(array_map(static function ($item) {
-            $label = trim((string) ($item['label'] ?? ''));
             $iconClass = trim((string) ($item['icon_class'] ?? ''));
             $url = im_sons_normalize_link_value($item['url'] ?? null, '');
 
-            if ($label === '' || $iconClass === '' || $url === '') {
+            if ($iconClass === '' || $url === '') {
                 return null;
             }
 
             return [
-                'label' => $label,
                 'icon_class' => $iconClass,
                 'url' => $url,
             ];

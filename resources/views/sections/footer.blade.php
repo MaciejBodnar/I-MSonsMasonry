@@ -55,7 +55,6 @@
 
                 @foreach ($socialLinks as $socialLink)
                     <a href="{{ $socialLink['url'] }}" target="_blank" rel="noopener noreferrer"
-                        aria-label="{{ $socialLink['label'] }}"
                         class="bg-primary hover:bg-accent flex size-11 items-center justify-center rounded-full text-lg text-black transition hover:text-white">
                         {!! $socialLink['icon_class'] !!}
                     </a>

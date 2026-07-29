@@ -83,7 +83,6 @@
                         <div class="relative z-10 flex items-center gap-2">
                             @foreach ($socialLinks as $socialLink)
                                 <a href="{{ $socialLink['url'] }}" target="_blank" rel="noopener noreferrer"
-                                    aria-label="{{ $socialLink['label'] }}"
                                     class="bg-primary text-ink hover:bg-accent focus-visible:outline-offset-3 focus-visible:outline-primary flex size-9 items-center justify-center rounded-full text-base transition duration-300 hover:scale-110 hover:text-white focus-visible:outline-2">
                                     {!! $socialLink['icon_class'] !!}
                                 </a>
